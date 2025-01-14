@@ -5,17 +5,17 @@ import { EyeOff, X } from "lucide-react";
 export const SuggestedSection = () => {
   return (
     <div className="section-card">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold">Suggested for you</h2>
-          <span className="flex items-center gap-1 text-sm text-gray-400">
-            <EyeOff size={14} />
-            Private to you
-          </span>
+      <div className="flex flex-col gap-2 mb-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold">Suggested for you</h2>
+          <button className="text-gray-400 hover:text-white">
+            <X size={20} />
+          </button>
         </div>
-        <button className="text-gray-400 hover:text-white">
-          <X size={20} />
-        </button>
+        <span className="flex items-center gap-1 text-sm text-gray-400">
+          <EyeOff size={14} />
+          Private to you
+        </span>
       </div>
       
       <div className="p-4 bg-white/5 rounded-lg">
