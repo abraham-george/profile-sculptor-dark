@@ -16,20 +16,18 @@ export const ProfileHero = () => {
       </div>
       
       <div className="px-6 pb-6">
-        <div className="relative">
-          <div className="absolute -top-16">
-            <div className="relative">
-              <img
-                src="/lovable-uploads/b931e2f8-5c59-4255-8d10-4c0f2ba2ce0d.png"
-                alt="Profile"
-                className="w-32 h-32 rounded-full border-4 border-linkedin-card"
-              />
-              <CheckCircle className="absolute bottom-0 right-0 text-linkedin-blue bg-white rounded-full" />
-            </div>
+        <div className="relative -mt-16">
+          <div className="relative">
+            <img
+              src="/lovable-uploads/b931e2f8-5c59-4255-8d10-4c0f2ba2ce0d.png"
+              alt="Profile"
+              className="w-32 h-32 rounded-full border-4 border-linkedin-card"
+            />
+            <CheckCircle className="absolute bottom-0 right-0 text-linkedin-blue bg-white rounded-full" />
           </div>
         </div>
 
-        <div className="mt-20">
+        <div className="mt-4">
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-2xl font-bold flex items-center gap-2">
