@@ -19,9 +19,9 @@ export const ProfileHero = () => {
         <div className="relative -mt-16">
           <div className="relative">
             <img
-              src="/lovable-uploads/b931e2f8-5c59-4255-8d10-4c0f2ba2ce0d.png"
+              src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952"
               alt="Profile"
-              className="w-32 h-32 rounded-full border-4 border-linkedin-card"
+              className="w-32 h-32 rounded-full border-4 border-linkedin-card object-cover"
             />
             <CheckCircle className="absolute bottom-0 right-0 text-linkedin-blue bg-white rounded-full" />
           </div>
@@ -42,13 +42,6 @@ export const ProfileHero = () => {
                 <span className="text-linkedin-blue hover:underline cursor-pointer">500+ connections</span>
               </p>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-gray-400 hover:text-white"
-            >
-              <PencilIcon className="h-4 w-4" />
-            </Button>
           </div>
 
           <div className="flex gap-2 mt-4">
@@ -61,17 +54,6 @@ export const ProfileHero = () => {
               <div className="text-sm">
                 <p className="font-semibold">LinkedIn</p>
                 <p className="text-gray-400">Company</p>
-              </div>
-            </div>
-            <div className="flex gap-2 ml-6">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/en/1/1b/Texas_Longhorns_logo.svg"
-                alt="University"
-                className="w-8 h-8"
-              />
-              <div className="text-sm">
-                <p className="font-semibold">The University of Texas at Austin</p>
-                <p className="text-gray-400">Education</p>
               </div>
             </div>
           </div>
