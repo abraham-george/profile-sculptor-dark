@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { PencilIcon, CheckCircle } from "lucide-react";
+import { ProfileActions } from "./ProfileActions";
 
 export const ProfileHero = () => {
   return (
@@ -75,6 +76,10 @@ export const ProfileHero = () => {
                 <p className="text-gray-400">Education</p>
               </div>
             </div>
+          </div>
+
+          <div className="mt-4">
+            <ProfileActions />
           </div>
         </div>
       </div>
