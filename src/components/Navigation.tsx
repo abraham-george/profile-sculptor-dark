@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Search, Home, Users, Briefcase, MessageSquare, Bell } from "lucide-react";
 import { Input } from "./ui/input";
 
 export const Navigation = () => {
@@ -20,11 +20,26 @@ export const Navigation = () => {
             />
           </div>
           <nav className="flex items-center gap-6">
-            <button className="text-gray-400 hover:text-white">Home</button>
-            <button className="text-gray-400 hover:text-white">My Network</button>
-            <button className="text-gray-400 hover:text-white">Jobs</button>
-            <button className="text-gray-400 hover:text-white">Messaging</button>
-            <button className="text-gray-400 hover:text-white">Notifications</button>
+            <button className="text-gray-400 hover:text-white flex flex-col items-center gap-1">
+              <Home size={20} />
+              <span className="text-xs">Home</span>
+            </button>
+            <button className="text-gray-400 hover:text-white flex flex-col items-center gap-1">
+              <Users size={20} />
+              <span className="text-xs">My Network</span>
+            </button>
+            <button className="text-gray-400 hover:text-white flex flex-col items-center gap-1">
+              <Briefcase size={20} />
+              <span className="text-xs">Jobs</span>
+            </button>
+            <button className="text-gray-400 hover:text-white flex flex-col items-center gap-1">
+              <MessageSquare size={20} />
+              <span className="text-xs">Messaging</span>
+            </button>
+            <button className="text-gray-400 hover:text-white flex flex-col items-center gap-1">
+              <Bell size={20} />
+              <span className="text-xs">Notifications</span>
+            </button>
           </nav>
         </div>
       </div>
