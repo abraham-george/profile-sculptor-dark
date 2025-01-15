@@ -81,7 +81,7 @@ export const ConfigTab = () => {
           </button>
           <button
             onClick={() => setCurrentStep(prev => Math.min(totalSteps, prev + 1))}
-            className="profile-button profile-button-primary"
+            className={`profile-button ${canProceed() ? 'profile-button-primary' : 'profile-button-disabled bg-gray-400 cursor-not-allowed'}`}
             disabled={!canProceed()}
           >
             {currentStep === totalSteps ? 'Finish' : 'Next'}

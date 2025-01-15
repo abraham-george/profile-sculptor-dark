@@ -1,9 +1,10 @@
 import { X } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PodcastConfig } from "../ConfigTab";
 
 interface ReviewItemProps {
   title: string;
-  items: string[];
+  items: Array<{ name: string; image?: string }>;
   onRemove: (item: string) => void;
 }
 
@@ -13,11 +14,17 @@ const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
         <button
-          key={item}
-          onClick={() => onRemove(item)}
+          key={item.name}
+          onClick={() => onRemove(item.name)}
           className="flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
         >
-          <span className="text-sm">{item}</span>
+          {item.image && (
+            <Avatar className="w-6 h-6">
+              <AvatarImage src={item.image} alt={item.name} />
+              <AvatarFallback>{item.name[0]}</AvatarFallback>
+            </Avatar>
+          )}
+          <span className="text-sm">{item.name}</span>
           <X className="w-4 h-4" />
         </button>
       ))}
@@ -49,6 +56,12 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
     });
   };
 
+  // Map sources to include their images
+  const sourcesWithImages = config.sources.map(source => ({
+    name: source,
+    image: `https://images.unsplash.com/photo-${source.toLowerCase().replace(/\s+/g, '-')}`
+  }));
+
   return (
     <div className="space-y-8">
       <h3 className="text-xl mb-4">Review Your Choices</h3>
@@ -67,7 +80,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
       {config.skills.length > 0 && (
         <ReviewItem
           title="Selected Skills"
-          items={config.skills}
+          items={config.skills.map(skill => ({ name: skill }))}
           onRemove={handleRemoveSkill}
         />
       )}
@@ -75,7 +88,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
       {config.sources.length > 0 && (
         <ReviewItem
           title="Selected Sources"
-          items={config.sources}
+          items={sourcesWithImages}
           onRemove={handleRemoveSource}
         />
       )}
@@ -83,7 +96,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
       {config.additionalContent.length > 0 && (
         <ReviewItem
           title="Additional Content"
-          items={config.additionalContent}
+          items={config.additionalContent.map(content => ({ name: content }))}
           onRemove={handleRemoveAdditionalContent}
         />
       )}
@@ -105,7 +118,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
       {config.coverImage && (
         <div className="space-y-2">
           <h4 className="text-sm font-medium text-gray-400">Cover Image</h4>
-          <div className="w-64 h-64 rounded-lg overflow-hidden">
+          <div className="w-64 h-64 rounded-lg overflow-hidden border-2 border-linkedin-blue">
             <img
               src={config.coverImage.url}
               alt="Podcast cover"

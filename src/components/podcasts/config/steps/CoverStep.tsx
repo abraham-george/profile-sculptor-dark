@@ -21,6 +21,15 @@ export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) =>
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
 
+  const linkedinTuneInImage = "/lovable-uploads/6bbb0605-4369-4c95-9a42-09949e5b1ed1.png";
+
+  const handleOptionChange = (value: "upload" | "generate") => {
+    setSelectedOption(value);
+    if (value === "upload") {
+      onCoverImageSelect({ type: 'existing', url: linkedinTuneInImage });
+    }
+  };
+
   const handleGenerateImage = async () => {
     if (!prompt.trim()) return;
     
@@ -49,25 +58,23 @@ export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) =>
       
       <RadioGroup
         value={selectedOption}
-        onValueChange={(value) => setSelectedOption(value as "upload" | "generate")}
+        onValueChange={(value) => handleOptionChange(value as "upload" | "generate")}
         className="grid gap-8"
       >
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="upload" id="upload" />
-            <Label htmlFor="upload">Use Existing Image</Label>
+            <Label htmlFor="upload">Use LinkedIn TuneIn Cover</Label>
           </div>
-          {selectedOption === "upload" && coverImage && coverImage.type === 'existing' && (
-            <div className="ml-6">
-              <div className="w-64 h-64 rounded-lg overflow-hidden">
-                <img
-                  src={coverImage.url}
-                  alt="Podcast cover"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <div className="ml-6">
+            <div className="w-64 h-64 rounded-lg overflow-hidden border-2 border-linkedin-blue">
+              <img
+                src={linkedinTuneInImage}
+                alt="LinkedIn TuneIn cover"
+                className="w-full h-full object-cover"
+              />
             </div>
-          )}
+          </div>
         </div>
 
         <div className="space-y-4">
@@ -103,7 +110,7 @@ export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) =>
               </Button>
 
               {generatedImage && (
-                <div className="w-64 h-64 rounded-lg overflow-hidden">
+                <div className="w-64 h-64 rounded-lg overflow-hidden border-2 border-linkedin-blue">
                   <img
                     src={generatedImage}
                     alt="Generated cover"
