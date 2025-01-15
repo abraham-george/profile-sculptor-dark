@@ -1,4 +1,4 @@
-import { X, User } from "lucide-react";
+import { X } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PodcastConfig } from "../ConfigTab";
 
@@ -18,14 +18,12 @@ const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
           onClick={() => onRemove(item.name)}
           className="flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
         >
-          {title.toLowerCase().includes('source') ? (
-            <User className="w-5 h-5" />
-          ) : item.image ? (
+          {item.image && (
             <Avatar className="w-6 h-6">
               <AvatarImage src={item.image} alt={item.name} />
               <AvatarFallback>{item.name[0]}</AvatarFallback>
             </Avatar>
-          ) : null}
+          )}
           <span className="text-sm">{item.name}</span>
           <X className="w-4 h-4" />
         </button>
@@ -58,10 +56,41 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
     });
   };
 
-  // Map sources to include their images
-  const sourcesWithImages = config.sources.map(source => ({
-    name: source
-  }));
+  // Map sources to include their images using the same URLs as in SourcesStep
+  const sourcesWithImages = config.sources.map(source => {
+    // This matches the image URLs defined in SourcesStep
+    const sourceImageMap: { [key: string]: string } = {
+      'Sarah Chen': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
+      'Mike Ross': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
+      'Emily Wang': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
+      'David Kim': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
+      'TechCorp': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
+      'FinanceHub': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302',
+      'HealthTech': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
+      'EduLearn': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
+      'Tech Weekly': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
+      'Finance Daily': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
+      'Health Digest': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
+      'EdTech News': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302',
+      'John Doe': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
+      'Jane Smith': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
+      'Alex Brown': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
+      'Lisa Park': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
+      'InnovateCo': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
+      'DataCorp': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302',
+      'AITech': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
+      'CloudSys': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
+      'Innovation Weekly': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
+      'AI Digest': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
+      'Cloud News': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
+      'Tech Trends': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302'
+    };
+
+    return {
+      name: source,
+      image: sourceImageMap[source]
+    };
+  });
 
   return (
     <div className="space-y-8">
