@@ -57,3 +57,9 @@
 .section-card {
   @apply glass-card rounded-lg p-4 mb-4 animate-fadeIn;
 }
+
+.pill-button {
+  @apply px-4 py-2 rounded-full border border-linkedin-blue transition-colors
+         hover:bg-linkedin-blue/10 hover:border-linkedin-blue
+         data-[state=active]:bg-linkedin-blue data-[state=active]:text-white;
+}

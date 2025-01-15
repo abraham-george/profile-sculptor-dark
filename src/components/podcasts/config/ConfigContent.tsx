@@ -124,11 +124,11 @@ export const ConfigContent = ({ currentStep }: ConfigContentProps) => {
                 <button
                   key={industry}
                   onClick={() => setSelectedIndustry(industry)}
-                  className={`px-4 py-2 rounded-full border transition-colors
-                    ${selectedIndustry === industry
-                      ? 'border-linkedin-blue bg-linkedin-blue/10 text-linkedin-blue'
-                      : 'border-white/10 hover:border-linkedin-blue'
-                    }`}
+                  className={`pill-button ${
+                    selectedIndustry === industry
+                      ? 'bg-linkedin-blue text-white'
+                      : 'text-white'
+                  }`}
                 >
                   {industry}
                 </button>
@@ -144,11 +144,11 @@ export const ConfigContent = ({ currentStep }: ConfigContentProps) => {
                   <button
                     key={skill}
                     onClick={() => handleSkillSelect(skill)}
-                    className={`px-4 py-2 rounded-full border transition-colors
-                      ${selectedSkills.includes(skill)
-                        ? 'border-linkedin-blue bg-linkedin-blue/10 text-linkedin-blue'
-                        : 'border-white/10 hover:border-linkedin-blue'
-                      }`}
+                    className={`pill-button ${
+                      selectedSkills.includes(skill)
+                        ? 'bg-linkedin-blue text-white'
+                        : 'text-white'
+                    }`}
                   >
                     {skill}
                   </button>
