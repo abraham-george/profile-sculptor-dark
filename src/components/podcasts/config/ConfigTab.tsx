@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ConfigProgress } from "./ConfigProgress";
 import { ConfigContent } from "./ConfigContent";
 import { PreviewMode } from "./preview/PreviewMode";
@@ -22,13 +22,18 @@ export interface PodcastConfig {
   };
 }
 
-export const ConfigTab = () => {
+interface ConfigTabProps {
+  existingConfig?: any;
+}
+
+export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
-  const [isPreview, setIsPreview] = useState(false);
-  const [savedPodcastId, setSavedPodcastId] = useState<string | null>(null);
+  const [isPreview, setIsPreview] = useState(!!existingConfig);
+  const [savedPodcastId, setSavedPodcastId] = useState<string | null>(existingConfig?.id || null);
 
   const [podcastConfig, setPodcastConfig] = useState<PodcastConfig>({
+    industry: existingConfig?.name || undefined,
     skills: [],
     sources: [],
     additionalContent: [],
@@ -37,7 +42,11 @@ export const ConfigTab = () => {
       length: 30,
       frequency: 'weekly',
       music: 'upbeat'
-    }
+    },
+    coverImage: existingConfig?.cover_image ? {
+      type: 'existing',
+      url: existingConfig.cover_image
+    } : undefined
   });
 
   const handleStepClick = (step: number) => {
@@ -70,8 +79,6 @@ export const ConfigTab = () => {
           name: podcastConfig.industry || 'My Podcast',
           description: `A podcast about ${podcastConfig.skills.join(', ')}`,
           cover_image: podcastConfig.coverImage?.url,
-          // We'll set user_id to null since we're allowing anonymous access
-          user_id: null
         })
         .select()
         .single();

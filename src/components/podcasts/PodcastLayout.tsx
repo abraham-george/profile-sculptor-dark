@@ -6,6 +6,8 @@ import { EpisodesTab } from "./tabs/EpisodesTab";
 import { SharedTab } from "./tabs/SharedTab";
 import { ConfigTab } from "./config/ConfigTab";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PodcastLayoutProps {
   onBack?: () => void;
@@ -13,6 +15,19 @@ interface PodcastLayoutProps {
 
 export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
   const navigate = useNavigate();
+
+  const { data: podcastConfig } = useQuery({
+    queryKey: ['podcast-config'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('podcasts')
+        .select('*')
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const handleBack = () => {
     if (onBack) {
@@ -74,7 +89,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
                 </TabsContent>
 
                 <TabsContent value="configure">
-                  <ConfigTab />
+                  <ConfigTab existingConfig={podcastConfig} />
                 </TabsContent>
               </Tabs>
             </div>
