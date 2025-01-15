@@ -9,6 +9,57 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      podcast_config: {
+        Row: {
+          additional_content: string[] | null
+          cover_image: string | null
+          created_at: string
+          description: string | null
+          id: string | null
+          name: string
+          skills: string[] | null
+          sources: string[] | null
+          style_frequency: string | null
+          style_length: number | null
+          style_music: string | null
+          style_tone: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          additional_content?: string[] | null
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string | null
+          name: string
+          skills?: string[] | null
+          sources?: string[] | null
+          style_frequency?: string | null
+          style_length?: number | null
+          style_music?: string | null
+          style_tone?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          additional_content?: string[] | null
+          cover_image?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string | null
+          name?: string
+          skills?: string[] | null
+          sources?: string[] | null
+          style_frequency?: string | null
+          style_length?: number | null
+          style_music?: string | null
+          style_tone?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       podcasts: {
         Row: {
           cover_image: string | null

@@ -27,11 +27,18 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
   const handleSaveEdit = async () => {
     try {
       const { error } = await supabase
-        .from('podcasts')
+        .from('podcast_config')
         .update({
           name: config.industry || 'My Podcast',
           description: `A podcast about ${config.skills.join(', ')}`,
           cover_image: config.coverImage?.url,
+          skills: config.skills,
+          sources: config.sources,
+          additional_content: config.additionalContent,
+          style_tone: config.style.tone,
+          style_length: config.style.length,
+          style_frequency: config.style.frequency,
+          style_music: config.style.music
         })
         .eq('id', podcastId);
 
@@ -48,7 +55,7 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
   const handleDelete = async () => {
     try {
       const { error } = await supabase
-        .from('podcasts')
+        .from('podcast_config')
         .delete()
         .eq('id', podcastId);
 

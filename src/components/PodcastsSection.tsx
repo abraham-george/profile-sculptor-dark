@@ -12,7 +12,7 @@ export const PodcastsSection = () => {
     queryKey: ['podcast-config'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('podcasts')
+        .from('podcast_config')
         .select('*')
         .maybeSingle();
       

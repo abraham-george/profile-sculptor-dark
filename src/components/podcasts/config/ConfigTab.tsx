@@ -74,11 +74,18 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
   const handleFinish = async () => {
     try {
       const { data, error } = await supabase
-        .from('podcasts')
+        .from('podcast_config')
         .insert({
           name: podcastConfig.industry || 'My Podcast',
           description: `A podcast about ${podcastConfig.skills.join(', ')}`,
           cover_image: podcastConfig.coverImage?.url,
+          skills: podcastConfig.skills,
+          sources: podcastConfig.sources,
+          additional_content: podcastConfig.additionalContent,
+          style_tone: podcastConfig.style.tone,
+          style_length: podcastConfig.style.length,
+          style_frequency: podcastConfig.style.frequency,
+          style_music: podcastConfig.style.music
         })
         .select()
         .single();

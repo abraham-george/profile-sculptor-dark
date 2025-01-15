@@ -20,7 +20,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
     queryKey: ['podcast-config'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('podcasts')
+        .from('podcast_config')
         .select('*')
         .maybeSingle();
       
