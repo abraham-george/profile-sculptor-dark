@@ -7,7 +7,15 @@ import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-export const CoverStep = () => {
+interface CoverStepProps {
+  coverImage?: {
+    type: 'existing' | 'generated';
+    url: string;
+  };
+  onCoverImageSelect: (coverImage: CoverStepProps['coverImage']) => void;
+}
+
+export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
@@ -25,6 +33,7 @@ export const CoverStep = () => {
       if (error) throw error;
       
       setGeneratedImage(data.imageUrl);
+      onCoverImageSelect({ type: 'generated', url: data.imageUrl });
       toast.success("Cover image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
@@ -48,12 +57,12 @@ export const CoverStep = () => {
             <RadioGroupItem value="upload" id="upload" />
             <Label htmlFor="upload">Use Existing Image</Label>
           </div>
-          {selectedOption === "upload" && (
+          {selectedOption === "upload" && coverImage && coverImage.type === 'existing' && (
             <div className="ml-6">
               <div className="w-64 h-64 rounded-lg overflow-hidden">
                 <img
-                  src="/lovable-uploads/2973bde3-14dd-4cab-897a-c17a3bc17025.png"
-                  alt="LinkedIn TuneIn"
+                  src={coverImage.url}
+                  alt="Podcast cover"
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -46,6 +46,15 @@ export const ConfigTab = () => {
     }));
   };
 
+  const canProceed = () => {
+    switch (currentStep) {
+      case 1:
+        return podcastConfig.skills.length > 0;
+      default:
+        return true;
+    }
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -73,6 +82,7 @@ export const ConfigTab = () => {
           <button
             onClick={() => setCurrentStep(prev => Math.min(totalSteps, prev + 1))}
             className="profile-button profile-button-primary"
+            disabled={!canProceed()}
           >
             {currentStep === totalSteps ? 'Finish' : 'Next'}
           </button>

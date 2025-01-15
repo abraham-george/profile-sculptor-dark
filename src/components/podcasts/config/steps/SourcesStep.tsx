@@ -13,6 +13,13 @@ interface SourceSectionProps {
   onSourceSelect: (source: string) => void;
 }
 
+interface SourcesStepProps {
+  selectedSources: string[];
+  selectedAdditionalContent: string[];
+  onSourceSelect: (source: string) => void;
+  onAdditionalContentSelect: (content: string) => void;
+}
+
 const SourceSection = ({ title, items, selectedSources, onSourceSelect }: SourceSectionProps) => (
   <div className="space-y-2">
     <h4 className="text-sm font-medium text-gray-400">{title}</h4>
@@ -38,12 +45,12 @@ const SourceSection = ({ title, items, selectedSources, onSourceSelect }: Source
   </div>
 );
 
-interface SourcesStepProps {
-  selectedSources: string[];
-  onSourceSelect: (source: string) => void;
-}
-
-export const SourcesStep = ({ selectedSources, onSourceSelect }: SourcesStepProps) => {
+export const SourcesStep = ({ 
+  selectedSources, 
+  selectedAdditionalContent, 
+  onSourceSelect,
+  onAdditionalContentSelect 
+}: SourcesStepProps) => {
   const sources = {
     inNetwork: {
       trustedVoices: [
@@ -136,18 +143,16 @@ export const SourcesStep = ({ selectedSources, onSourceSelect }: SourcesStepProp
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Additional Content</h3>
         <div className="flex items-center gap-8">
-          <div className="flex items-center gap-2">
-            <Checkbox id="linkedin-learning" />
-            <label htmlFor="linkedin-learning" className="text-sm">LinkedIn Learning</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="events" />
-            <label htmlFor="events" className="text-sm">Events</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="jobs" />
-            <label htmlFor="jobs" className="text-sm">Jobs</label>
-          </div>
+          {['LinkedIn Learning', 'Events', 'Jobs'].map((content) => (
+            <div key={content} className="flex items-center gap-2">
+              <Checkbox 
+                id={content.toLowerCase()}
+                checked={selectedAdditionalContent.includes(content)}
+                onCheckedChange={() => onAdditionalContentSelect(content)}
+              />
+              <label htmlFor={content.toLowerCase()} className="text-sm">{content}</label>
+            </div>
+          ))}
         </div>
       </div>
     </div>

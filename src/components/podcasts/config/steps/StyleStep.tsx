@@ -2,12 +2,26 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 
-export const StyleStep = () => {
+interface StyleStepProps {
+  style: {
+    tone: string;
+    length: number;
+    frequency: string;
+    music: string;
+  };
+  onStyleChange: (style: StyleStepProps['style']) => void;
+}
+
+export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
   return (
     <div className="space-y-8">
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Tone</h3>
-        <RadioGroup defaultValue="professional" className="grid grid-cols-2 gap-4">
+        <RadioGroup 
+          value={style.tone} 
+          onValueChange={(tone) => onStyleChange({ ...style, tone })}
+          className="grid grid-cols-2 gap-4"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="professional" id="professional" />
             <Label htmlFor="professional">Professional</Label>
@@ -32,12 +46,22 @@ export const StyleStep = () => {
           <h3 className="text-lg font-medium">Length (minutes)</h3>
           <span className="text-sm text-gray-400">15-45 minutes</span>
         </div>
-        <Slider defaultValue={[30]} max={45} min={15} step={5} />
+        <Slider 
+          value={[style.length]} 
+          onValueChange={([length]) => onStyleChange({ ...style, length })}
+          max={45} 
+          min={15} 
+          step={5} 
+        />
       </div>
 
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Frequency</h3>
-        <RadioGroup defaultValue="weekly" className="grid grid-cols-2 gap-4">
+        <RadioGroup 
+          value={style.frequency}
+          onValueChange={(frequency) => onStyleChange({ ...style, frequency })}
+          className="grid grid-cols-2 gap-4"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="daily" id="daily" />
             <Label htmlFor="daily">Daily</Label>
@@ -59,7 +83,11 @@ export const StyleStep = () => {
 
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Background Music</h3>
-        <RadioGroup defaultValue="upbeat" className="grid grid-cols-2 gap-4">
+        <RadioGroup 
+          value={style.music}
+          onValueChange={(music) => onStyleChange({ ...style, music })}
+          className="grid grid-cols-2 gap-4"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="upbeat" id="upbeat" />
             <Label htmlFor="upbeat">Upbeat</Label>
