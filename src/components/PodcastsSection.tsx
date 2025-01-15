@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { EyeOff, Mic, Play, Bookmark } from "lucide-react";
 import podcastData from '../data/podcasts.json';
 
