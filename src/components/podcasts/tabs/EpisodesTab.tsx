@@ -4,8 +4,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { RefreshCw, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 export const EpisodesTab = () => {
+  const navigate = useNavigate();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { data: episodes, isLoading, refetch } = useQuery({
@@ -20,7 +22,6 @@ export const EpisodesTab = () => {
         return [];
       }
       
-      // If no episodes exist, create a sample episode
       if (!data || data.length === 0) {
         const { data: podcastConfig } = await supabase
           .from('podcast_config')
@@ -44,7 +45,6 @@ export const EpisodesTab = () => {
             return [];
           }
 
-          // Fetch the newly created episode
           const { data: newData } = await supabase
             .from('podcasts')
             .select('*');
@@ -73,12 +73,15 @@ export const EpisodesTab = () => {
     setIsRefreshing(true);
     toast.info("Refreshing episodes...");
     
-    // Simulate a delay for the refresh
     setTimeout(async () => {
       await refetch();
       setIsRefreshing(false);
       toast.success("Episodes refreshed successfully!");
     }, 5000);
+  };
+
+  const handleSeeMore = (episodeId: string) => {
+    navigate(`/episodes/${episodeId}`);
   };
 
   if (isLoading) {
@@ -151,6 +154,7 @@ export const EpisodesTab = () => {
                   variant="ghost"
                   size="sm"
                   className="text-linkedin-text hover:text-white"
+                  onClick={() => handleSeeMore(episode.id)}
                 >
                   See More
                 </Button>
