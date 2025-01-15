@@ -21,7 +21,11 @@ export const TranscriptPanel = () => {
 
   useEffect(() => {
     if (activeTimestamp) {
-      window.dispatchEvent(new CustomEvent('timestampHover', { detail: activeTimestamp }));
+      const event = new CustomEvent('timestampHover', { 
+        detail: activeTimestamp,
+        bubbles: true 
+      });
+      window.dispatchEvent(event);
     }
   }, [activeTimestamp]);
 
