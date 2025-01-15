@@ -7,8 +7,6 @@ export const PodcastsSection = () => {
   const [episodeCount, setEpisodeCount] = useState(podcastData.episodes.length);
 
   const handleConfigure = () => {
-    // In a real application, this would navigate to a configuration page
-    // For demo purposes, we'll just simulate configuration
     const updatedData = {
       ...podcastData,
       podcastsConfigured: true,
@@ -22,7 +20,6 @@ export const PodcastsSection = () => {
       ]
     };
 
-    // In a real application, this would be an API call
     console.log("Updating podcast configuration:", updatedData);
     setIsConfigured(true);
     setEpisodeCount(updatedData.episodes.length);
@@ -30,8 +27,8 @@ export const PodcastsSection = () => {
 
   return (
     <div className="section-card">
-      <div className="flex justify-between items-start mb-6">
-        <div className="flex flex-col gap-2">
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex flex-col gap-1">
           <h2 className="text-2xl font-semibold">Podcasts</h2>
           <span className="flex items-center gap-1 text-sm text-gray-400">
             <EyeOff size={14} />
@@ -50,8 +47,8 @@ export const PodcastsSection = () => {
       
       {isConfigured ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-gray-200">
                 <Mic size={20} className="text-gray-400" />
                 <span className="text-xl font-semibold">{episodeCount} episodes created</span>
@@ -59,7 +56,7 @@ export const PodcastsSection = () => {
               <p className="text-gray-400">Share your thoughts through podcasting.</p>
             </div>
             
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-gray-200">
                 <Play size={20} className="text-gray-400" />
                 <span className="text-xl font-semibold">156 total plays</span>
@@ -67,7 +64,7 @@ export const PodcastsSection = () => {
               <p className="text-gray-400">Track your podcast engagement.</p>
             </div>
             
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2 text-gray-200">
                 <Bookmark size={20} className="text-gray-400" />
                 <span className="text-xl font-semibold">8 saved episodes</span>
@@ -76,7 +73,7 @@ export const PodcastsSection = () => {
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-white/10 flex justify-center">
+          <div className="mt-6 pt-4 border-t border-white/10 flex justify-center">
             <button className="text-gray-400 hover:text-white flex items-center gap-1">
               Show all podcasts
               <span className="text-lg">→</span>
@@ -84,7 +81,7 @@ export const PodcastsSection = () => {
           </div>
         </>
       ) : (
-        <div className="text-center py-8 text-gray-400">
+        <div className="text-center py-6 text-gray-400">
           <p>Configure your podcast settings to get started</p>
         </div>
       )}
