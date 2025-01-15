@@ -64,15 +64,14 @@ export const ConfigTab = () => {
 
   const handleFinish = async () => {
     try {
-      const { data: userData } = await supabase.auth.getUser();
-      
       const { data, error } = await supabase
         .from('podcasts')
         .insert({
           name: podcastConfig.industry || 'My Podcast',
           description: `A podcast about ${podcastConfig.skills.join(', ')}`,
           cover_image: podcastConfig.coverImage?.url,
-          user_id: userData.user.id
+          // We'll set user_id to null since we're allowing anonymous access
+          user_id: null
         })
         .select()
         .single();
