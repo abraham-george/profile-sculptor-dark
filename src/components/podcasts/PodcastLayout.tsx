@@ -16,10 +16,10 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
       <div className="p-6">
         <button 
           onClick={onBack}
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-6"
+          className="text-gray-400 hover:text-white flex items-center gap-2 mb-6 transition-colors"
         >
           <ArrowLeft size={20} />
-          <span>Profile</span>
+          <span>Back to Profile</span>
         </button>
         
         <div className="grid grid-cols-[400px,1fr] gap-6">
