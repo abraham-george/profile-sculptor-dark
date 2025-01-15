@@ -49,6 +49,11 @@
   @apply bg-linkedin-blue text-white hover:bg-linkedin-blue/90;
 }
 
+.profile-button-outline {
+  @apply bg-transparent border border-linkedin-blue text-linkedin-blue 
+         hover:bg-linkedin-blue/5;
+}
+
 .section-card {
   @apply glass-card rounded-lg p-4 mb-4 animate-fadeIn;
 }

@@ -6,13 +6,13 @@ export const ProfileActions = () => {
       <Button className="profile-button profile-button-primary">
         Open to
       </Button>
-      <Button className="profile-button border border-linkedin-blue text-linkedin-blue hover:bg-linkedin-blue/10">
+      <Button className="profile-button profile-button-outline">
         Add profile section
       </Button>
-      <Button className="profile-button border border-linkedin-blue text-linkedin-blue hover:bg-linkedin-blue/10">
+      <Button className="profile-button profile-button-outline">
         Add custom button
       </Button>
-      <Button className="profile-button border border-linkedin-blue text-linkedin-blue hover:bg-linkedin-blue/10">
+      <Button className="profile-button profile-button-outline">
         Resources
       </Button>
     </div>
