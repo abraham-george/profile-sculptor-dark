@@ -68,23 +68,23 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
               <TabsList className="w-full justify-start border-b border-white/10 pb-4 mb-4 bg-transparent">
                 <TabsTrigger 
                   value="episodes"
-                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <BookOpen className="w-4 h-4" />
+                  <BookOpen className="w-4 h-4" color="#0A66C2" />
                   <span>John's episodes</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="shared"
-                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <Share className="w-4 h-4" />
+                  <Share className="w-4 h-4" color="#0A66C2" />
                   <span>Shared with John</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="configure"
-                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <Settings className="w-4 h-4" />
+                  <Settings className="w-4 h-4" color="#0A66C2" />
                   <span>Configure</span>
                 </TabsTrigger>
               </TabsList>
