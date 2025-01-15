@@ -4,6 +4,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const CoverStep = () => {
   const [isGenerating, setIsGenerating] = useState(false);
@@ -16,17 +18,17 @@ export const CoverStep = () => {
     
     setIsGenerating(true);
     try {
-      const response = await fetch("/api/generate-cover", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
+      const { data, error } = await supabase.functions.invoke('generate-cover', {
+        body: { prompt }
       });
-      const data = await response.json();
+
+      if (error) throw error;
+      
       setGeneratedImage(data.imageUrl);
+      toast.success("Cover image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
+      toast.error("Failed to generate cover image. Please try again.");
     } finally {
       setIsGenerating(false);
     }
