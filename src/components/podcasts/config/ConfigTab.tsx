@@ -7,10 +7,12 @@ export const ConfigTab = () => {
   const totalSteps = 5;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <ConfigProgress currentStep={currentStep} totalSteps={totalSteps} />
-        <ConfigContent currentStep={currentStep} />
+        <div className="mt-8">
+          <ConfigContent currentStep={currentStep} />
+        </div>
         
         <div className="flex justify-between mt-8">
           <button

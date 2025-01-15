@@ -24,7 +24,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
 
   return (
     <div className="fixed inset-0 bg-linkedin-dark">
-      <div className="p-6">
+      <div className="p-6 h-full">
         <button 
           onClick={handleBack}
           className="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
@@ -33,8 +33,10 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
           <span>Back to Profile</span>
         </button>
         
-        <div className="grid grid-cols-[400px,1fr] gap-6">
-          <PodcastSidebar />
+        <div className="grid grid-cols-[400px,1fr] gap-6 h-[calc(100%-4rem)]">
+          <div className="glass-card overflow-y-auto">
+            <PodcastSidebar />
+          </div>
 
           <div className="glass-card h-full overflow-y-auto">
             <div className="p-4">
