@@ -61,6 +61,6 @@
 .pill-button {
   @apply px-4 py-2 rounded-full border border-linkedin-blue transition-all duration-200
          hover:bg-linkedin-blue/10 hover:border-linkedin-blue
-         data-[state=active]:bg-linkedin-blue data-[state=active]:text-white
-         active:bg-linkedin-blue active:text-white;
+         active:bg-linkedin-blue active:text-white
+         data-[state=active]:bg-linkedin-blue data-[state=active]:text-white;
 }
