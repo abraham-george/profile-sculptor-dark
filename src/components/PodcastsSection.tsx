@@ -13,7 +13,7 @@ export const PodcastsSection = () => {
 
   if (showPodcastLayout) {
     return (
-      <div className="fixed inset-0 bg-linkedin-dark pt-16 z-50">
+      <div className="fixed inset-0 bg-linkedin-dark z-50" style={{ top: '64px' }}>
         <div className="h-full grid grid-cols-[400px,1fr] gap-6 p-6">
           {/* Left Panel */}
           <div className="glass-card h-full overflow-y-auto">
