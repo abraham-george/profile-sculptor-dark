@@ -1,30 +1,61 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import podcastData from '../data/podcasts.json';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 import { PodcastStats } from './podcasts/PodcastStats';
 import { PodcastHeader } from './podcasts/PodcastHeader';
 
 export const PodcastsSection = () => {
   const navigate = useNavigate();
-  const [isConfigured] = useState(podcastData.podcastsConfigured);
-  const [episodeCount] = useState(podcastData.episodes.length);
+
+  const { data: podcastConfig, isLoading } = useQuery({
+    queryKey: ['podcast-config'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('podcasts')
+        .select('*')
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const handleConfigure = () => {
     navigate("/podcast-config");
   };
 
+  const handleSeeEpisodes = () => {
+    navigate("/podcast-config");
+  };
+
+  if (isLoading) {
+    return <div className="section-card animate-pulse">Loading...</div>;
+  }
+
   return (
     <div className="section-card">
       <PodcastHeader 
-        isConfigured={isConfigured} 
+        isConfigured={!!podcastConfig} 
         onConfigure={handleConfigure} 
       />
       
-      {isConfigured ? (
-        <PodcastStats episodeCount={episodeCount} />
+      {podcastConfig ? (
+        <>
+          <PodcastStats />
+          <div className="mt-8 pt-4 border-t border-white/10 flex justify-center">
+            <button 
+              onClick={handleSeeEpisodes}
+              className="text-gray-400 hover:text-white flex items-center gap-1"
+            >
+              See episodes
+              <span className="text-lg">→</span>
+            </button>
+          </div>
+        </>
       ) : (
         <div className="text-center py-6 text-gray-400">
-          <p>Configure your podcast settings to get started</p>
+          <p>Configure your podcast settings to start creating and sharing episodes</p>
         </div>
       )}
     </div>
