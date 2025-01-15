@@ -1,4 +1,4 @@
-import { Mic, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface PodcastLayoutProps {
   onBack: () => void;
@@ -6,7 +6,7 @@ interface PodcastLayoutProps {
 
 export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
   return (
-    <div className="fixed inset-0 bg-linkedin-dark z-50" style={{ top: '64px' }}>
+    <div className="fixed inset-0 bg-linkedin-dark" style={{ top: '64px' }}>
       <div className="h-full">
         <div className="border-b border-white/10 p-4">
           <button 
@@ -14,7 +14,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
             className="text-gray-400 hover:text-white flex items-center gap-2"
           >
             <ArrowLeft size={20} />
-            <span>Back to Podcasts</span>
+            <span>Profile</span>
           </button>
         </div>
         <div className="grid grid-cols-[400px,1fr] gap-6 p-6">
