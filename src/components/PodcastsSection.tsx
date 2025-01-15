@@ -13,8 +13,12 @@ export const PodcastsSection = () => {
     setShowPodcastLayout(true);
   };
 
+  const handleBack = () => {
+    setShowPodcastLayout(false);
+  };
+
   if (showPodcastLayout) {
-    return <PodcastLayout />;
+    return <PodcastLayout onBack={handleBack} />;
   }
 
   return (
