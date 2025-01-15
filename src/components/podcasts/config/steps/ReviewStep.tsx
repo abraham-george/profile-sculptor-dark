@@ -148,7 +148,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
       {config.coverImage && (
         <div className="space-y-2">
           <h4 className="text-sm font-medium text-gray-400">Cover Image</h4>
-          <div className="w-64 h-64 rounded-lg overflow-hidden border-2 border-linkedin-blue">
+          <div className="w-32 h-32 rounded-lg overflow-hidden border-2 border-linkedin-blue">
             <img
               src={config.coverImage.url}
               alt="Podcast cover"
