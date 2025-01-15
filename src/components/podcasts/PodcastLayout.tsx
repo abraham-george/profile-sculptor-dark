@@ -6,7 +6,7 @@ interface PodcastLayoutProps {
 
 export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
   return (
-    <div className="h-full">
+    <div className="fixed inset-0 bg-linkedin-dark">
       <div className="border-b border-white/10 p-4">
         <button 
           onClick={onBack}
@@ -23,7 +23,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
             <div className="space-y-4">
               <div className="aspect-square relative rounded-lg overflow-hidden">
                 <img 
-                  src="/lovable-uploads/6c36dcb4-5032-4902-a1b0-c7aa4896cecd.png" 
+                  src="/lovable-uploads/c150a2e5-6066-4990-8564-3bd42698220c.png" 
                   alt="Tune in Cover"
                   className="w-full h-full object-cover"
                 />
