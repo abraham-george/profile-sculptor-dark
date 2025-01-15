@@ -7,24 +7,17 @@ export const PodcastLayout = () => {
         {/* Left Panel */}
         <div className="glass-card h-full overflow-y-auto">
           <div className="p-4">
-            <h2 className="text-2xl font-semibold mb-4">Tune in</h2>
             <div className="space-y-4">
               <div className="aspect-square relative rounded-lg overflow-hidden">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" 
-                  alt="Podcast Cover"
+                  src="/lovable-uploads/6c36dcb4-5032-4902-a1b0-c7aa4896cecd.png" 
+                  alt="Tune in Cover"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex justify-between items-center">
-                <div>
-                  <h3 className="font-semibold">Grow</h3>
-                  <p className="text-sm text-gray-400">Latest Episode</p>
-                </div>
-                <button className="profile-button profile-button-primary">
-                  Play
-                </button>
-              </div>
+              <p className="text-sm text-gray-400 text-center">
+                Discover and share your professional insights through LinkedIn's podcast platform
+              </p>
             </div>
           </div>
         </div>
