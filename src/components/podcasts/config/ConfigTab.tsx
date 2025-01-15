@@ -4,6 +4,7 @@ import { ConfigContent } from "./ConfigContent";
 import { PreviewMode } from "./preview/PreviewMode";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useQuery } from '@tanstack/react-query';
 
 export interface PodcastConfig {
   industry?: string;
@@ -29,11 +30,25 @@ interface ConfigTabProps {
 export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
-  const [isPreview, setIsPreview] = useState(!!existingConfig);
-  const [savedPodcastId, setSavedPodcastId] = useState<string | null>(existingConfig?.id || null);
+  const [isPreview, setIsPreview] = useState(false);
+  const [savedPodcastId, setSavedPodcastId] = useState<string | null>(null);
+
+  // Fetch existing config
+  const { data: fetchedConfig } = useQuery({
+    queryKey: ['podcast-config'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('podcast_config')
+        .select('*')
+        .maybeSingle();
+      
+      if (error) throw error;
+      return data;
+    },
+  });
 
   const [podcastConfig, setPodcastConfig] = useState<PodcastConfig>({
-    industry: existingConfig?.name || undefined,
+    industry: undefined,
     skills: [],
     sources: [],
     additionalContent: [],
@@ -42,12 +57,32 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
       length: 30,
       frequency: 'weekly',
       music: 'upbeat'
-    },
-    coverImage: existingConfig?.cover_image ? {
-      type: 'existing',
-      url: existingConfig.cover_image
-    } : undefined
+    }
   });
+
+  // Update state when fetched config changes
+  useEffect(() => {
+    if (fetchedConfig) {
+      setPodcastConfig({
+        industry: fetchedConfig.name,
+        skills: fetchedConfig.skills || [],
+        sources: fetchedConfig.sources || [],
+        additionalContent: fetchedConfig.additional_content || [],
+        style: {
+          tone: fetchedConfig.style_tone || 'professional',
+          length: fetchedConfig.style_length || 30,
+          frequency: fetchedConfig.style_frequency || 'weekly',
+          music: fetchedConfig.style_music || 'upbeat'
+        },
+        coverImage: fetchedConfig.cover_image ? {
+          type: 'existing',
+          url: fetchedConfig.cover_image
+        } : undefined
+      });
+      setSavedPodcastId(fetchedConfig.id);
+      setIsPreview(true);
+    }
+  }, [fetchedConfig]);
 
   const handleStepClick = (step: number) => {
     if (!isPreview) {
