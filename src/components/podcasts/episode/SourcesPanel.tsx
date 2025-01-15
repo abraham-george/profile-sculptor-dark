@@ -62,10 +62,7 @@ export const SourcesPanel = () => {
       const timestamp = event.detail;
       const sourceIndex = sources.findIndex(source => source.timestamp === timestamp);
       if (sourceIndex !== -1 && carouselApi.current) {
-        carouselApi.current.scrollTo(sourceIndex, {
-          immediate: false,
-          duration: 300
-        });
+        carouselApi.current.scrollTo(sourceIndex);
       }
     };
 
@@ -86,14 +83,15 @@ export const SourcesPanel = () => {
           opts={{
             align: "start",
             loop: true,
+            dragFree: true,
           }}
           orientation="vertical"
-          className="h-full"
+          className="h-full relative"
           setApi={(api) => (carouselApi.current = api)}
         >
-          <CarouselContent className="-mt-4">
+          <CarouselContent className="-mt-4 h-full">
             {sources.map((source) => (
-              <CarouselItem key={source.id} className="pt-4">
+              <CarouselItem key={source.id} className="pt-4 h-auto">
                 <Card className="glass-card">
                   <CardHeader>
                     <CardTitle className="text-base">
@@ -122,8 +120,10 @@ export const SourcesPanel = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <div className="absolute -right-2 inset-y-0 flex flex-col justify-center gap-2">
+            <CarouselPrevious className="relative left-0 -translate-x-0 translate-y-0 rotate-0" />
+            <CarouselNext className="relative left-0 -translate-x-0 translate-y-0 rotate-0" />
+          </div>
         </Carousel>
       </div>
     </div>
