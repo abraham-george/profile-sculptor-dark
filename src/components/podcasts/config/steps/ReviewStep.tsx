@@ -6,17 +6,26 @@ interface ReviewItemProps {
   title: string;
   items: Array<{ name: string; image?: string }>;
   onRemove: (item: string) => void;
+  readOnly?: boolean;
 }
 
-const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
+interface ReviewStepProps {
+  config: PodcastConfig;
+  onConfigUpdate: (updates: Partial<PodcastConfig>) => void;
+  readOnly?: boolean;
+}
+
+const ReviewItem = ({ title, items, onRemove, readOnly }: ReviewItemProps) => (
   <div className="space-y-2">
     <h4 className="text-sm font-medium text-gray-400">{title}</h4>
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
-        <button
+        <div
           key={item.name}
-          onClick={() => onRemove(item.name)}
-          className="flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
+          className={`flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white ${
+            !readOnly ? 'cursor-pointer hover:bg-linkedin-blue/90' : ''
+          }`}
+          onClick={() => !readOnly && onRemove(item.name)}
         >
           {item.image && (
             <Avatar className="w-6 h-6">
@@ -25,19 +34,14 @@ const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
             </Avatar>
           )}
           <span className="text-sm">{item.name}</span>
-          <X className="w-4 h-4" />
-        </button>
+          {!readOnly && <X className="w-4 h-4" />}
+        </div>
       ))}
     </div>
   </div>
 );
 
-interface ReviewStepProps {
-  config: PodcastConfig;
-  onConfigUpdate: (updates: Partial<PodcastConfig>) => void;
-}
-
-export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
+export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps) => {
   const handleRemoveSkill = (skill: string) => {
     onConfigUpdate({
       skills: config.skills.filter(s => s !== skill)
@@ -112,6 +116,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
           title="Selected Skills"
           items={config.skills.map(skill => ({ name: skill }))}
           onRemove={handleRemoveSkill}
+          readOnly={readOnly}
         />
       )}
 
@@ -120,6 +125,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
           title="Selected Sources"
           items={sourcesWithImages}
           onRemove={handleRemoveSource}
+          readOnly={readOnly}
         />
       )}
 
@@ -128,6 +134,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
           title="Additional Content"
           items={config.additionalContent.map(content => ({ name: content }))}
           onRemove={handleRemoveAdditionalContent}
+          readOnly={readOnly}
         />
       )}
 
