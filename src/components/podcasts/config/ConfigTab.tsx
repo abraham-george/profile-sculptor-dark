@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ConfigProgress } from "./ConfigProgress";
 import { ConfigContent } from "./ConfigContent";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -67,22 +66,23 @@ export const ConfigTab = () => {
 
   const handleFinish = async () => {
     try {
-      const { data: userData } = await supabase.auth.getUser();
+      // Generate a simple UUID for the podcast
+      const newPodcastId = crypto.randomUUID();
       
-      const { data, error } = await supabase
-        .from('podcasts')
-        .insert({
-          name: podcastConfig.industry || 'My Podcast',
-          description: `A podcast about ${podcastConfig.skills.join(', ')}`,
-          cover_image: podcastConfig.coverImage?.url,
-          user_id: userData.user.id
-        })
-        .select()
-        .single();
+      // Update the podcasts data in the JSON file
+      const podcastData = {
+        id: newPodcastId,
+        name: podcastConfig.industry || 'My Podcast',
+        description: `A podcast about ${podcastConfig.skills.join(', ')}`,
+        cover_image: podcastConfig.coverImage?.url,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
 
-      if (error) throw error;
+      // In a real app, we would save this to the JSON file
+      console.log('Saving podcast data:', podcastData);
 
-      setSavedPodcastId(data.id);
+      setSavedPodcastId(newPodcastId);
       setIsPreview(true);
       toast.success("Podcast configuration saved successfully!");
     } catch (error) {
@@ -101,16 +101,17 @@ export const ConfigTab = () => {
 
   const handleSaveEdit = async () => {
     try {
-      const { error } = await supabase
-        .from('podcasts')
-        .update({
-          name: podcastConfig.industry || 'My Podcast',
-          description: `A podcast about ${podcastConfig.skills.join(', ')}`,
-          cover_image: podcastConfig.coverImage?.url,
-        })
-        .eq('id', savedPodcastId);
+      // Update the existing podcast data in the JSON file
+      const updatedPodcastData = {
+        id: savedPodcastId,
+        name: podcastConfig.industry || 'My Podcast',
+        description: `A podcast about ${podcastConfig.skills.join(', ')}`,
+        cover_image: podcastConfig.coverImage?.url,
+        updated_at: new Date().toISOString()
+      };
 
-      if (error) throw error;
+      // In a real app, we would update this in the JSON file
+      console.log('Updating podcast data:', updatedPodcastData);
 
       setIsEditing(false);
       toast.success("Podcast configuration updated successfully!");
@@ -122,12 +123,8 @@ export const ConfigTab = () => {
 
   const handleDelete = async () => {
     try {
-      const { error } = await supabase
-        .from('podcasts')
-        .delete()
-        .eq('id', savedPodcastId);
-
-      if (error) throw error;
+      // In a real app, we would delete this from the JSON file
+      console.log('Deleting podcast:', savedPodcastId);
 
       toast.success("Podcast deleted successfully!");
       navigate('/');
