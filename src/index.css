@@ -50,7 +50,7 @@
 }
 
 .profile-button-outline {
-  @apply bg-transparent border border-linkedin-blue text-linkedin-blue 
+  @apply bg-transparent border border-linkedin-blue text-white 
          hover:bg-linkedin-blue/5;
 }
 

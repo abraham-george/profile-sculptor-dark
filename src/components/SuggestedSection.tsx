@@ -36,7 +36,7 @@ export const SuggestedSection = () => {
             <X size={20} />
           </button>
         </div>
-        <Button className="mt-4 profile-button border border-linkedin-blue hover:bg-linkedin-blue/10">
+        <Button className="mt-4 profile-button profile-button-outline">
           Continue
         </Button>
       </div>

@@ -38,7 +38,7 @@ export const PodcastsSection = () => {
         {!isConfigured && (
           <button
             onClick={handleConfigure}
-            className="text-linkedin-blue border border-linkedin-blue px-4 py-2 rounded-full hover:bg-linkedin-blue/10 transition-colors"
+            className="profile-button profile-button-outline"
           >
             Configure
           </button>
