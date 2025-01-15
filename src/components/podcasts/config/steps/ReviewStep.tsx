@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { PodcastConfig } from "../ConfigTab";
 
 interface ReviewItemProps {
   title: string;
@@ -24,50 +25,95 @@ const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
   </div>
 );
 
-export const ReviewStep = () => {
-  const handleRemove = (item: string) => {
-    // Handle removal logic here
-    console.log("Removing:", item);
+interface ReviewStepProps {
+  config: PodcastConfig;
+  onConfigUpdate: (updates: Partial<PodcastConfig>) => void;
+}
+
+export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
+  const handleRemoveSkill = (skill: string) => {
+    onConfigUpdate({
+      skills: config.skills.filter(s => s !== skill)
+    });
   };
 
-  // Example data - this should be replaced with actual selected preferences
-  const selectedPreferences = {
-    sources: ["Sarah Chen", "TechCorp", "Tech Weekly"],
-    style: {
-      tone: "Professional",
-      length: "30 minutes",
-      frequency: "Weekly",
-      music: "Upbeat",
-    },
-    additionalContent: ["LinkedIn Learning", "Events"],
+  const handleRemoveSource = (source: string) => {
+    onConfigUpdate({
+      sources: config.sources.filter(s => s !== source)
+    });
+  };
+
+  const handleRemoveAdditionalContent = (content: string) => {
+    onConfigUpdate({
+      additionalContent: config.additionalContent.filter(c => c !== content)
+    });
   };
 
   return (
     <div className="space-y-8">
       <h3 className="text-xl mb-4">Review Your Choices</h3>
       
-      <ReviewItem
-        title="Selected Sources"
-        items={selectedPreferences.sources}
-        onRemove={handleRemove}
-      />
+      {config.industry && (
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium text-gray-400">Industry</h4>
+          <div className="flex flex-wrap gap-2">
+            <div className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white">
+              <span className="text-sm">{config.industry}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
-      <ReviewItem
-        title="Style Preferences"
-        items={[
-          `Tone: ${selectedPreferences.style.tone}`,
-          `Length: ${selectedPreferences.style.length}`,
-          `Frequency: ${selectedPreferences.style.frequency}`,
-          `Music: ${selectedPreferences.style.music}`,
-        ]}
-        onRemove={handleRemove}
-      />
+      {config.skills.length > 0 && (
+        <ReviewItem
+          title="Selected Skills"
+          items={config.skills}
+          onRemove={handleRemoveSkill}
+        />
+      )}
 
-      <ReviewItem
-        title="Additional Content"
-        items={selectedPreferences.additionalContent}
-        onRemove={handleRemove}
-      />
+      {config.sources.length > 0 && (
+        <ReviewItem
+          title="Selected Sources"
+          items={config.sources}
+          onRemove={handleRemoveSource}
+        />
+      )}
+
+      {config.additionalContent.length > 0 && (
+        <ReviewItem
+          title="Additional Content"
+          items={config.additionalContent}
+          onRemove={handleRemoveAdditionalContent}
+        />
+      )}
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium text-gray-400">Style Preferences</h4>
+        <div className="flex flex-wrap gap-2">
+          {Object.entries(config.style).map(([key, value]) => (
+            <div
+              key={key}
+              className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
+            >
+              <span className="text-sm capitalize">{key}: {value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {config.coverImage && (
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium text-gray-400">Cover Image</h4>
+          <div className="w-64 h-64 rounded-lg overflow-hidden">
+            <img
+              src={config.coverImage.url}
+              alt="Podcast cover"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
