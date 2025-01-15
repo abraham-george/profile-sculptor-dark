@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, Share, Settings } from "lucide-react";
+import { ArrowLeft, BookOpen, Share, Settings, Sparkles, Database, Palette, Image, ClipboardCheck } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,6 +15,14 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
   const isConfigured = podcastData.podcastsConfigured;
+
+  const configSteps = [
+    { name: 'Skills', icon: Sparkles },
+    { name: 'Sources', icon: Database },
+    { name: 'Style', icon: Palette },
+    { name: 'Cover', icon: Image },
+    { name: 'Review', icon: ClipboardCheck }
+  ];
 
   const { data: episodes, isLoading } = useQuery({
     queryKey: ['episodes'],
@@ -68,23 +76,23 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
               <TabsList className="w-full justify-start border-b border-white/10 pb-4 mb-4 bg-transparent">
                 <TabsTrigger 
                   value="episodes"
-                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:border-b data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <BookOpen className="w-4 h-4" color="#0A66C2" />
+                  <BookOpen className="w-4 h-4" />
                   <span>John's episodes</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="shared"
-                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:border-b data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <Share className="w-4 h-4" color="#0A66C2" />
+                  <Share className="w-4 h-4" />
                   <span>Shared with John</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="configure"
-                  className="flex items-center gap-2 text-gray-400 data-[state=active]:text-linkedin-blue data-[state=active]:border-b-2 data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
+                  className="flex items-center gap-2 text-gray-400 data-[state=active]:border-b data-[state=active]:border-linkedin-blue hover:text-linkedin-blue transition-colors"
                 >
-                  <Settings className="w-4 h-4" color="#0A66C2" />
+                  <Settings className="w-4 h-4" />
                   <span>Configure</span>
                 </TabsTrigger>
               </TabsList>
@@ -108,7 +116,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
                   </div>
                 ) : (
                   <div className="text-center py-8">
-                    <p className="text-gray-400">No episodes found. Start creating your podcast content!</p>
+                    <p className="text-gray-400">No episodes found. Configure to get started.</p>
                   </div>
                 )}
               </TabsContent>
@@ -122,31 +130,46 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
               <TabsContent value="configure">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl mb-4">Step {currentStep} of {totalSteps}</h3>
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl">Step {currentStep} of {totalSteps}: {configSteps[currentStep - 1].name}</h3>
+                      <div className="flex items-center gap-2">
+                        {configSteps.map((step, index) => {
+                          const Icon = step.icon;
+                          return (
+                            <div 
+                              key={step.name}
+                              className={`rounded-full p-2 ${index + 1 === currentStep ? 'bg-linkedin-blue text-white' : 'text-gray-400'}`}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                     <Progress value={progress} className="mb-8" />
                     
                     {currentStep === 1 && (
                       <div className="animate-fadeIn">
-                        <h3 className="text-xl mb-4">Basic Information</h3>
-                        <p className="text-gray-400">Configure your podcast details...</p>
+                        <h3 className="text-xl mb-4">Skills</h3>
+                        <p className="text-gray-400">Configure your podcast skills...</p>
                       </div>
                     )}
                     {currentStep === 2 && (
                       <div className="animate-fadeIn">
-                        <h3 className="text-xl mb-4">Cover Art</h3>
-                        <p className="text-gray-400">Upload your podcast cover art...</p>
+                        <h3 className="text-xl mb-4">Sources</h3>
+                        <p className="text-gray-400">Set up your content sources...</p>
                       </div>
                     )}
                     {currentStep === 3 && (
                       <div className="animate-fadeIn">
-                        <h3 className="text-xl mb-4">Distribution</h3>
-                        <p className="text-gray-400">Set up your distribution channels...</p>
+                        <h3 className="text-xl mb-4">Style</h3>
+                        <p className="text-gray-400">Customize your podcast style...</p>
                       </div>
                     )}
                     {currentStep === 4 && (
                       <div className="animate-fadeIn">
-                        <h3 className="text-xl mb-4">Analytics</h3>
-                        <p className="text-gray-400">Configure your analytics preferences...</p>
+                        <h3 className="text-xl mb-4">Cover</h3>
+                        <p className="text-gray-400">Upload your podcast cover art...</p>
                       </div>
                     )}
                     {currentStep === 5 && (
