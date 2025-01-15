@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { ConfigContent } from "../ConfigContent";
 import { PodcastConfig } from "../ConfigTab";
 import { useNavigate } from "react-router-dom";
+import { PreviewButtons } from "./PreviewButtons";
+import { PreviewHeader } from "./PreviewHeader";
 
 interface PreviewModeProps {
   config: PodcastConfig;
@@ -26,7 +27,6 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
 
   const handleSaveEdit = async () => {
     try {
-      // Convert image to base64 if it exists and is not already in base64 format
       let coverImageBase64 = config.coverImage?.url;
       
       if (config.coverImage?.url && !config.coverImage.url.startsWith('data:')) {
@@ -84,47 +84,20 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-white">Podcast Configuration Preview</h2>
+      <PreviewHeader title="Podcast Configuration Preview" />
       <ConfigContent 
         currentStep={5} 
         config={config}
         onConfigUpdate={onConfigUpdate}
         readOnly={!isEditing}
       />
-      
-      <div className="flex justify-end gap-4 mt-8">
-        {!isEditing ? (
-          <>
-            <Button
-              onClick={handleEdit}
-              className="bg-linkedin-blue hover:bg-linkedin-blue/90"
-            >
-              Edit
-            </Button>
-            <Button
-              onClick={handleDelete}
-              variant="destructive"
-            >
-              Delete
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button
-              onClick={handleSaveEdit}
-              className="bg-linkedin-blue hover:bg-linkedin-blue/90"
-            >
-              Save
-            </Button>
-            <Button
-              onClick={handleCancelEdit}
-              variant="outline"
-            >
-              Cancel
-            </Button>
-          </>
-        )}
-      </div>
+      <PreviewButtons 
+        isEditing={isEditing}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        onSave={handleSaveEdit}
+        onCancel={handleCancelEdit}
+      />
     </div>
   );
 };
