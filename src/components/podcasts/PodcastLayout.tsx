@@ -1,4 +1,4 @@
-import { BookOpen, Share, Settings } from "lucide-react";
+import { BookOpen, Share, Settings, ArrowLeft } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PodcastHeader } from "./PodcastHeader";
 import { PodcastSidebar } from "./layout/PodcastSidebar";
