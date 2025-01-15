@@ -9,17 +9,19 @@ interface ConfigContentProps {
   currentStep: number;
   config: PodcastConfig;
   onConfigUpdate: (updates: Partial<PodcastConfig>) => void;
+  readOnly?: boolean;
 }
 
-export const ConfigContent = ({ currentStep, config, onConfigUpdate }: ConfigContentProps) => {
+export const ConfigContent = ({ currentStep, config, onConfigUpdate, readOnly = false }: ConfigContentProps) => {
   return (
     <div className="animate-fadeIn space-y-8">
       {currentStep === 1 && (
         <IndustrySkillsStep
           selectedIndustry={config.industry}
           selectedSkills={config.skills}
-          onIndustrySelect={(industry) => onConfigUpdate({ industry })}
+          onIndustrySelect={(industry) => !readOnly && onConfigUpdate({ industry })}
           onSkillSelect={(skill) => {
+            if (readOnly) return;
             const skills = config.skills.includes(skill)
               ? config.skills.filter(s => s !== skill)
               : [...config.skills, skill];
@@ -33,12 +35,14 @@ export const ConfigContent = ({ currentStep, config, onConfigUpdate }: ConfigCon
           selectedSources={config.sources}
           selectedAdditionalContent={config.additionalContent}
           onSourceSelect={(source) => {
+            if (readOnly) return;
             const sources = config.sources.includes(source)
               ? config.sources.filter(s => s !== source)
               : [...config.sources, source];
             onConfigUpdate({ sources });
           }}
           onAdditionalContentSelect={(content) => {
+            if (readOnly) return;
             const additionalContent = config.additionalContent.includes(content)
               ? config.additionalContent.filter(c => c !== content)
               : [...config.additionalContent, content];
@@ -50,21 +54,22 @@ export const ConfigContent = ({ currentStep, config, onConfigUpdate }: ConfigCon
       {currentStep === 3 && (
         <StyleStep
           style={config.style}
-          onStyleChange={(style) => onConfigUpdate({ style })}
+          onStyleChange={(style) => !readOnly && onConfigUpdate({ style })}
         />
       )}
 
       {currentStep === 4 && (
         <CoverStep
           coverImage={config.coverImage}
-          onCoverImageSelect={(coverImage) => onConfigUpdate({ coverImage })}
+          onCoverImageSelect={(coverImage) => !readOnly && onConfigUpdate({ coverImage })}
         />
       )}
 
       {currentStep === 5 && (
         <ReviewStep
           config={config}
-          onConfigUpdate={onConfigUpdate}
+          onConfigUpdate={readOnly ? () => {} : onConfigUpdate}
+          readOnly={readOnly}
         />
       )}
     </div>
