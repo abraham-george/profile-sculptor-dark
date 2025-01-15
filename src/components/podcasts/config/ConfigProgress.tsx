@@ -18,7 +18,7 @@ export const ConfigProgress = ({ currentStep, totalSteps }: ConfigProgressProps)
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       <Progress 
         value={progress} 
         className="h-2 bg-linkedin-dark border border-white/10"
