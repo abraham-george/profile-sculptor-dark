@@ -26,12 +26,25 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
 
   const handleSaveEdit = async () => {
     try {
+      // Convert image to base64 if it exists and is not already in base64 format
+      let coverImageBase64 = config.coverImage?.url;
+      
+      if (config.coverImage?.url && !config.coverImage.url.startsWith('data:')) {
+        const response = await fetch(config.coverImage.url);
+        const blob = await response.blob();
+        coverImageBase64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.readAsDataURL(blob);
+        });
+      }
+
       const { error } = await supabase
         .from('podcast_config')
         .update({
           name: config.industry || 'My Podcast',
           description: `A podcast about ${config.skills.join(', ')}`,
-          cover_image: config.coverImage?.url,
+          cover_image: coverImageBase64,
           skills: config.skills,
           sources: config.sources,
           additional_content: config.additionalContent,
@@ -79,7 +92,7 @@ export const PreviewMode = ({ config, podcastId, onConfigUpdate }: PreviewModePr
         readOnly={!isEditing}
       />
       
-      <div className="flex gap-4 mt-8">
+      <div className="flex justify-end gap-4 mt-8">
         {!isEditing ? (
           <>
             <Button
