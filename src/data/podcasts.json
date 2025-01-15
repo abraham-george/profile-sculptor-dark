@@ -2,5 +2,16 @@
   "podcastsConfigured": false,
   "episodes": [],
   "totalPlays": 0,
-  "savedEpisodes": []
+  "savedEpisodes": [],
+  "config": {
+    "name": "",
+    "description": "",
+    "coverImage": "",
+    "distribution": [],
+    "analytics": {
+      "trackPlays": true,
+      "trackShares": true,
+      "trackSaves": true
+    }
+  }
 }
