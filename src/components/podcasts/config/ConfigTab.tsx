@@ -1,88 +1,25 @@
-import { useState, useEffect } from "react";
 import { ConfigProgress } from "./ConfigProgress";
 import { ConfigContent } from "./ConfigContent";
 import { PreviewMode } from "./preview/PreviewMode";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
-import { useQuery } from '@tanstack/react-query';
-
-export interface PodcastConfig {
-  industry?: string;
-  skills: string[];
-  sources: string[];
-  additionalContent: string[];
-  style: {
-    tone: string;
-    length: number;
-    frequency: string;
-    music: string;
-  };
-  coverImage?: {
-    type: 'existing' | 'generated';
-    url: string;
-  };
-}
+import { useConfigState } from "./hooks/useConfigState";
+import { ConfigActions } from "./ConfigActions";
 
 interface ConfigTabProps {
   existingConfig?: any;
 }
 
 export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
-  const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
-  const [isPreview, setIsPreview] = useState(false);
-  const [savedPodcastId, setSavedPodcastId] = useState<string | null>(null);
-
-  // Fetch existing config
-  const { data: fetchedConfig } = useQuery({
-    queryKey: ['podcast-config'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('podcast_config')
-        .select('*')
-        .maybeSingle();
-      
-      if (error) throw error;
-      return data;
-    },
-  });
-
-  const [podcastConfig, setPodcastConfig] = useState<PodcastConfig>({
-    industry: undefined,
-    skills: [],
-    sources: [],
-    additionalContent: [],
-    style: {
-      tone: 'professional',
-      length: 30,
-      frequency: 'weekly',
-      music: 'upbeat'
-    }
-  });
-
-  // Update state when fetched config changes
-  useEffect(() => {
-    if (fetchedConfig) {
-      setPodcastConfig({
-        industry: fetchedConfig.name,
-        skills: fetchedConfig.skills || [],
-        sources: fetchedConfig.sources || [],
-        additionalContent: fetchedConfig.additional_content || [],
-        style: {
-          tone: fetchedConfig.style_tone || 'professional',
-          length: fetchedConfig.style_length || 30,
-          frequency: fetchedConfig.style_frequency || 'weekly',
-          music: fetchedConfig.style_music || 'upbeat'
-        },
-        coverImage: fetchedConfig.cover_image ? {
-          type: 'existing',
-          url: fetchedConfig.cover_image
-        } : undefined
-      });
-      setSavedPodcastId(fetchedConfig.id);
-      setIsPreview(true);
-    }
-  }, [fetchedConfig]);
+  const {
+    currentStep,
+    setCurrentStep,
+    isPreview,
+    setIsPreview,
+    podcastConfig,
+    setPodcastConfig,
+    savedPodcastId,
+    setSavedPodcastId
+  } = useConfigState(existingConfig);
 
   const handleStepClick = (step: number) => {
     if (!isPreview) {
@@ -90,7 +27,7 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     }
   };
 
-  const updateConfig = (updates: Partial<PodcastConfig>) => {
+  const updateConfig = (updates: Partial<typeof podcastConfig>) => {
     setPodcastConfig(prev => ({
       ...prev,
       ...updates
@@ -106,42 +43,17 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     }
   };
 
-  const handleFinish = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('podcast_config')
-        .insert({
-          name: podcastConfig.industry || 'My Podcast',
-          description: `A podcast about ${podcastConfig.skills.join(', ')}`,
-          cover_image: podcastConfig.coverImage?.url,
-          skills: podcastConfig.skills,
-          sources: podcastConfig.sources,
-          additional_content: podcastConfig.additionalContent,
-          style_tone: podcastConfig.style.tone,
-          style_length: podcastConfig.style.length,
-          style_frequency: podcastConfig.style.frequency,
-          style_music: podcastConfig.style.music
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      setSavedPodcastId(data.id);
-      setIsPreview(true);
-      toast.success("Podcast configuration saved successfully!");
-    } catch (error) {
-      console.error('Error saving podcast config:', error);
-      toast.error("Failed to save podcast configuration. Please try again.");
-    }
+  const handlePrevious = () => {
+    setCurrentStep(prev => Math.max(1, prev - 1));
   };
 
   const handleNext = () => {
-    if (currentStep === totalSteps) {
-      handleFinish();
-    } else {
-      setCurrentStep(prev => Math.min(totalSteps, prev + 1));
-    }
+    setCurrentStep(prev => Math.min(totalSteps, prev + 1));
+  };
+
+  const handleSuccess = (podcastId: string) => {
+    setSavedPodcastId(podcastId);
+    setIsPreview(true);
   };
 
   return (
@@ -162,22 +74,15 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
               />
             </div>
             
-            <div className="flex justify-between mt-8">
-              <button
-                onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
-                className="profile-button profile-button-outline"
-                disabled={currentStep === 1}
-              >
-                Previous
-              </button>
-              <button
-                onClick={handleNext}
-                className={`profile-button ${canProceed() ? 'profile-button-primary' : 'profile-button-disabled bg-gray-400 cursor-not-allowed'}`}
-                disabled={!canProceed()}
-              >
-                {currentStep === totalSteps ? 'Finish' : 'Next'}
-              </button>
-            </div>
+            <ConfigActions 
+              currentStep={currentStep}
+              totalSteps={totalSteps}
+              canProceed={canProceed()}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              config={podcastConfig}
+              onSuccess={handleSuccess}
+            />
           </>
         ) : (
           <PreviewMode 
