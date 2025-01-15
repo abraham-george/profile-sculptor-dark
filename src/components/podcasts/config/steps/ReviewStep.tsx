@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { X, User } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PodcastConfig } from "../ConfigTab";
 
@@ -18,12 +18,14 @@ const ReviewItem = ({ title, items, onRemove }: ReviewItemProps) => (
           onClick={() => onRemove(item.name)}
           className="flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
         >
-          {item.image && (
+          {title.toLowerCase().includes('source') ? (
+            <User className="w-5 h-5" />
+          ) : item.image ? (
             <Avatar className="w-6 h-6">
               <AvatarImage src={item.image} alt={item.name} />
               <AvatarFallback>{item.name[0]}</AvatarFallback>
             </Avatar>
-          )}
+          ) : null}
           <span className="text-sm">{item.name}</span>
           <X className="w-4 h-4" />
         </button>
@@ -58,8 +60,7 @@ export const ReviewStep = ({ config, onConfigUpdate }: ReviewStepProps) => {
 
   // Map sources to include their images
   const sourcesWithImages = config.sources.map(source => ({
-    name: source,
-    image: `https://images.unsplash.com/photo-${source.toLowerCase().replace(/\s+/g, '-')}`
+    name: source
   }));
 
   return (
