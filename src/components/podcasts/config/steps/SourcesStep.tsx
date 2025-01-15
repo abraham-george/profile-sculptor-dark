@@ -109,21 +109,6 @@ export const SourcesStep = ({ selectedSources, onSourceSelect }: SourcesStepProp
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
-        
-        <div className="flex items-center gap-8 pt-4">
-          <div className="flex items-center gap-2">
-            <Checkbox id="linkedin-learning-1" />
-            <label htmlFor="linkedin-learning-1" className="text-sm">LinkedIn Learning</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="events-1" />
-            <label htmlFor="events-1" className="text-sm">Events</label>
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="jobs-1" />
-            <label htmlFor="jobs-1" className="text-sm">Jobs</label>
-          </div>
-        </div>
       </div>
 
       <div className="space-y-6">
@@ -146,19 +131,22 @@ export const SourcesStep = ({ selectedSources, onSourceSelect }: SourcesStepProp
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
-        
-        <div className="flex items-center gap-8 pt-4">
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium">Additional Content</h3>
+        <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
-            <Checkbox id="linkedin-learning-2" />
-            <label htmlFor="linkedin-learning-2" className="text-sm">LinkedIn Learning</label>
+            <Checkbox id="linkedin-learning" />
+            <label htmlFor="linkedin-learning" className="text-sm">LinkedIn Learning</label>
           </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="events-2" />
-            <label htmlFor="events-2" className="text-sm">Events</label>
+            <Checkbox id="events" />
+            <label htmlFor="events" className="text-sm">Events</label>
           </div>
           <div className="flex items-center gap-2">
-            <Checkbox id="jobs-2" />
-            <label htmlFor="jobs-2" className="text-sm">Jobs</label>
+            <Checkbox id="jobs" />
+            <label htmlFor="jobs" className="text-sm">Jobs</label>
           </div>
         </div>
       </div>
