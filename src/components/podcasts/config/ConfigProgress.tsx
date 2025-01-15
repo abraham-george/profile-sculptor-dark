@@ -5,9 +5,10 @@ import { Separator } from "@/components/ui/separator";
 interface ConfigProgressProps {
   currentStep: number;
   totalSteps: number;
+  onStepClick: (step: number) => void;
 }
 
-export const ConfigProgress = ({ currentStep, totalSteps }: ConfigProgressProps) => {
+export const ConfigProgress = ({ currentStep, totalSteps, onStepClick }: ConfigProgressProps) => {
   const progress = (currentStep / totalSteps) * 100;
   
   const configSteps = [
@@ -34,7 +35,11 @@ export const ConfigProgress = ({ currentStep, totalSteps }: ConfigProgressProps)
             const isCurrentStep = index + 1 === currentStep;
             
             return (
-              <div key={step.name} className="flex flex-col items-center gap-2">
+              <button
+                key={step.name}
+                onClick={() => onStepClick(index + 1)}
+                className="flex flex-col items-center gap-2 cursor-pointer"
+              >
                 <div 
                   className={`rounded-full p-3 border-2 transition-colors
                     ${isActive ? 'border-linkedin-blue bg-linkedin-blue/10' : 'border-white/10 bg-linkedin-dark'}
@@ -54,7 +59,7 @@ export const ConfigProgress = ({ currentStep, totalSteps }: ConfigProgressProps)
                 >
                   {step.name}
                 </span>
-              </div>
+              </button>
             );
           })}
         </div>

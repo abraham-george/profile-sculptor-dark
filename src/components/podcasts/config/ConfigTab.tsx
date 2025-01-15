@@ -6,10 +6,18 @@ export const ConfigTab = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
 
+  const handleStepClick = (step: number) => {
+    setCurrentStep(step);
+  };
+
   return (
     <div className="space-y-8">
       <div>
-        <ConfigProgress currentStep={currentStep} totalSteps={totalSteps} />
+        <ConfigProgress 
+          currentStep={currentStep} 
+          totalSteps={totalSteps} 
+          onStepClick={handleStepClick}
+        />
         <div className="mt-8">
           <ConfigContent currentStep={currentStep} />
         </div>
