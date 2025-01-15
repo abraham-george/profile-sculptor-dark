@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ConfigProgress } from "./ConfigProgress";
 import { ConfigContent } from "./ConfigContent";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export interface PodcastConfig {
   industry?: string;
@@ -20,6 +23,7 @@ export interface PodcastConfig {
 }
 
 export const ConfigTab = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
 
@@ -55,6 +59,34 @@ export const ConfigTab = () => {
     }
   };
 
+  const handleFinish = async () => {
+    try {
+      const { error } = await supabase
+        .from('podcasts')
+        .insert({
+          name: podcastConfig.industry || 'My Podcast',
+          description: `A podcast about ${podcastConfig.skills.join(', ')}`,
+          cover_image: podcastConfig.coverImage?.url,
+        });
+
+      if (error) throw error;
+
+      toast.success("Podcast configuration saved successfully!");
+      navigate('/');
+    } catch (error) {
+      console.error('Error saving podcast config:', error);
+      toast.error("Failed to save podcast configuration. Please try again.");
+    }
+  };
+
+  const handleNext = () => {
+    if (currentStep === totalSteps) {
+      handleFinish();
+    } else {
+      setCurrentStep(prev => Math.min(totalSteps, prev + 1));
+    }
+  };
+
   return (
     <div className="space-y-8">
       <div>
@@ -80,7 +112,7 @@ export const ConfigTab = () => {
             Previous
           </button>
           <button
-            onClick={() => setCurrentStep(prev => Math.min(totalSteps, prev + 1))}
+            onClick={handleNext}
             className={`profile-button ${canProceed() ? 'profile-button-primary' : 'profile-button-disabled bg-gray-400 cursor-not-allowed'}`}
             disabled={!canProceed()}
           >
