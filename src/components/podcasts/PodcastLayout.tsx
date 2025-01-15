@@ -1,6 +1,9 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, BookOpen, Share, Settings } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import podcastData from '@/data/podcasts.json';
 
 interface PodcastLayoutProps {
@@ -12,6 +15,22 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
   const totalSteps = 5;
   const progress = (currentStep / totalSteps) * 100;
   const isConfigured = podcastData.podcastsConfigured;
+
+  const { data: episodes, isLoading } = useQuery({
+    queryKey: ['episodes'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('podcasts')
+        .select('*')
+      
+      if (error) {
+        console.error('Error fetching episodes:', error);
+        return [];
+      }
+      
+      return data || [];
+    }
+  });
 
   return (
     <div className="fixed inset-0 bg-linkedin-dark">
@@ -45,66 +64,117 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
 
         <div className="glass-card h-full overflow-y-auto">
           <div className="p-4">
-            <div className="border-b border-white/10 pb-4 mb-4">
-              <div className="flex gap-4">
-                <button className="text-linkedin-blue border-b-2 border-linkedin-blue pb-2">
-                  Configure Podcast
-                </button>
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl mb-4">Step {currentStep} of {totalSteps}</h3>
-                <Progress value={progress} className="mb-8" />
-                
-                {currentStep === 1 && (
-                  <div className="animate-fadeIn">
-                    <h3 className="text-xl mb-4">Basic Information</h3>
-                    <p className="text-gray-400">Configure your podcast details...</p>
+            <Tabs defaultValue="episodes" className="w-full">
+              <TabsList className="w-full justify-start border-b border-white/10 pb-4 mb-4 bg-transparent">
+                <TabsTrigger 
+                  value="episodes"
+                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span>John's episodes</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="shared"
+                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                >
+                  <Share className="w-4 h-4" />
+                  <span>Shared with John</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="configure"
+                  className="flex items-center gap-2 data-[state=active]:text-linkedin-blue data-[state=active]:border-linkedin-blue data-[state=active]:border-b-2"
+                >
+                  <Settings className="w-4 h-4" />
+                  <span>Configure</span>
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="episodes">
+                {isLoading ? (
+                  <div className="text-center py-8">
+                    <p className="text-gray-400">Loading episodes...</p>
+                  </div>
+                ) : episodes && episodes.length > 0 ? (
+                  <div className="space-y-4">
+                    {episodes.map((episode) => (
+                      <div 
+                        key={episode.id} 
+                        className="p-4 border border-white/10 rounded-lg"
+                      >
+                        <h3 className="text-lg font-medium">{episode.name}</h3>
+                        <p className="text-gray-400">{episode.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-gray-400">No episodes found. Start creating your podcast content!</p>
                   </div>
                 )}
-                {currentStep === 2 && (
-                  <div className="animate-fadeIn">
-                    <h3 className="text-xl mb-4">Cover Art</h3>
-                    <p className="text-gray-400">Upload your podcast cover art...</p>
-                  </div>
-                )}
-                {currentStep === 3 && (
-                  <div className="animate-fadeIn">
-                    <h3 className="text-xl mb-4">Distribution</h3>
-                    <p className="text-gray-400">Set up your distribution channels...</p>
-                  </div>
-                )}
-                {currentStep === 4 && (
-                  <div className="animate-fadeIn">
-                    <h3 className="text-xl mb-4">Analytics</h3>
-                    <p className="text-gray-400">Configure your analytics preferences...</p>
-                  </div>
-                )}
-                {currentStep === 5 && (
-                  <div className="animate-fadeIn">
-                    <h3 className="text-xl mb-4">Review</h3>
-                    <p className="text-gray-400">Review your podcast configuration...</p>
-                  </div>
-                )}
-                
-                <div className="flex justify-between mt-8">
-                  <button
-                    onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
-                    className="profile-button profile-button-outline"
-                    disabled={currentStep === 1}
-                  >
-                    Previous
-                  </button>
-                  <button
-                    onClick={() => setCurrentStep(prev => Math.min(totalSteps, prev + 1))}
-                    className="profile-button profile-button-primary"
-                  >
-                    {currentStep === totalSteps ? 'Finish' : 'Next'}
-                  </button>
+              </TabsContent>
+
+              <TabsContent value="shared">
+                <div className="text-center py-8">
+                  <p className="text-gray-400">No episodes have been shared with you yet.</p>
                 </div>
-              </div>
-            </div>
+              </TabsContent>
+
+              <TabsContent value="configure">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-xl mb-4">Step {currentStep} of {totalSteps}</h3>
+                    <Progress value={progress} className="mb-8" />
+                    
+                    {currentStep === 1 && (
+                      <div className="animate-fadeIn">
+                        <h3 className="text-xl mb-4">Basic Information</h3>
+                        <p className="text-gray-400">Configure your podcast details...</p>
+                      </div>
+                    )}
+                    {currentStep === 2 && (
+                      <div className="animate-fadeIn">
+                        <h3 className="text-xl mb-4">Cover Art</h3>
+                        <p className="text-gray-400">Upload your podcast cover art...</p>
+                      </div>
+                    )}
+                    {currentStep === 3 && (
+                      <div className="animate-fadeIn">
+                        <h3 className="text-xl mb-4">Distribution</h3>
+                        <p className="text-gray-400">Set up your distribution channels...</p>
+                      </div>
+                    )}
+                    {currentStep === 4 && (
+                      <div className="animate-fadeIn">
+                        <h3 className="text-xl mb-4">Analytics</h3>
+                        <p className="text-gray-400">Configure your analytics preferences...</p>
+                      </div>
+                    )}
+                    {currentStep === 5 && (
+                      <div className="animate-fadeIn">
+                        <h3 className="text-xl mb-4">Review</h3>
+                        <p className="text-gray-400">Review your podcast configuration...</p>
+                      </div>
+                    )}
+                    
+                    <div className="flex justify-between mt-8">
+                      <button
+                        onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
+                        className="profile-button profile-button-outline"
+                        disabled={currentStep === 1}
+                      >
+                        Previous
+                      </button>
+                      <button
+                        onClick={() => setCurrentStep(prev => Math.min(totalSteps, prev + 1))}
+                        className="profile-button profile-button-primary"
+                      >
+                        {currentStep === totalSteps ? 'Finish' : 'Next'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
