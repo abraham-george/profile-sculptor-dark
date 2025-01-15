@@ -5,18 +5,29 @@ import { PodcastSidebar } from "./layout/PodcastSidebar";
 import { EpisodesTab } from "./tabs/EpisodesTab";
 import { SharedTab } from "./tabs/SharedTab";
 import { ConfigTab } from "./config/ConfigTab";
+import { useNavigate } from "react-router-dom";
 
 interface PodcastLayoutProps {
-  onBack: () => void;
+  onBack?: () => void;
 }
 
 export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="fixed inset-0 bg-linkedin-dark">
       <div className="p-6">
         <button 
-          onClick={onBack}
-          className="text-gray-400 hover:text-white flex items-center gap-2 mb-6 transition-colors"
+          onClick={handleBack}
+          className="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
         >
           <ArrowLeft size={20} />
           <span>Back to Profile</span>
