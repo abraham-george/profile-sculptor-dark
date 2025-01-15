@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -18,6 +18,7 @@ interface Source {
 
 export const SourcesPanel = () => {
   const carouselApi = useRef<any>(null);
+  const [activeSource, setActiveSource] = useState<string | null>(null);
   
   const sources: Source[] = [
     {
@@ -58,11 +59,16 @@ export const SourcesPanel = () => {
   ];
 
   useEffect(() => {
-    const handleTimestampHover = (event: CustomEvent<string>) => {
-      const timestamp = event.detail;
+    const handleTimestampHover = (event: CustomEvent<{ timestamp: string }>) => {
+      const timestamp = event.detail.timestamp;
       const sourceIndex = sources.findIndex(source => source.timestamp === timestamp);
+      
       if (sourceIndex !== -1 && carouselApi.current) {
-        carouselApi.current.scrollTo(sourceIndex);
+        setActiveSource(sources[sourceIndex].id);
+        carouselApi.current.scrollTo(sourceIndex, {
+          duration: 300,
+          animation: "smooth"
+        });
       }
     };
 
@@ -78,7 +84,7 @@ export const SourcesPanel = () => {
         <h2 className="text-lg font-semibold">Sources</h2>
       </div>
       
-      <div className="p-4 relative h-[calc(100%-60px)]">
+      <div className="p-4 h-[calc(100%-60px)]">
         <Carousel
           opts={{
             align: "start",
@@ -86,13 +92,16 @@ export const SourcesPanel = () => {
             dragFree: true,
           }}
           orientation="vertical"
-          className="h-full relative"
+          className="h-full"
           setApi={(api) => (carouselApi.current = api)}
         >
           <CarouselContent className="-mt-4 h-full">
             {sources.map((source) => (
-              <CarouselItem key={source.id} className="pt-4 h-auto">
-                <Card className="glass-card">
+              <CarouselItem key={source.id} className="pt-4">
+                <Card 
+                  className={`glass-card transition-all duration-200 
+                    ${activeSource === source.id ? 'ring-2 ring-linkedin-blue' : ''}`}
+                >
                   <CardHeader>
                     <CardTitle className="text-base">
                       {source.title}
@@ -104,7 +113,7 @@ export const SourcesPanel = () => {
                     </p>
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-linkedin-text">
-                        Timestamp: {source.timestamp}
+                        Referenced at: {source.timestamp}
                       </span>
                       <a
                         href={source.url}

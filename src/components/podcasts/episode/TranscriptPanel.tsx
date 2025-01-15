@@ -1,28 +1,60 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-interface Timestamp {
-  time: string;
+interface TranscriptSection {
+  startTime: string;
+  endTime: string;
   text: string;
+  speaker: string;
 }
 
 export const TranscriptPanel = () => {
   const [activeTimestamp, setActiveTimestamp] = useState<string | null>(null);
   const timestampRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  const timestamps: Timestamp[] = [
-    { time: "0:00", text: "Welcome to this episode where we'll discuss the latest trends in technology." },
-    { time: "0:30", text: "First, let's talk about artificial intelligence and its impact on various industries." },
-    { time: "1:15", text: "Machine learning algorithms are becoming increasingly sophisticated." },
-    { time: "2:00", text: "Companies are leveraging AI to improve customer experience." },
-    { time: "2:45", text: "The future of AI looks promising with new developments in natural language processing." },
-    { time: "3:30", text: "Let's move on to discuss the challenges and ethical considerations." },
+  const transcriptSections: TranscriptSection[] = [
+    { 
+      startTime: "0:00",
+      endTime: "0:30",
+      speaker: "John Smith",
+      text: "Welcome to this episode where we'll discuss the latest trends in technology." 
+    },
+    { 
+      startTime: "0:30",
+      endTime: "1:15",
+      speaker: "John Smith",
+      text: "First, let's talk about artificial intelligence and its impact on various industries." 
+    },
+    { 
+      startTime: "1:15",
+      endTime: "2:00",
+      speaker: "Sarah Johnson",
+      text: "Machine learning algorithms are becoming increasingly sophisticated." 
+    },
+    { 
+      startTime: "2:00",
+      endTime: "2:45",
+      speaker: "John Smith",
+      text: "Companies are leveraging AI to improve customer experience." 
+    },
+    { 
+      startTime: "2:45",
+      endTime: "3:30",
+      speaker: "Sarah Johnson",
+      text: "The future of AI looks promising with new developments in natural language processing." 
+    },
+    { 
+      startTime: "3:30",
+      endTime: "4:00",
+      speaker: "John Smith",
+      text: "Let's move on to discuss the challenges and ethical considerations." 
+    },
   ];
 
   useEffect(() => {
     if (activeTimestamp) {
       const event = new CustomEvent('timestampHover', { 
-        detail: activeTimestamp,
+        detail: { timestamp: activeTimestamp },
         bubbles: true 
       });
       window.dispatchEvent(event);
@@ -37,18 +69,24 @@ export const TranscriptPanel = () => {
       
       <ScrollArea className="h-[calc(100%-60px)]">
         <div className="p-4 space-y-4">
-          {timestamps.map(({ time, text }) => (
+          {transcriptSections.map((section) => (
             <div
-              key={time}
-              ref={el => timestampRefs.current[time] = el}
-              className="flex gap-4 group hover:bg-white/5 p-2 rounded-lg transition-colors"
-              onMouseEnter={() => setActiveTimestamp(time)}
+              key={section.startTime}
+              ref={el => timestampRefs.current[section.startTime] = el}
+              className={`group hover:bg-white/5 p-3 rounded-lg transition-all duration-200 border border-transparent
+                ${activeTimestamp === section.startTime ? 'border-linkedin-blue bg-white/5' : ''}`}
+              onMouseEnter={() => setActiveTimestamp(section.startTime)}
               onMouseLeave={() => setActiveTimestamp(null)}
             >
-              <span className="text-sm text-linkedin-text font-mono whitespace-nowrap">
-                {time}
-              </span>
-              <p className="text-sm text-slate-200">{text}</p>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-linkedin-blue">
+                  {section.speaker}
+                </span>
+                <span className="text-xs text-linkedin-text font-mono">
+                  {section.startTime} - {section.endTime}
+                </span>
+              </div>
+              <p className="text-sm text-slate-200">{section.text}</p>
             </div>
           ))}
         </div>
