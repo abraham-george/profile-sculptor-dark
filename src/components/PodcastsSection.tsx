@@ -1,25 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import podcastData from '../data/podcasts.json';
-import { PodcastLayout } from './podcasts/PodcastLayout';
 import { PodcastStats } from './podcasts/PodcastStats';
 import { PodcastHeader } from './podcasts/PodcastHeader';
 
 export const PodcastsSection = () => {
-  const [isConfigured, setIsConfigured] = useState(podcastData.podcastsConfigured);
-  const [episodeCount, setEpisodeCount] = useState(podcastData.episodes.length);
-  const [showPodcastLayout, setShowPodcastLayout] = useState(false);
+  const navigate = useNavigate();
+  const [isConfigured] = useState(podcastData.podcastsConfigured);
+  const [episodeCount] = useState(podcastData.episodes.length);
 
   const handleConfigure = () => {
-    setShowPodcastLayout(true);
+    navigate("/podcast-config");
   };
-
-  const handleBack = () => {
-    setShowPodcastLayout(false);
-  };
-
-  if (showPodcastLayout) {
-    return <PodcastLayout onBack={handleBack} />;
-  }
 
   return (
     <div className="section-card">
