@@ -2,14 +2,18 @@ import { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Loader2, Image as ImageIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Loader2 } from "lucide-react";
 
 export const CoverStep = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState("");
 
   const handleGenerateImage = async () => {
+    if (!prompt.trim()) return;
+    
     setIsGenerating(true);
     try {
       const response = await fetch("/api/generate-cover", {
@@ -17,9 +21,7 @@ export const CoverStep = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          prompt: "A professional podcast cover with modern design",
-        }),
+        body: JSON.stringify({ prompt }),
       });
       const data = await response.json();
       setGeneratedImage(data.imageUrl);
@@ -46,8 +48,12 @@ export const CoverStep = () => {
           </div>
           {selectedOption === "upload" && (
             <div className="ml-6">
-              <div className="w-48 h-48 rounded-lg border-2 border-dashed border-gray-400 flex items-center justify-center">
-                <ImageIcon className="w-8 h-8 text-gray-400" />
+              <div className="w-64 h-64 rounded-lg overflow-hidden">
+                <img
+                  src="/lovable-uploads/2973bde3-14dd-4cab-897a-c17a3bc17025.png"
+                  alt="LinkedIn TuneIn"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           )}
@@ -60,9 +66,19 @@ export const CoverStep = () => {
           </div>
           {selectedOption === "generate" && (
             <div className="ml-6 space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="prompt">Image Description</Label>
+                <Input
+                  id="prompt"
+                  placeholder="Describe the cover image you want to generate..."
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                />
+              </div>
+              
               <Button
                 onClick={handleGenerateImage}
-                disabled={isGenerating}
+                disabled={isGenerating || !prompt.trim()}
                 className="w-full"
               >
                 {isGenerating ? (
@@ -74,8 +90,9 @@ export const CoverStep = () => {
                   "Generate Cover Image"
                 )}
               </Button>
+
               {generatedImage && (
-                <div className="w-48 h-48 rounded-lg overflow-hidden">
+                <div className="w-64 h-64 rounded-lg overflow-hidden">
                   <img
                     src={generatedImage}
                     alt="Generated cover"
