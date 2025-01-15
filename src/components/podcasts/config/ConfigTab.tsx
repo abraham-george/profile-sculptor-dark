@@ -30,8 +30,6 @@ export const ConfigTab = () => {
   const [isPreview, setIsPreview] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [savedPodcastId, setSavedPodcastId] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authChecked, setAuthChecked] = useState(false);
 
   const [podcastConfig, setPodcastConfig] = useState<PodcastConfig>({
     skills: [],
@@ -44,22 +42,6 @@ export const ConfigTab = () => {
       music: 'upbeat'
     }
   });
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsAuthenticated(!!session);
-      setAuthChecked(true);
-    };
-
-    checkAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAuthenticated(!!session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   const handleStepClick = (step: number) => {
     if (!isPreview) {
@@ -84,18 +66,9 @@ export const ConfigTab = () => {
   };
 
   const handleFinish = async () => {
-    if (!isAuthenticated) {
-      toast.error("Please log in to save your podcast configuration");
-      return;
-    }
-
     try {
       const { data: userData } = await supabase.auth.getUser();
-      if (!userData.user) {
-        toast.error("You must be logged in to save a podcast");
-        return;
-      }
-
+      
       const { data, error } = await supabase
         .from('podcasts')
         .insert({
@@ -172,20 +145,8 @@ export const ConfigTab = () => {
     }
   };
 
-  if (!authChecked) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="space-y-8">
-      {!isAuthenticated && currentStep === totalSteps && (
-        <Alert>
-          <AlertDescription>
-            Please log in to save your podcast configuration
-          </AlertDescription>
-        </Alert>
-      )}
-      
       <div>
         {!isPreview ? (
           <>
