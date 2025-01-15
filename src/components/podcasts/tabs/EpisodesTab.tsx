@@ -20,6 +20,38 @@ export const EpisodesTab = () => {
         return [];
       }
       
+      // If no episodes exist, create a sample episode
+      if (!data || data.length === 0) {
+        const { data: podcastConfig } = await supabase
+          .from('podcast_config')
+          .select('*')
+          .maybeSingle();
+
+        if (podcastConfig) {
+          const { error: insertError } = await supabase
+            .from('podcasts')
+            .insert([
+              {
+                name: `${podcastConfig.name} - Episode 1`,
+                description: 'First episode of your podcast',
+                duration: '30 mins',
+                cover_image: podcastConfig.cover_image
+              }
+            ]);
+
+          if (insertError) {
+            console.error('Error creating sample episode:', insertError);
+            return [];
+          }
+
+          // Fetch the newly created episode
+          const { data: newData } = await supabase
+            .from('podcasts')
+            .select('*');
+          return newData || [];
+        }
+      }
+      
       return data || [];
     }
   });
@@ -59,25 +91,35 @@ export const EpisodesTab = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-end">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleRefresh}
-          disabled={isRefreshing}
-          className="text-linkedin-blue hover:text-linkedin-blue/80"
-        >
-          <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
-          {isRefreshing ? 'Refreshing...' : 'Refresh'}
-        </Button>
-      </div>
-
       {!episodes || episodes.length === 0 ? (
-        <div className="text-center py-8">
+        <div className="flex flex-col items-center gap-4 py-8">
           <p className="text-gray-400">No episodes found. Configure to get started.</p>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="pill-button"
+          >
+            <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+            {isRefreshing ? 'Refreshing...' : 'Refresh Episodes'}
+          </Button>
         </div>
       ) : (
         <div className="space-y-4">
+          <div className="flex justify-end">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isRefreshing}
+              className="pill-button"
+            >
+              <RefreshCw className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+              {isRefreshing ? 'Refreshing...' : 'Refresh'}
+            </Button>
+          </div>
+
           {episodes.map((episode) => (
             <div 
               key={episode.id} 
@@ -85,7 +127,7 @@ export const EpisodesTab = () => {
             >
               <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
                 <img 
-                  src={podcastConfig?.cover_image || '/placeholder.svg'} 
+                  src={episode.cover_image || podcastConfig?.cover_image || '/placeholder.svg'} 
                   alt={episode.name}
                   className="w-full h-full object-cover"
                 />
