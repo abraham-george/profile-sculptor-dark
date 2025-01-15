@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ConfigProgress } from "./ConfigProgress";
 import { ConfigContent } from "./ConfigContent";
+import { PreviewMode } from "./preview/PreviewMode";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export interface PodcastConfig {
   industry?: string;
@@ -23,11 +23,9 @@ export interface PodcastConfig {
 }
 
 export const ConfigTab = () => {
-  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 5;
   const [isPreview, setIsPreview] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const [savedPodcastId, setSavedPodcastId] = useState<string | null>(null);
 
   const [podcastConfig, setPodcastConfig] = useState<PodcastConfig>({
@@ -66,71 +64,27 @@ export const ConfigTab = () => {
 
   const handleFinish = async () => {
     try {
-      // Generate a simple UUID for the podcast
-      const newPodcastId = crypto.randomUUID();
+      const { data: userData } = await supabase.auth.getUser();
       
-      // Update the podcasts data in the JSON file
-      const podcastData = {
-        id: newPodcastId,
-        name: podcastConfig.industry || 'My Podcast',
-        description: `A podcast about ${podcastConfig.skills.join(', ')}`,
-        cover_image: podcastConfig.coverImage?.url,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      };
+      const { data, error } = await supabase
+        .from('podcasts')
+        .insert({
+          name: podcastConfig.industry || 'My Podcast',
+          description: `A podcast about ${podcastConfig.skills.join(', ')}`,
+          cover_image: podcastConfig.coverImage?.url,
+          user_id: userData.user.id
+        })
+        .select()
+        .single();
 
-      // In a real app, we would save this to the JSON file
-      console.log('Saving podcast data:', podcastData);
+      if (error) throw error;
 
-      setSavedPodcastId(newPodcastId);
+      setSavedPodcastId(data.id);
       setIsPreview(true);
       toast.success("Podcast configuration saved successfully!");
     } catch (error) {
       console.error('Error saving podcast config:', error);
       toast.error("Failed to save podcast configuration. Please try again.");
-    }
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleCancelEdit = () => {
-    setIsEditing(false);
-  };
-
-  const handleSaveEdit = async () => {
-    try {
-      // Update the existing podcast data in the JSON file
-      const updatedPodcastData = {
-        id: savedPodcastId,
-        name: podcastConfig.industry || 'My Podcast',
-        description: `A podcast about ${podcastConfig.skills.join(', ')}`,
-        cover_image: podcastConfig.coverImage?.url,
-        updated_at: new Date().toISOString()
-      };
-
-      // In a real app, we would update this in the JSON file
-      console.log('Updating podcast data:', updatedPodcastData);
-
-      setIsEditing(false);
-      toast.success("Podcast configuration updated successfully!");
-    } catch (error) {
-      console.error('Error updating podcast config:', error);
-      toast.error("Failed to update podcast configuration. Please try again.");
-    }
-  };
-
-  const handleDelete = async () => {
-    try {
-      // In a real app, we would delete this from the JSON file
-      console.log('Deleting podcast:', savedPodcastId);
-
-      toast.success("Podcast deleted successfully!");
-      navigate('/');
-    } catch (error) {
-      console.error('Error deleting podcast:', error);
-      toast.error("Failed to delete podcast. Please try again.");
     }
   };
 
@@ -178,49 +132,11 @@ export const ConfigTab = () => {
             </div>
           </>
         ) : (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-white">Podcast Configuration Preview</h2>
-            <ConfigContent 
-              currentStep={5} 
-              config={podcastConfig}
-              onConfigUpdate={updateConfig}
-              readOnly={!isEditing}
-            />
-            
-            <div className="flex gap-4 mt-8">
-              {!isEditing ? (
-                <>
-                  <button
-                    onClick={handleEdit}
-                    className="profile-button profile-button-primary"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={handleDelete}
-                    className="profile-button profile-button-outline text-red-500 hover:bg-red-500 hover:text-white"
-                  >
-                    Delete
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    onClick={handleSaveEdit}
-                    className="profile-button profile-button-primary"
-                  >
-                    Save
-                  </button>
-                  <button
-                    onClick={handleCancelEdit}
-                    className="profile-button profile-button-outline"
-                  >
-                    Cancel
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
+          <PreviewMode 
+            config={podcastConfig}
+            podcastId={savedPodcastId!}
+            onConfigUpdate={updateConfig}
+          />
         )}
       </div>
     </div>
