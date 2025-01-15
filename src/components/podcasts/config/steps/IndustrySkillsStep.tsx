@@ -34,7 +34,7 @@ export const IndustrySkillsStep = ({
             <button
               key={industry}
               onClick={() => onIndustrySelect(industry)}
-              className={selectedIndustry === industry ? 'bg-linkedin-blue text-white' : 'text-white'}
+              className={`pill-button ${selectedIndustry === industry ? 'bg-linkedin-blue text-white' : ''}`}
             >
               {industry}
             </button>
@@ -50,7 +50,7 @@ export const IndustrySkillsStep = ({
               <button
                 key={skill}
                 onClick={() => onSkillSelect(skill)}
-                className={selectedSkills.includes(skill) ? 'bg-linkedin-blue text-white' : 'text-white'}
+                className={`pill-button ${selectedSkills.includes(skill) ? 'bg-linkedin-blue text-white' : ''}`}
               >
                 {skill}
               </button>
