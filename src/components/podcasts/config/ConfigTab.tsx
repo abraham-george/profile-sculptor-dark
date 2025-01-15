@@ -3,6 +3,7 @@ import { ConfigContent } from "./ConfigContent";
 import { PreviewMode } from "./preview/PreviewMode";
 import { useConfigState } from "./hooks/useConfigState";
 import { ConfigActions } from "./ConfigActions";
+import { PodcastConfig } from "./types";
 
 interface ConfigTabProps {
   existingConfig?: any;
@@ -27,7 +28,7 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     }
   };
 
-  const updateConfig = (updates: Partial<typeof podcastConfig>) => {
+  const updateConfig = (updates: Partial<PodcastConfig>) => {
     setPodcastConfig(prev => ({
       ...prev,
       ...updates

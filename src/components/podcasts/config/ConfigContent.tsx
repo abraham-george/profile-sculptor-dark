@@ -3,7 +3,7 @@ import { SourcesStep } from './steps/SourcesStep';
 import { StyleStep } from './steps/StyleStep';
 import { CoverStep } from './steps/CoverStep';
 import { ReviewStep } from './steps/ReviewStep';
-import { PodcastConfig } from './ConfigTab';
+import { PodcastConfig } from './types';
 
 interface ConfigContentProps {
   currentStep: number;

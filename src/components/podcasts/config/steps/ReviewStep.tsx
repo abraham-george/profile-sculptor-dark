@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { PodcastConfig } from "../ConfigTab";
+import { PodcastConfig } from "../types";
+import { ReactNode } from "react";
 
 interface ReviewItemProps {
   title: string;
@@ -60,9 +61,7 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
     });
   };
 
-  // Map sources to include their images using the same URLs as in SourcesStep
   const sourcesWithImages = config.sources.map(source => {
-    // This matches the image URLs defined in SourcesStep
     const sourceImageMap: { [key: string]: string } = {
       'Sarah Chen': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
       'Mike Ross': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',

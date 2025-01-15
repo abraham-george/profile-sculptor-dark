@@ -2,7 +2,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ConfigContent } from "../ConfigContent";
-import { PodcastConfig } from "../ConfigTab";
+import { PodcastConfig } from "../types";
 import { useNavigate } from "react-router-dom";
 import { PreviewButtons } from "./PreviewButtons";
 import { PreviewHeader } from "./PreviewHeader";
