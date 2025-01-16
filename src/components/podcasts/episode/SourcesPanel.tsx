@@ -17,45 +17,73 @@ export const SourcesPanel = () => {
   const sources: Source[] = [
     {
       id: "1",
-      title: "The State of AI in Business 2024",
-      url: "https://example.com/ai-business-2024",
+      title: "Anthropic's Claude 3 Release",
+      url: "https://www.anthropic.com/claude3",
       timestamp: "0:00",
-      description: "Comprehensive analysis of AI adoption trends across industries, featuring insights from leading technology executives and researchers."
+      description: "Detailed analysis of Claude 3's capabilities and benchmarks in reasoning and analysis tasks."
     },
     {
       id: "2",
-      title: "AI-Driven Decision Making in Finance",
-      url: "https://example.com/ai-finance-decisions",
-      timestamp: "5:00",
-      description: "Research paper examining the impact of AI on financial decision-making processes and risk assessment methodologies."
+      title: "Google Gemini's Multimodal Advances",
+      url: "https://blog.google/technology/ai/gemini-update-march-2024",
+      timestamp: "3:00",
+      description: "Latest updates on Gemini's enhanced capabilities in processing multiple types of data simultaneously."
     },
     {
       id: "3",
-      title: "AI Applications in Healthcare",
-      url: "https://example.com/ai-healthcare-innovations",
-      timestamp: "10:00",
-      description: "Study published in Nature Medicine showcasing breakthrough achievements in AI-powered medical diagnosis and drug discovery."
+      title: "AI in Medical Imaging Research",
+      url: "https://nature.com/articles/ai-medical-imaging-2024",
+      timestamp: "6:00",
+      description: "Study comparing AI and human expert performance in early cancer detection through medical imaging."
     },
     {
       id: "4",
-      title: "Evolution of AI in Customer Service",
-      url: "https://example.com/ai-customer-service",
-      timestamp: "15:00",
-      description: "Industry report on the transformation of customer service through AI, featuring case studies from leading companies."
+      title: "Tesla FSD Beta Progress Report",
+      url: "https://tesla.com/blog/fsd-beta-march-2024",
+      timestamp: "9:00",
+      description: "Latest developments in Tesla's Full Self-Driving technology and urban navigation capabilities."
     },
     {
       id: "5",
-      title: "AI in Manufacturing: Industry 4.0",
-      url: "https://example.com/ai-manufacturing",
-      timestamp: "20:00",
-      description: "Technical analysis of AI implementation in smart manufacturing, including predictive maintenance and quality control systems."
+      title: "LLM Hallucination Reduction Study",
+      url: "https://arxiv.org/abs/2403.llm-accuracy",
+      timestamp: "12:00",
+      description: "Research paper on new methodologies for improving factual accuracy in language models."
     },
     {
       id: "6",
-      title: "Ethical AI Framework",
-      url: "https://example.com/ethical-ai",
-      timestamp: "25:00",
-      description: "Guidelines and best practices for responsible AI deployment, addressing privacy concerns and algorithmic bias."
+      title: "AI in Climate Research",
+      url: "https://science.org/ai-climate-2024",
+      timestamp: "15:00",
+      description: "Analysis of AI applications in weather prediction and renewable energy optimization."
+    },
+    {
+      id: "7",
+      title: "AI in Education Report 2024",
+      url: "https://edu.ai/report-2024",
+      timestamp: "18:00",
+      description: "Comprehensive study on the impact of AI-powered personalized learning platforms."
+    },
+    {
+      id: "8",
+      title: "Gaming AI Revolution",
+      url: "https://gamedeveloper.com/ai-npc-2024",
+      timestamp: "21:00",
+      description: "Overview of advances in AI-powered NPCs and their impact on gaming experiences."
+    },
+    {
+      id: "9",
+      title: "Protein Folding Breakthroughs",
+      url: "https://science.org/protein-ai-2024",
+      timestamp: "24:00",
+      description: "Latest developments in AI-powered protein structure prediction and drug discovery."
+    },
+    {
+      id: "10",
+      title: "AI Ethics Framework 2024",
+      url: "https://ai-ethics.org/framework-2024",
+      timestamp: "27:00",
+      description: "Updated guidelines and frameworks for responsible AI deployment and governance."
     }
   ];
 
