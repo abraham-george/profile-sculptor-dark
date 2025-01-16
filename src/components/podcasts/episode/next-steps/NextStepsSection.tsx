@@ -44,17 +44,65 @@ export const NextStepsSection = () => {
   ];
 
   const events = [
-    { id: 1, title: "Tech Conference 2024", date: "Mar 15", attendees: "500+" },
-    { id: 2, title: "Developer Meetup", date: "Mar 20", attendees: "200+" },
-    { id: 3, title: "Networking Event", date: "Mar 25", attendees: "300+" },
-    { id: 4, title: "Workshop", date: "Mar 30", attendees: "150+" },
+    { 
+      id: 1, 
+      title: "Tech Conference 2024", 
+      date: "Mar 15", 
+      attendees: "500+",
+      thumbnail: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 2, 
+      title: "Developer Meetup", 
+      date: "Mar 20", 
+      attendees: "200+",
+      thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 3, 
+      title: "Networking Event", 
+      date: "Mar 25", 
+      attendees: "300+",
+      thumbnail: "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 4, 
+      title: "Workshop", 
+      date: "Mar 30", 
+      attendees: "150+",
+      thumbnail: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
   ];
 
   const jobs = [
-    { id: 1, title: "Senior Developer", company: "Tech Corp", location: "Remote" },
-    { id: 2, title: "UX Designer", company: "Design Inc", location: "New York" },
-    { id: 3, title: "Product Manager", company: "Product Co", location: "San Francisco" },
-    { id: 4, title: "Data Scientist", company: "Data Corp", location: "Boston" },
+    { 
+      id: 1, 
+      title: "Senior Developer", 
+      company: "Tech Corp", 
+      location: "Remote",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 2, 
+      title: "UX Designer", 
+      company: "Design Inc", 
+      location: "New York",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 3, 
+      title: "Product Manager", 
+      company: "Product Co", 
+      location: "San Francisco",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
+    { 
+      id: 4, 
+      title: "Data Scientist", 
+      company: "Data Corp", 
+      location: "Boston",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    },
   ];
 
   return (
@@ -83,7 +131,12 @@ export const NextStepsSection = () => {
                     </div>
                     <div className="p-4">
                       <h4 className="font-semibold text-white">{course.title}</h4>
-                      <p className="text-sm text-linkedin-text">{course.instructor}</p>
+                      <p className="text-sm text-linkedin-text mb-3">{course.instructor}</p>
+                      <Button 
+                        className="w-full bg-linkedin-blue text-white hover:bg-linkedin-blue/90"
+                      >
+                        Enroll
+                      </Button>
                     </div>
                   </Card>
                 </CarouselItem>
@@ -102,14 +155,19 @@ export const NextStepsSection = () => {
             <CarouselContent className="-ml-2 md:-ml-4">
               {events.map((event) => (
                 <CarouselItem key={event.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <Card className="p-4 bg-linkedin-card hover:bg-linkedin-card/80 transition-colors">
-                    <div className="space-y-2">
+                  <Card className="p-0 overflow-hidden bg-linkedin-card hover:bg-linkedin-card/80 transition-colors">
+                    <img 
+                      src={event.thumbnail} 
+                      alt={event.title} 
+                      className="w-full h-32 object-cover"
+                    />
+                    <div className="p-4">
                       <h4 className="font-semibold text-white">{event.title}</h4>
                       <p className="text-sm text-linkedin-text">{event.date}</p>
-                      <p className="text-sm text-linkedin-text">{event.attendees} attendees</p>
+                      <p className="text-sm text-linkedin-text mb-3">{event.attendees} attendees</p>
                       <Button 
                         variant="outline" 
-                        className="w-full mt-2 bg-transparent border-linkedin-blue text-linkedin-blue hover:bg-linkedin-blue hover:text-white"
+                        className="w-full bg-transparent border-linkedin-blue text-linkedin-blue hover:bg-linkedin-blue hover:text-white"
                       >
                         View
                         <ExternalLink className="w-4 h-4 ml-2" />
@@ -133,15 +191,22 @@ export const NextStepsSection = () => {
               {jobs.map((job) => (
                 <CarouselItem key={job.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                   <Card className="p-4 bg-linkedin-card hover:bg-linkedin-card/80 transition-colors">
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-white">{job.title}</h4>
-                      <p className="text-sm text-linkedin-text">{job.company}</p>
-                      <p className="text-sm text-linkedin-text">{job.location}</p>
-                      <Button 
-                        className="w-full mt-2 bg-linkedin-blue text-white hover:bg-linkedin-blue/90"
-                      >
-                        Apply
-                      </Button>
+                    <div className="flex gap-4">
+                      <img 
+                        src={job.logo} 
+                        alt={`${job.company} logo`} 
+                        className="w-12 h-12 rounded object-cover"
+                      />
+                      <div className="flex-1 space-y-2">
+                        <h4 className="font-semibold text-white">{job.title}</h4>
+                        <p className="text-sm text-linkedin-text">{job.company}</p>
+                        <p className="text-sm text-linkedin-text">{job.location}</p>
+                        <Button 
+                          className="w-full mt-2 bg-linkedin-blue text-white hover:bg-linkedin-blue/90"
+                        >
+                          Easy Apply
+                        </Button>
+                      </div>
                     </div>
                   </Card>
                 </CarouselItem>
