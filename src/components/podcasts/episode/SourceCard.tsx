@@ -13,7 +13,7 @@ export const SourceCard = ({ source, isActive, onFollow }: SourceCardProps) => {
   return (
     <div
       className={`glass-card p-4 transition-all duration-200 rounded-lg
-        ${isActive ? 'bg-white/5' : 'hover:bg-white/5'}`}
+        ${isActive ? 'ring-2 ring-linkedin-blue' : 'hover:bg-white/5'}`}
     >
       <div className="flex items-start gap-3">
         <Avatar className="h-12 w-12">
