@@ -39,7 +39,7 @@ export const PodcastLayout = ({ onBack }: PodcastLayoutProps) => {
 
   return (
     <div className="fixed inset-0 bg-linkedin-dark">
-      <div className="p-6 h-full">
+      <div className="pt-20 px-6 h-full"> {/* Changed p-6 to pt-20 px-6 to add top spacing */}
         <button 
           onClick={handleBack}
           className="mb-6 flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
