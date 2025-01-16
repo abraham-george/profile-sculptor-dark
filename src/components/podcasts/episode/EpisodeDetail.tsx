@@ -3,6 +3,7 @@ import { PodcastHeader } from "../layout/PodcastHeader";
 import { TranscriptPanel } from "./TranscriptPanel";
 import { SourcesPanel } from "./SourcesPanel";
 import { AudioPlayer } from "./AudioPlayer";
+import { NextStepsSection } from "./next-steps/NextStepsSection";
 
 export const EpisodeDetail = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export const EpisodeDetail = () => {
     <div className="h-full flex flex-col">
       <PodcastHeader onBack={handleBack} />
       
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-auto">
         <div className="container mx-auto px-4 py-6 space-y-6">
           <AudioPlayer />
           
@@ -31,6 +32,9 @@ export const EpisodeDetail = () => {
               </div>
             </div>
           </div>
+
+          {/* Next Steps Section */}
+          <NextStepsSection />
         </div>
       </div>
     </div>
