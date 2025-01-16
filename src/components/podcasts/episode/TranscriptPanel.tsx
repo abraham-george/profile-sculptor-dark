@@ -91,8 +91,8 @@ export const TranscriptPanel = () => {
         <h2 className="text-lg font-semibold">Transcript</h2>
       </div>
       
-      <ScrollArea className="h-[calc(100%-60px)]">
-        <div className="p-4 space-y-4">
+      <ScrollArea className="h-[calc(100%-60px)] px-4">
+        <div className="py-4 space-y-4">
           {transcriptSections.map((section) => (
             <div
               key={section.startTime}

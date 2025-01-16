@@ -23,10 +23,10 @@ export const EpisodeDetail = () => {
           {/* Fixed height container with independent scrollable panels */}
           <div className="h-[600px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
-              <div className="h-full overflow-auto">
+              <div className="h-full overflow-hidden">
                 <TranscriptPanel />
               </div>
-              <div className="h-full overflow-auto">
+              <div className="h-full overflow-hidden">
                 <SourcesPanel />
               </div>
             </div>

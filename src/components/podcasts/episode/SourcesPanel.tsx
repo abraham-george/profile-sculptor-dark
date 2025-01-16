@@ -112,13 +112,13 @@ export const SourcesPanel = () => {
   }, [sources]);
 
   return (
-    <div className="glass-card h-full overflow-hidden">
+    <div className="glass-card h-full">
       <div className="p-4 border-b border-white/10">
         <h2 className="text-lg font-semibold">Sources</h2>
       </div>
       
-      <ScrollArea className="h-[calc(100%-60px)]">
-        <div className="p-4 space-y-4">
+      <ScrollArea className="h-[calc(100%-60px)] px-4">
+        <div className="py-4 space-y-4">
           {sources.map((source) => (
             <div
               key={source.id}
