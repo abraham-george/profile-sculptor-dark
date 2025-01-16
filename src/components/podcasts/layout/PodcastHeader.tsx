@@ -12,7 +12,7 @@ export const PodcastHeader = ({ onBack }: PodcastHeaderProps) => {
         className="text-gray-400 hover:text-white flex items-center gap-2"
       >
         <ArrowLeft size={20} />
-        <span>Profile</span>
+        <span>Episodes</span>
       </button>
     </div>
   );

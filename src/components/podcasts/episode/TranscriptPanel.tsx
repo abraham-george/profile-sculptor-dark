@@ -43,12 +43,6 @@ export const TranscriptPanel = () => {
       speaker: "Sarah Johnson",
       text: "The future of AI looks promising with new developments in natural language processing." 
     },
-    { 
-      startTime: "3:30",
-      endTime: "4:00",
-      speaker: "John Smith",
-      text: "Let's move on to discuss the challenges and ethical considerations." 
-    },
   ];
 
   useEffect(() => {
@@ -79,9 +73,6 @@ export const TranscriptPanel = () => {
               onMouseLeave={() => setActiveTimestamp(null)}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-linkedin-blue">
-                  {section.speaker}
-                </span>
                 <span className="text-xs text-linkedin-text font-mono">
                   {section.startTime} - {section.endTime}
                 </span>
