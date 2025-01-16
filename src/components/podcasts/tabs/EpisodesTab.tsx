@@ -130,7 +130,7 @@ export const EpisodesTab = () => {
             >
               <div className="w-12 h-12 rounded overflow-hidden flex-shrink-0">
                 <img 
-                  src={episode.cover_image || podcastConfig?.cover_image || '/placeholder.svg'} 
+                  src="/lovable-uploads/44c0a106-9e87-4470-8466-b042960698c7.png"
                   alt={episode.name}
                   className="w-full h-full object-cover"
                 />
