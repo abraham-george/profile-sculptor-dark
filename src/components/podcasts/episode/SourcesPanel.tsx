@@ -219,7 +219,7 @@ export const SourcesPanel = () => {
               key={source.id}
               ref={el => sourceRefs.current[source.id] = el}
               className={`glass-card p-4 transition-all duration-200 rounded-lg
-                ${activeSource === source.id ? 'ring-2 ring-linkedin-blue' : 'hover:bg-white/5'}`}
+                ${activeSource === source.id ? 'bg-white/5' : 'hover:bg-white/5'}`}
             >
               <div className="flex items-start gap-3">
                 <Avatar className="h-12 w-12">
