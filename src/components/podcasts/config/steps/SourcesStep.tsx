@@ -55,7 +55,7 @@ export const SourcesStep = ({
     inNetwork: {
       trustedVoices: [
         { name: 'Sarah Chen', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Mike Ross', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' },
+        { name: 'Mike Ross', image: 'https://media.licdn.com/dms/image/v2/D4E03AQE1V9qLzblwvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1694348650057?e=1742428800&v=beta&t=F-2MaRkg9qiLwjgGhxqLWPjP3NvFJySdxJcVwpwkMjg' },
         { name: 'Emily Wang', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
         { name: 'David Kim', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
       ],
