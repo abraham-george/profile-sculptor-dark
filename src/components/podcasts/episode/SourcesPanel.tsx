@@ -1,11 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -24,39 +17,46 @@ export const SourcesPanel = () => {
   const sources: Source[] = [
     {
       id: "1",
-      title: "The Future of AI in Business",
-      url: "https://example.com/ai-business",
+      title: "The State of AI in Business 2024",
+      url: "https://example.com/ai-business-2024",
       timestamp: "0:00",
-      description: "Comprehensive analysis of AI adoption in various industries"
+      description: "Comprehensive analysis of AI adoption trends across industries, featuring insights from leading technology executives and researchers."
     },
     {
       id: "2",
-      title: "Machine Learning Trends 2024",
-      url: "https://example.com/ml-trends",
-      timestamp: "0:30",
-      description: "Latest developments in machine learning algorithms"
+      title: "AI-Driven Decision Making in Finance",
+      url: "https://example.com/ai-finance-decisions",
+      timestamp: "5:00",
+      description: "Research paper examining the impact of AI on financial decision-making processes and risk assessment methodologies."
     },
     {
       id: "3",
-      title: "AI Customer Experience Study",
-      url: "https://example.com/ai-cx",
-      timestamp: "1:15",
-      description: "How AI is transforming customer interactions"
+      title: "AI Applications in Healthcare",
+      url: "https://example.com/ai-healthcare-innovations",
+      timestamp: "10:00",
+      description: "Study published in Nature Medicine showcasing breakthrough achievements in AI-powered medical diagnosis and drug discovery."
     },
     {
       id: "4",
-      title: "Natural Language Processing Advances",
-      url: "https://example.com/nlp",
-      timestamp: "2:00",
-      description: "Recent breakthroughs in NLP technology"
+      title: "Evolution of AI in Customer Service",
+      url: "https://example.com/ai-customer-service",
+      timestamp: "15:00",
+      description: "Industry report on the transformation of customer service through AI, featuring case studies from leading companies."
     },
     {
       id: "5",
-      title: "Ethics in AI Development",
-      url: "https://example.com/ai-ethics",
-      timestamp: "2:45",
-      description: "Exploring ethical considerations in AI"
+      title: "AI in Manufacturing: Industry 4.0",
+      url: "https://example.com/ai-manufacturing",
+      timestamp: "20:00",
+      description: "Technical analysis of AI implementation in smart manufacturing, including predictive maintenance and quality control systems."
     },
+    {
+      id: "6",
+      title: "Ethical AI Framework",
+      url: "https://example.com/ethical-ai",
+      timestamp: "25:00",
+      description: "Guidelines and best practices for responsible AI deployment, addressing privacy concerns and algorithmic bias."
+    }
   ];
 
   useEffect(() => {
