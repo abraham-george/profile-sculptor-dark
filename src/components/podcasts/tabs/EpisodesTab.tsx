@@ -5,6 +5,7 @@ import { RefreshCw, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { EpisodeCard } from "../episode/EpisodeCard";
 
 export const EpisodesTab = () => {
   const navigate = useNavigate();
@@ -141,26 +142,16 @@ export const EpisodesTab = () => {
 
           <div className="space-y-4">
             {episodes.map((episode) => (
-              <button
-                onClick={() => handleEpisodeClick(episode.id)}
-                key={episode.id} 
-                className="flex items-center gap-4 p-4 bg-linkedin-card rounded-lg hover:bg-linkedin-card/90 transition-colors"
-              >
-                <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
-                  <img 
-                    src="/lovable-uploads/44c0a106-9e87-4470-8466-b042960698c7.png"
-                    alt={episode.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 text-left">
-                  <h4 className="font-medium text-white">{episode.name}</h4>
-                  <p className="text-sm text-gray-400">{episode.description}</p>
-                  {episode.duration && (
-                    <p className="text-xs text-gray-500 mt-1">{episode.duration}</p>
-                  )}
-                </div>
-              </button>
+              <EpisodeCard
+                key={episode.id}
+                id={episode.id}
+                name={episode.name}
+                description={episode.description || ""}
+                duration={episode.duration}
+                coverImage={episode.cover_image}
+                onPlay={() => handleEpisodeClick(episode.id)}
+                onLearnMore={() => handleEpisodeClick(episode.id)}
+              />
             ))}
           </div>
         </div>
