@@ -20,9 +20,12 @@ export const EpisodeDetail = () => {
         <div className="container mx-auto px-4 py-6 space-y-6">
           <AudioPlayer />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-300px)]">
-            <TranscriptPanel />
-            <SourcesPanel />
+          {/* Fixed height container for transcript and sources */}
+          <div className="h-[600px] overflow-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <TranscriptPanel />
+              <SourcesPanel />
+            </div>
           </div>
         </div>
       </div>
