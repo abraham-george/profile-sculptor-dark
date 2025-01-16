@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { RefreshCw, Play } from "lucide-react";
+import { RefreshCw, Play, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -84,6 +84,10 @@ export const EpisodesTab = () => {
     navigate(`/episodes/${episodeId}`);
   };
 
+  const handleBack = () => {
+    navigate('/');
+  };
+
   if (isLoading) {
     return (
       <div className="text-center py-8">
@@ -94,6 +98,14 @@ export const EpisodesTab = () => {
 
   return (
     <div className="space-y-6">
+      <button 
+        onClick={handleBack}
+        className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
+      >
+        <ArrowLeft size={20} />
+        <span>Back to Profile</span>
+      </button>
+
       {!episodes || episodes.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-8">
           <p className="text-gray-400">No episodes found. Configure to get started.</p>
@@ -128,7 +140,7 @@ export const EpisodesTab = () => {
               key={episode.id} 
               className="flex items-center gap-4 p-4 bg-linkedin-card rounded-lg hover:bg-linkedin-card/90 transition-colors"
             >
-              <div className="w-12 h-12 rounded overflow-hidden flex-shrink-0">
+              <div className="w-16 h-16 rounded overflow-hidden flex-shrink-0">
                 <img 
                   src="/lovable-uploads/44c0a106-9e87-4470-8466-b042960698c7.png"
                   alt={episode.name}
