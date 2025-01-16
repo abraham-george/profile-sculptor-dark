@@ -1,24 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
-
-interface Source {
-  id: string;
-  title: string;
-  url: string;
-  timestamp: string;
-  description: string;
-  author: {
-    name: string;
-    role: string;
-    company: string;
-    avatar: string;
-    followers: string;
-    isFollowing: boolean;
-  };
-}
+import { SourceCard } from "./SourceCard";
+import { Source } from "./types";
 
 export const SourcesPanel = () => {
   const [activeSource, setActiveSource] = useState<string | null>(null);
@@ -202,7 +185,6 @@ export const SourcesPanel = () => {
   }, [sources]);
 
   const handleFollow = (sourceId: string) => {
-    // Implement follow functionality
     console.log('Following source:', sourceId);
   };
 
@@ -218,59 +200,12 @@ export const SourcesPanel = () => {
             <div
               key={source.id}
               ref={el => sourceRefs.current[source.id] = el}
-              className={`glass-card p-4 transition-all duration-200 rounded-lg
-                ${activeSource === source.id ? 'bg-white/5' : 'hover:bg-white/5'}`}
             >
-              <div className="flex items-start gap-3">
-                <Avatar className="h-12 w-12">
-                  <AvatarImage src={source.author.avatar} alt={source.author.name} />
-                  <AvatarFallback>{source.author.name[0]}</AvatarFallback>
-                </Avatar>
-                
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h3 className="font-medium text-sm flex items-center gap-1">
-                        {source.author.name}
-                        <span className="text-linkedin-blue">•</span>
-                        <span className="text-linkedin-text">1st</span>
-                      </h3>
-                      <p className="text-xs text-linkedin-text line-clamp-1">
-                        {source.author.role} at {source.author.company}
-                      </p>
-                      <p className="text-xs text-linkedin-text mt-0.5">
-                        {source.author.followers} followers
-                      </p>
-                    </div>
-                    
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="profile-button-outline whitespace-nowrap"
-                      onClick={() => handleFollow(source.id)}
-                    >
-                      + Follow
-                    </Button>
-                  </div>
-                  
-                  <div className="mt-3 space-y-2">
-                    <p className="text-sm">{source.description}</p>
-                    
-                    <div className="flex items-center justify-between text-xs text-linkedin-text mt-2">
-                      <span>Referenced at: {source.timestamp}</span>
-                      <a
-                        href={source.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-linkedin-blue hover:underline"
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                        View Source
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SourceCard
+                source={source}
+                isActive={activeSource === source.id}
+                onFollow={handleFollow}
+              />
             </div>
           ))}
         </div>
