@@ -128,7 +128,7 @@ export const EpisodesTab = () => {
               key={episode.id} 
               className="flex items-center gap-4 p-4 bg-linkedin-card rounded-lg hover:bg-linkedin-card/90 transition-colors"
             >
-              <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+              <div className="w-12 h-12 rounded overflow-hidden flex-shrink-0">
                 <img 
                   src={episode.cover_image || podcastConfig?.cover_image || '/placeholder.svg'} 
                   alt={episode.name}
