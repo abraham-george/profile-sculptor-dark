@@ -15,7 +15,7 @@ export const ConfigProgress = ({ currentStep, totalSteps, onStepClick }: ConfigP
     { name: 'Skill', icon: BookOpen },
     { name: 'Source', icon: Star },
     { name: 'Style', icon: Palette },
-    { name: 'Cover', icon: Image },
+    { name: 'Personalize', icon: Image },
     { name: 'Review', icon: ClipboardCheck }
   ];
 
