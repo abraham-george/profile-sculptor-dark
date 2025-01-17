@@ -98,21 +98,21 @@ export const EpisodesTab = () => {
     <div className="space-y-6">
       {!episodes || episodes.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-8">
-          <p className="text-gray-400">No episodes found. Configure to get started.</p>
+          <p className="text-gray-400">No episodes found. Click refresh to generate one.</p>
           <Button
             onClick={handleGenerateEpisode}
             disabled={isGenerating}
-            className="bg-linkedin-blue hover:bg-linkedin-blue/90"
+            className="rounded-full px-6 bg-linkedin-blue hover:bg-linkedin-blue/90"
           >
             {isGenerating ? (
               <>
-                <RefreshCw className="animate-spin" />
+                <RefreshCw className="animate-spin mr-2" />
                 <span>Generating...</span>
               </>
             ) : (
               <>
-                <Play />
-                <span>Generate Episode</span>
+                <RefreshCw className="mr-2" />
+                <span>Refresh</span>
               </>
             )}
           </Button>
@@ -124,17 +124,17 @@ export const EpisodesTab = () => {
             <Button
               onClick={handleGenerateEpisode}
               disabled={isGenerating}
-              className="bg-linkedin-blue hover:bg-linkedin-blue/90"
+              className="rounded-full px-6 bg-linkedin-blue hover:bg-linkedin-blue/90"
             >
               {isGenerating ? (
                 <>
-                  <RefreshCw className="animate-spin" />
+                  <RefreshCw className="animate-spin mr-2" />
                   <span>Generating...</span>
                 </>
               ) : (
                 <>
-                  <Play />
-                  <span>Generate Episode</span>
+                  <RefreshCw className="mr-2" />
+                  <span>Refresh</span>
                 </>
               )}
             </Button>
