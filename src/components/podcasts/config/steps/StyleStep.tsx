@@ -132,7 +132,7 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
             </RadioGroup>
           </div>
 
-          <div className="flex items-center space-x-2 mt-8">
+          <div className="flex items-center space-x-2 mt-8 pb-4">
             <Checkbox id="notifications" />
             <Label htmlFor="notifications" className="text-sm text-gray-600">
               Set alerts for new episode releases
@@ -174,25 +174,43 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
 
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Language</h3>
-            <Select defaultValue="en">
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select a language" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="es">Spanish</SelectItem>
-                <SelectItem value="fr">French</SelectItem>
-                <SelectItem value="de">German</SelectItem>
-                <SelectItem value="it">Italian</SelectItem>
-                <SelectItem value="pt">Portuguese</SelectItem>
-                <SelectItem value="nl">Dutch</SelectItem>
-                <SelectItem value="pl">Polish</SelectItem>
-                <SelectItem value="ru">Russian</SelectItem>
-                <SelectItem value="ja">Japanese</SelectItem>
-                <SelectItem value="ko">Korean</SelectItem>
-                <SelectItem value="zh">Chinese (Mandarin)</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="max-w-xs">
+              <Select defaultValue="en">
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a language" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">English</SelectItem>
+                  <SelectItem value="es">Spanish</SelectItem>
+                  <SelectItem value="fr">French</SelectItem>
+                  <SelectItem value="de">German</SelectItem>
+                  <SelectItem value="it">Italian</SelectItem>
+                  <SelectItem value="pt">Portuguese</SelectItem>
+                  <SelectItem value="nl">Dutch</SelectItem>
+                  <SelectItem value="pl">Polish</SelectItem>
+                  <SelectItem value="ru">Russian</SelectItem>
+                  <SelectItem value="ja">Japanese</SelectItem>
+                  <SelectItem value="ko">Korean</SelectItem>
+                  <SelectItem value="zh">Chinese (Mandarin)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Checkbox id="customIntros" />
+              <Label htmlFor="customIntros" className="text-sm text-gray-600">
+                Custom Intros/Outros: Personalize the introduction and closing segments
+              </Label>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <Checkbox id="audioEnhancements" />
+              <Label htmlFor="audioEnhancements" className="text-sm text-gray-600">
+                Audio Enhancements: Enable/disable background music
+              </Label>
+            </div>
           </div>
         </div>
       </section>
