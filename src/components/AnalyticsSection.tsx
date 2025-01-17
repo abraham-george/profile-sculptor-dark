@@ -1,7 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { EyeOff, Users, BarChart2, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const AnalyticsSection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="section-card">
       <div className="flex flex-col gap-2 mb-6">
@@ -40,7 +43,10 @@ export const AnalyticsSection = () => {
       </div>
 
       <div className="mt-8 pt-4 border-t border-white/10 flex justify-center">
-        <button className="text-gray-400 hover:text-white flex items-center gap-1">
+        <button 
+          onClick={() => navigate("/analytics")}
+          className="text-gray-400 hover:text-white flex items-center gap-1"
+        >
           Show all analytics
           <span className="text-lg">→</span>
         </button>
