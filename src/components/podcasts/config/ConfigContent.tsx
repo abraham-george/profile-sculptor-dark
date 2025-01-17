@@ -48,6 +48,8 @@ export const ConfigContent = ({ currentStep, config, onConfigUpdate, readOnly = 
         <CoverStep
           coverImage={config.coverImage}
           onCoverImageSelect={(coverImage) => !readOnly && onConfigUpdate({ coverImage })}
+          config={config}
+          onConfigUpdate={onConfigUpdate}
         />
       )}
 
