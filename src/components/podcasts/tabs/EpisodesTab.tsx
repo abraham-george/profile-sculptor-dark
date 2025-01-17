@@ -27,47 +27,21 @@ export const EpisodesTab = () => {
   const handleGenerateEpisode = async () => {
     setIsGenerating(true);
     try {
-      const { data: config } = await supabase
-        .from('podcast_config')
-        .select('*')
-        .maybeSingle();
-
-      if (!config) {
-        toast.error("Please configure your podcast first");
-        return;
-      }
-
-      const { data, error } = await supabase.functions.invoke('generate-episode', {
-        body: {
-          skills: config.skills,
-          sources: config.sources,
-          additionalContent: config.additional_content,
-          style: {
-            tone: config.style_tone,
-            length: config.style_length,
-            frequency: config.style_frequency,
-            music: config.style_music,
-          }
-        },
-      });
-
-      if (error) throw error;
-
       const { error: insertError } = await supabase
         .from('podcasts')
         .insert([{
-          name: data.name,
-          description: data.description,
-          duration: data.duration,
+          name: "New Episode",
+          description: "This is a new episode",
+          duration: "30 minutes"
         }]);
 
       if (insertError) throw insertError;
 
-      toast.success("Episode generated successfully!");
+      toast.success("Episode created successfully!");
       refetch();
     } catch (error) {
-      console.error('Error generating episode:', error);
-      toast.error("Failed to generate episode. Please try again.");
+      console.error('Error creating episode:', error);
+      toast.error("Failed to create episode. Please try again.");
     } finally {
       setIsGenerating(false);
     }
@@ -89,7 +63,7 @@ export const EpisodesTab = () => {
     <div className="space-y-6">
       {!episodes || episodes.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-8">
-          <p className="text-gray-400">No episodes found. Click refresh to generate one.</p>
+          <p className="text-gray-400">No episodes found. Click refresh to create one.</p>
           <Button
             onClick={handleGenerateEpisode}
             disabled={isGenerating}
@@ -98,7 +72,7 @@ export const EpisodesTab = () => {
             {isGenerating ? (
               <>
                 <RefreshCw className="animate-spin mr-2" />
-                <span>Generating...</span>
+                <span>Creating...</span>
               </>
             ) : (
               <>
@@ -120,7 +94,7 @@ export const EpisodesTab = () => {
               {isGenerating ? (
                 <>
                   <RefreshCw className="animate-spin mr-2" />
-                  <span>Generating...</span>
+                  <span>Creating...</span>
                 </>
               ) : (
                 <>
