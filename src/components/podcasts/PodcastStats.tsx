@@ -6,10 +6,17 @@ export const PodcastStats = () => {
   const { data: stats } = useQuery({
     queryKey: ['podcast-stats'],
     queryFn: async () => {
-      // This is a placeholder for now - we'll implement actual stats later
+      const { data: podcasts, error } = await supabase
+        .from('podcasts')
+        .select('*');
+      
+      if (error) throw error;
+
       return {
-        episodeCount: 0,
-        totalPlays: 0,
+        episodeCount: podcasts?.length || 0,
+        // For now, we'll assume 1 minute per episode as placeholder
+        totalPlays: podcasts?.length || 0,
+        // For now, shared count is 0 as we haven't implemented sharing yet
         savedCount: 0
       };
     },
@@ -28,7 +35,7 @@ export const PodcastStats = () => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-gray-200">
           <Play size={20} className="text-gray-400" />
-          <span className="text-xl font-semibold">{stats?.totalPlays || 0} total plays</span>
+          <span className="text-xl font-semibold">{stats?.totalPlays || 0} mins listened</span>
         </div>
         <p className="text-gray-400">Track your podcast engagement.</p>
       </div>
@@ -36,7 +43,7 @@ export const PodcastStats = () => {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-gray-200">
           <Bookmark size={20} className="text-gray-400" />
-          <span className="text-xl font-semibold">{stats?.savedCount || 0} saved episodes</span>
+          <span className="text-xl font-semibold">{stats?.savedCount || 0} episodes shared</span>
         </div>
         <p className="text-gray-400">Access your saved content anytime.</p>
       </div>
