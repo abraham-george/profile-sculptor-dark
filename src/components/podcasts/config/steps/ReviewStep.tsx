@@ -1,7 +1,6 @@
 import { X } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { PodcastConfig } from "../types";
-import { ReactNode } from "react";
 
 interface ReviewItemProps {
   title: string;
@@ -23,14 +22,14 @@ const ReviewItem = ({ title, items, onRemove, readOnly }: ReviewItemProps) => (
       {items.map((item) => (
         <div
           key={item.name}
-          className={`flex items-center gap-2 rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white ${
+          className={`flex items-center gap-4 rounded-full border border-linkedin-blue px-6 py-3 bg-linkedin-blue text-white ${
             !readOnly ? 'cursor-pointer hover:bg-linkedin-blue/90' : ''
           }`}
           onClick={() => !readOnly && onRemove(item.name)}
         >
           {item.image && (
-            <Avatar className="w-6 h-6">
-              <AvatarImage src={item.image} alt={item.name} />
+            <Avatar className="w-10 h-10">
+              <AvatarImage src={item.image} alt={item.name} className="object-cover" />
               <AvatarFallback>{item.name[0]}</AvatarFallback>
             </Avatar>
           )}

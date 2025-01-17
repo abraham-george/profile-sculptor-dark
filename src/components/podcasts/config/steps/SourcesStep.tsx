@@ -28,13 +28,13 @@ const SourceSection = ({ title, items, selectedSources, onSourceSelect }: Source
         <button
           key={item.name}
           onClick={() => onSourceSelect(item.name)}
-          className={`flex items-center gap-3 rounded-full border border-linkedin-blue px-4 py-2 ${
+          className={`flex items-center gap-4 rounded-full border border-linkedin-blue px-6 py-3 ${
             selectedSources.includes(item.name)
               ? 'bg-linkedin-blue text-white'
               : ''
           }`}
         >
-          <Avatar className="w-8 h-8">
+          <Avatar className="w-10 h-10">
             <AvatarImage src={item.image} alt={item.name} className="object-cover" />
             <AvatarFallback>{item.name[0]}</AvatarFallback>
           </Avatar>
