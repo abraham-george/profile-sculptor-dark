@@ -2,6 +2,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface StyleStepProps {
   style: {
@@ -104,32 +105,34 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Frequency & Schedule</h2>
         
-        <div className="space-y-4">
-          <h3 className="text-lg font-medium">Release Schedule</h3>
-          <RadioGroup 
-            value={style.frequency}
-            onValueChange={(frequency) => onStyleChange({ ...style, frequency })}
-            className="grid grid-cols-2 gap-4"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="daily" id="daily" />
-              <Label htmlFor="daily">Daily</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="weekly" id="weekly" />
-              <Label htmlFor="weekly">Weekly</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="biweekly" id="biweekly" />
-              <Label htmlFor="biweekly">Bi-weekly</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="monthly" id="monthly" />
-              <Label htmlFor="monthly">Monthly</Label>
-            </div>
-          </RadioGroup>
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Release Schedule</h3>
+            <RadioGroup 
+              value={style.frequency}
+              onValueChange={(frequency) => onStyleChange({ ...style, frequency })}
+              className="grid grid-cols-2 gap-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="daily" id="daily" />
+                <Label htmlFor="daily">Daily</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="weekly" id="weekly" />
+                <Label htmlFor="weekly">Weekly</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="biweekly" id="biweekly" />
+                <Label htmlFor="biweekly">Bi-weekly</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="monthly" id="monthly" />
+                <Label htmlFor="monthly">Monthly</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
-          <div className="flex items-center space-x-2 mt-4">
+          <div className="flex items-center space-x-2 mt-8">
             <Checkbox id="notifications" />
             <Label htmlFor="notifications" className="text-sm text-gray-600">
               Set alerts for new episode releases
@@ -142,30 +145,55 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Personalization</h2>
         
-        <div className="space-y-4">
-          <h3 className="text-lg font-medium">Voice and Tone</h3>
-          <RadioGroup 
-            value={style.music}
-            onValueChange={(music) => onStyleChange({ ...style, music })}
-            className="grid grid-cols-2 gap-4"
-          >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="formal" id="formal" />
-              <Label htmlFor="formal">Formal</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="casual" id="casual" />
-              <Label htmlFor="casual">Casual</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="inspirational" id="inspirational" />
-              <Label htmlFor="inspirational">Inspirational</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="educational" id="educational" />
-              <Label htmlFor="educational">Educational</Label>
-            </div>
-          </RadioGroup>
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Tone</h3>
+            <RadioGroup 
+              value={style.music}
+              onValueChange={(music) => onStyleChange({ ...style, music })}
+              className="grid grid-cols-2 gap-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="formal" id="formal" />
+                <Label htmlFor="formal">Formal</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="casual" id="casual" />
+                <Label htmlFor="casual">Casual</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="inspirational" id="inspirational" />
+                <Label htmlFor="inspirational">Inspirational</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="educational" id="educational" />
+                <Label htmlFor="educational">Educational</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Language</h3>
+            <Select defaultValue="en">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select a language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="es">Spanish</SelectItem>
+                <SelectItem value="fr">French</SelectItem>
+                <SelectItem value="de">German</SelectItem>
+                <SelectItem value="it">Italian</SelectItem>
+                <SelectItem value="pt">Portuguese</SelectItem>
+                <SelectItem value="nl">Dutch</SelectItem>
+                <SelectItem value="pl">Polish</SelectItem>
+                <SelectItem value="ru">Russian</SelectItem>
+                <SelectItem value="ja">Japanese</SelectItem>
+                <SelectItem value="ko">Korean</SelectItem>
+                <SelectItem value="zh">Chinese (Mandarin)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </section>
     </div>
