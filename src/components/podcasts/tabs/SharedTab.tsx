@@ -15,12 +15,6 @@ export const SharedTab = () => {
   // Example shared episode data - replace with actual data from your backend
   const sharedEpisodes = [
     {
-      id: "shared-1",
-      name: "Weekly AI TuneIn",
-      description: "A comprehensive overview of recent AI developments from industry leaders",
-      duration: "5 minutes",
-    },
-    {
       id: "shared-2",
       name: "Leadership & P&L Mastery",
       description: "Strategic insights on management consulting and business leadership",
