@@ -33,7 +33,7 @@ export const EpisodeCard = ({
             <h4 className="font-medium text-white">Weekly AI TuneIn</h4>
             <p className="text-sm text-gray-400">A comprehensive overview of recent AI developments from industry leaders</p>
             {duration && (
-              <p className="text-xs text-gray-500 mt-1">{duration}</p>
+              <p className="text-xs text-gray-500 mt-1">5 minutes</p>
             )}
           </div>
           
