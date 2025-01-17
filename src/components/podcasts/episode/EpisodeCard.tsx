@@ -30,7 +30,7 @@ export const EpisodeCard = ({
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <div>
-            <h4 className="font-medium text-white">TechBites</h4>
+            <h4 className="font-medium text-white">Weekly AI TuneIn</h4>
             <p className="text-sm text-gray-400">{description}</p>
             {duration && (
               <p className="text-xs text-gray-500 mt-1">{duration}</p>
