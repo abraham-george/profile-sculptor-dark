@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import { Play, User, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface SharedEpisodeCardProps {
@@ -7,6 +7,9 @@ interface SharedEpisodeCardProps {
   description: string;
   duration?: string;
   coverImage?: string;
+  sharedBy?: string;
+  role?: string;
+  company?: string;
   onPlay?: () => void;
   onLearnMore?: () => void;
 }
@@ -17,6 +20,9 @@ export const SharedEpisodeCard = ({
   description,
   duration,
   coverImage = "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+  sharedBy,
+  role,
+  company,
   onPlay,
   onLearnMore,
 }: SharedEpisodeCardProps) => {
@@ -30,10 +36,22 @@ export const SharedEpisodeCard = ({
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <div>
-            <h4 className="font-medium text-white">Weekly AI TuneIn</h4>
-            <p className="text-sm text-gray-400">A comprehensive overview of recent AI developments from industry leaders</p>
+            <h4 className="font-medium text-white">{name}</h4>
+            <p className="text-sm text-gray-400">{description}</p>
+            {sharedBy && (
+              <div className="flex items-center gap-2 mt-2">
+                <User className="w-4 h-4 text-linkedin-blue" />
+                <span className="text-sm text-linkedin-blue">Shared by {sharedBy}</span>
+                {role && company && (
+                  <div className="flex items-center gap-1 text-xs text-gray-400">
+                    <Briefcase className="w-3 h-3" />
+                    <span>{role} at {company}</span>
+                  </div>
+                )}
+              </div>
+            )}
             {duration && (
-              <p className="text-xs text-gray-500 mt-1">5 minutes</p>
+              <p className="text-xs text-gray-500 mt-1">{duration}</p>
             )}
           </div>
           

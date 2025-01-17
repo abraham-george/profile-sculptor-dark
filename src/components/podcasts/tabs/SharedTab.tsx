@@ -16,9 +16,18 @@ export const SharedTab = () => {
   const sharedEpisodes = [
     {
       id: "shared-1",
-      name: "AI Weekly Insights",
-      description: "Latest developments in AI and machine learning",
+      name: "Weekly AI TuneIn",
+      description: "A comprehensive overview of recent AI developments from industry leaders",
       duration: "5 minutes",
+    },
+    {
+      id: "shared-2",
+      name: "Leadership & P&L Mastery",
+      description: "Strategic insights on management consulting and business leadership",
+      duration: "25 minutes",
+      sharedBy: "Archith Mohan",
+      role: "Senior Management Consultant",
+      company: "Global Consulting Partners"
     }
   ];
 
