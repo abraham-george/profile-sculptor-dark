@@ -31,7 +31,12 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
   const updateConfig = (updates: Partial<PodcastConfig>) => {
     setPodcastConfig(prev => ({
       ...prev,
-      ...updates
+      ...updates,
+      // Ensure we preserve the style object structure
+      style: {
+        ...prev.style,
+        ...(updates.style || {})
+      }
     }));
   };
 
@@ -39,6 +44,8 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     switch (currentStep) {
       case 1:
         return podcastConfig.skills.length > 0;
+      case 4:
+        return !!podcastConfig.industry && !!podcastConfig.coverImage;
       default:
         return true;
     }
