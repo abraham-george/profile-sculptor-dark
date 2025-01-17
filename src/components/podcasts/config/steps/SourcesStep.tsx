@@ -6,48 +6,48 @@ import { PodcastConfig } from "../types";
 const sources = {
   inNetwork: {
     trustedVoices: [
-      { id: "1", name: "Andrew Ng", role: "AI Researcher & Educator", image: "/placeholder.svg" },
-      { id: "2", name: "Yann LeCun", role: "Chief AI Scientist at Meta", image: "/placeholder.svg" },
-      { id: "3", name: "Fei-Fei Li", role: "Professor at Stanford", image: "/placeholder.svg" },
-      { id: "4", name: "Geoffrey Hinton", role: "Professor Emeritus at UofT", image: "/placeholder.svg" },
-      { id: "5", name: "Demis Hassabis", role: "CEO at DeepMind", image: "/placeholder.svg" }
+      { id: "1", name: "Andrew Ng", role: "AI Researcher & Educator", image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" },
+      { id: "2", name: "Yann LeCun", role: "Chief AI Scientist at Meta", image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" },
+      { id: "3", name: "Fei-Fei Li", role: "Professor at Stanford", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" },
+      { id: "4", name: "Geoffrey Hinton", role: "Professor Emeritus at UofT", image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" },
+      { id: "5", name: "Demis Hassabis", role: "CEO at DeepMind", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" }
     ],
     companies: [
-      { id: "6", name: "OpenAI", role: "AI Research & Development", image: "/placeholder.svg" },
-      { id: "7", name: "DeepMind", role: "AI Research & Applications", image: "/placeholder.svg" },
-      { id: "8", name: "Anthropic", role: "AI Safety & Development", image: "/placeholder.svg" },
-      { id: "9", name: "Scale AI", role: "AI Infrastructure & Data", image: "/placeholder.svg" },
-      { id: "10", name: "Cohere", role: "Enterprise AI Solutions", image: "/placeholder.svg" }
+      { id: "6", name: "OpenAI", role: "AI Research & Development", image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9" },
+      { id: "7", name: "DeepMind", role: "AI Research & Applications", image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952" },
+      { id: "8", name: "Anthropic", role: "AI Safety & Development", image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334" },
+      { id: "9", name: "Scale AI", role: "AI Infrastructure & Data", image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" },
+      { id: "10", name: "Cohere", role: "Enterprise AI Solutions", image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" }
     ],
     newsletters: [
-      { id: "11", name: "The Algorithm", role: "MIT Technology Review", image: "/placeholder.svg" },
-      { id: "12", name: "Import AI", role: "Weekly AI News & Analysis", image: "/placeholder.svg" },
-      { id: "13", name: "The Batch", role: "DeepLearning.AI Newsletter", image: "/placeholder.svg" },
-      { id: "14", name: "AI Weekly", role: "Curated AI News & Research", image: "/placeholder.svg" },
-      { id: "15", name: "The Gradient", role: "AI Research & Perspectives", image: "/placeholder.svg" }
+      { id: "11", name: "The Algorithm", role: "MIT Technology Review", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" },
+      { id: "12", name: "Import AI", role: "Weekly AI News & Analysis", image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" },
+      { id: "13", name: "The Batch", role: "DeepLearning.AI Newsletter", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" },
+      { id: "14", name: "AI Weekly", role: "Curated AI News & Research", image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9" },
+      { id: "15", name: "The Gradient", role: "AI Research & Perspectives", image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952" }
     ]
   },
   recommended: {
     trustedVoices: [
-      { id: "16", name: "Yoshua Bengio", role: "Pioneer in Deep Learning", image: "/placeholder.svg" },
-      { id: "17", name: "Ian Goodfellow", role: "AI Researcher & Author", image: "/placeholder.svg" },
-      { id: "18", name: "Kate Crawford", role: "AI Ethics Researcher", image: "/placeholder.svg" },
-      { id: "19", name: "Kai-Fu Lee", role: "CEO at Sinovation Ventures", image: "/placeholder.svg" },
-      { id: "20", name: "Stuart Russell", role: "Professor at UC Berkeley", image: "/placeholder.svg" }
+      { id: "16", name: "Yoshua Bengio", role: "Pioneer in Deep Learning", image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334" },
+      { id: "17", name: "Ian Goodfellow", role: "AI Researcher & Author", image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" },
+      { id: "18", name: "Kate Crawford", role: "AI Ethics Researcher", image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" },
+      { id: "19", name: "Kai-Fu Lee", role: "CEO at Sinovation Ventures", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" },
+      { id: "20", name: "Stuart Russell", role: "Professor at UC Berkeley", image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" }
     ],
     companies: [
-      { id: "21", name: "Google AI", role: "AI Research & Products", image: "/placeholder.svg" },
-      { id: "22", name: "Microsoft Research", role: "AI & Computing Research", image: "/placeholder.svg" },
-      { id: "23", name: "IBM Research", role: "Enterprise AI Solutions", image: "/placeholder.svg" },
-      { id: "24", name: "Meta AI", role: "AI Research & Development", image: "/placeholder.svg" },
-      { id: "25", name: "NVIDIA AI", role: "AI Hardware & Software", image: "/placeholder.svg" }
+      { id: "21", name: "Google AI", role: "AI Research & Products", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" },
+      { id: "22", name: "Microsoft Research", role: "AI & Computing Research", image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9" },
+      { id: "23", name: "IBM Research", role: "Enterprise AI Solutions", image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952" },
+      { id: "24", name: "Meta AI", role: "AI Research & Development", image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334" },
+      { id: "25", name: "NVIDIA AI", role: "AI Hardware & Software", image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" }
     ],
     newsletters: [
-      { id: "26", name: "AI Ethics Brief", role: "Ethics in AI", image: "/placeholder.svg" },
-      { id: "27", name: "Machine Learning Monthly", role: "Research Digest", image: "/placeholder.svg" },
-      { id: "28", name: "Deep Learning Weekly", role: "Industry Updates", image: "/placeholder.svg" },
-      { id: "29", name: "AI Business", role: "Enterprise AI News", image: "/placeholder.svg" },
-      { id: "30", name: "Papers with Code", role: "Latest AI Research", image: "/placeholder.svg" }
+      { id: "26", name: "AI Ethics Brief", role: "Ethics in AI", image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" },
+      { id: "27", name: "Machine Learning Monthly", role: "Research Digest", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" },
+      { id: "28", name: "Deep Learning Weekly", role: "Industry Updates", image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" },
+      { id: "29", name: "AI Business", role: "Enterprise AI News", image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085" },
+      { id: "30", name: "Papers with Code", role: "Latest AI Research", image: "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9" }
     ]
   }
 };
@@ -55,11 +55,9 @@ const sources = {
 interface SourcesStepProps {
   config: PodcastConfig;
   onUpdateConfig: (config: Partial<PodcastConfig>) => void;
-  onNext: () => void;
-  onBack: () => void;
 }
 
-export const SourcesStep = ({ config, onUpdateConfig, onNext, onBack }: SourcesStepProps) => {
+export const SourcesStep = ({ config, onUpdateConfig }: SourcesStepProps) => {
   const [selectedSources, setSelectedSources] = useState<string[]>(config.sources || []);
 
   const onSourceSelect = (sourceId: string) => {
@@ -123,15 +121,6 @@ export const SourcesStep = ({ config, onUpdateConfig, onNext, onBack }: SourcesS
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
-      </div>
-
-      <div className="flex justify-between pt-6">
-        <Button onClick={onBack} variant="outline">
-          Back
-        </Button>
-        <Button onClick={onNext}>
-          Next
-        </Button>
       </div>
     </div>
   );
