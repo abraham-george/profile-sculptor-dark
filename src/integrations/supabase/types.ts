@@ -68,6 +68,7 @@ export type Database = {
           duration: string | null
           id: string
           name: string
+          shared_by: string | null
           updated_at: string
           user_id: string | null
         }
@@ -78,6 +79,7 @@ export type Database = {
           duration?: string | null
           id?: string
           name: string
+          shared_by?: string | null
           updated_at?: string
           user_id?: string | null
         }
@@ -88,6 +90,7 @@ export type Database = {
           duration?: string | null
           id?: string
           name?: string
+          shared_by?: string | null
           updated_at?: string
           user_id?: string | null
         }
