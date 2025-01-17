@@ -43,17 +43,21 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
         </div>
 
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="text-lg font-medium">Length</h3>
-            <span className="text-sm text-gray-400">15-45 minutes</span>
-          </div>
-          <Slider 
-            value={[style.length]} 
-            onValueChange={([length]) => onStyleChange({ ...style, length })}
-            max={45} 
-            min={15} 
-            step={5} 
-          />
+          <h3 className="text-lg font-medium">Length</h3>
+          <RadioGroup 
+            value={String(style.length)} 
+            onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
+            className="grid grid-cols-2 gap-4"
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="10" id="shortform" />
+              <Label htmlFor="shortform">Shortform (5 - 10 mins)</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="30" id="longform" />
+              <Label htmlFor="longform">Longform (20 - 30 mins)</Label>
+            </div>
+          </RadioGroup>
         </div>
       </section>
 
