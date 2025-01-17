@@ -78,6 +78,28 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
         </div>
       </section>
 
+      {/* Length Section */}
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold">Length</h2>
+        
+        <div className="space-y-4">
+          <RadioGroup 
+            value={String(style.length)}
+            onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
+            className="grid grid-cols-2 gap-4"
+          >
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="10" id="shortform" />
+              <Label htmlFor="shortform">Shortform (5 - 10 mins)</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="30" id="longform" />
+              <Label htmlFor="longform">Longform (20 - 30 mins)</Label>
+            </div>
+          </RadioGroup>
+        </div>
+      </section>
+
       {/* Frequency & Schedule Section */}
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Frequency & Schedule</h2>
