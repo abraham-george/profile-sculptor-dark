@@ -10,151 +10,76 @@ export const SourcesPanel = () => {
   const sources: Source[] = [
     {
       id: "1",
-      title: "Anthropic's Claude 3 Release",
-      url: "https://www.anthropic.com/claude3",
+      title: "Microsoft's AI Investment in India",
+      url: "https://www.microsoft.com/press",
       timestamp: "0:00",
-      description: "Detailed analysis of Claude 3's capabilities and benchmarks in reasoning and analysis tasks.",
+      description: "Microsoft's CEO announces major AI investments and initiatives in India, focusing on cloud services and AI skill development.",
       author: {
-        name: "Dario Amodei",
+        name: "Satya Nadella",
         role: "CEO",
-        company: "Anthropic",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-        followers: "12,453",
+        company: "Microsoft",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "34,567",
         isFollowing: false
       }
     },
     {
       id: "2",
-      title: "Google Gemini's Multimodal Advances",
-      url: "https://blog.google/technology/ai/gemini-update-march-2024",
-      timestamp: "3:00",
-      description: "Latest updates on Gemini's enhanced capabilities in processing multiple types of data simultaneously.",
+      title: "AI in LinkedIn Hiring",
+      url: "https://linkedin.com/blog",
+      timestamp: "12:00",
+      description: "Insights on AI's role in transforming hiring processes and reducing bias in recruitment.",
       author: {
-        name: "Sundar Pichai",
+        name: "Ryan Roslansky",
         role: "CEO",
-        company: "Google",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "15,678",
+        company: "LinkedIn",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "28,123",
         isFollowing: false
       }
     },
     {
       id: "3",
-      title: "AI in Medical Imaging Research",
-      url: "https://nature.com/articles/ai-medical-imaging-2024",
-      timestamp: "6:00",
-      description: "Study comparing AI and human expert performance in early cancer detection through medical imaging.",
+      title: "LinkedIn's Growth and AI Features",
+      url: "https://linkedin.com/product-updates",
+      timestamp: "18:00",
+      description: "LinkedIn reaches billion-user milestone, crediting AI-driven features for enhanced user experience.",
       author: {
-        name: "Jane Doe",
-        role: "Researcher",
-        company: "Nature",
-        avatar: "https://images.unsplash.com/photo-1502685104226-1c4b1c1c1c1c",
-        followers: "8,123",
+        name: "Tomer Cohen",
+        role: "Chief Product Officer",
+        company: "LinkedIn",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "15,432",
         isFollowing: false
       }
     },
     {
       id: "4",
-      title: "Tesla FSD Beta Progress Report",
-      url: "https://tesla.com/blog/fsd-beta-march-2024",
-      timestamp: "9:00",
-      description: "Latest developments in Tesla's Full Self-Driving technology and urban navigation capabilities.",
+      title: "AI in Disaster Recovery",
+      url: "https://nvidia.com/research",
+      timestamp: "21:00",
+      description: "Research insights on AI-powered robots in disaster recovery and wildfire management.",
       author: {
-        name: "Elon Musk",
-        role: "CEO",
-        company: "Tesla",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "30,456",
+        name: "Jim Fan",
+        role: "Senior Research Manager",
+        company: "NVIDIA",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "12,789",
         isFollowing: false
       }
     },
     {
       id: "5",
-      title: "LLM Hallucination Reduction Study",
-      url: "https://arxiv.org/abs/2403.llm-accuracy",
-      timestamp: "12:00",
-      description: "Research paper on new methodologies for improving factual accuracy in language models.",
-      author: {
-        name: "Alice Smith",
-        role: "AI Researcher",
-        company: "OpenAI",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "5,678",
-        isFollowing: false
-      }
-    },
-    {
-      id: "6",
-      title: "AI in Climate Research",
-      url: "https://science.org/ai-climate-2024",
-      timestamp: "15:00",
-      description: "Analysis of AI applications in weather prediction and renewable energy optimization.",
-      author: {
-        name: "Bob Johnson",
-        role: "Climate Scientist",
-        company: "Climate Research Institute",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "9,234",
-        isFollowing: false
-      }
-    },
-    {
-      id: "7",
-      title: "AI in Education Report 2024",
-      url: "https://edu.ai/report-2024",
-      timestamp: "18:00",
-      description: "Comprehensive study on the impact of AI-powered personalized learning platforms.",
-      author: {
-        name: "Emily White",
-        role: "Education Specialist",
-        company: "EdTech",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "7,890",
-        isFollowing: false
-      }
-    },
-    {
-      id: "8",
-      title: "Gaming AI Revolution",
-      url: "https://gamedeveloper.com/ai-npc-2024",
-      timestamp: "21:00",
-      description: "Overview of advances in AI-powered NPCs and their impact on gaming experiences.",
-      author: {
-        name: "Charlie Brown",
-        role: "Game Developer",
-        company: "GameDev Co.",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "3,456",
-        isFollowing: false
-      }
-    },
-    {
-      id: "9",
-      title: "Protein Folding Breakthroughs",
-      url: "https://science.org/protein-ai-2024",
-      timestamp: "24:00",
-      description: "Latest developments in AI-powered protein structure prediction and drug discovery.",
-      author: {
-        name: "Dr. Lisa Ray",
-        role: "Biochemist",
-        company: "BioTech",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "4,321",
-        isFollowing: false
-      }
-    },
-    {
-      id: "10",
-      title: "AI Ethics Framework 2024",
-      url: "https://ai-ethics.org/framework-2024",
+      title: "AI Agents Market Potential",
+      url: "https://nvidia.com/blog",
       timestamp: "27:00",
-      description: "Updated guidelines and frameworks for responsible AI deployment and governance.",
+      description: "NVIDIA CEO's perspective on the economic potential of AI agents and industry growth.",
       author: {
-        name: "Mark Green",
-        role: "Ethics Researcher",
-        company: "Ethics Institute",
-        avatar: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
-        followers: "2,345",
+        name: "Jensen Huang",
+        role: "CEO",
+        company: "NVIDIA",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "45,678",
         isFollowing: false
       }
     }

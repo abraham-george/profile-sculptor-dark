@@ -3,7 +3,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface TranscriptSection {
   startTime: string;
-  endTime: string;
   text: string;
   speaker: string;
 }
@@ -15,64 +14,54 @@ export const TranscriptPanel = () => {
   const transcriptSections: TranscriptSection[] = [
     { 
       startTime: "0:00",
-      endTime: "3:00",
-      speaker: "Host",
-      text: "Welcome to our latest episode on AI developments. This month has seen groundbreaking advancements in artificial intelligence, particularly with the release of Claude 3 and its remarkable capabilities in reasoning and analysis. The model has demonstrated unprecedented accuracy in complex tasks, setting new benchmarks in the AI industry." 
+      speaker: "Satya Nadella",
+      text: "CEO Satya Nadella recently announced a $3 billion investment over the next two years to bolster AI and cloud services in India." 
     },
     { 
       startTime: "3:00",
-      endTime: "6:00",
-      speaker: "Host",
-      text: "Google's Gemini has made significant strides in multimodal understanding, now capable of processing and analyzing images, text, and code simultaneously with improved accuracy. Their latest update introduces enhanced capabilities in mathematical reasoning and scientific analysis." 
+      speaker: "Satya Nadella",
+      text: "This initiative also aims to train 10 million individuals in AI skills by 2030." 
     },
     { 
       startTime: "6:00",
-      endTime: "9:00",
-      speaker: "Expert",
-      text: "In healthcare, AI models are now achieving remarkable accuracy in early disease detection. Recent studies have shown AI systems outperforming human experts in identifying early-stage cancers through medical imaging, with particular success in lung and breast cancer detection." 
+      speaker: "Satya Nadella",
+      text: "Nadella emphasized the transformative potential of AI, aiming for an AI-first app stack to automate various tasks." 
     },
     { 
       startTime: "9:00",
-      endTime: "12:00",
-      speaker: "Host",
-      text: "The field of autonomous vehicles has seen remarkable progress with Tesla's latest FSD beta showing improved navigation in complex urban environments. Meanwhile, Waymo has expanded its robotaxi service to more cities, demonstrating the growing reliability of autonomous driving systems." 
+      speaker: "Satya Nadella",
+      text: "Microsoft is also integrating AI features into Microsoft 365, which will increase subscription prices." 
     },
     { 
       startTime: "12:00",
-      endTime: "15:00",
-      speaker: "Expert",
-      text: "In the realm of language models, researchers have made breakthrough discoveries in reducing hallucinations and improving factual accuracy. New training methodologies and architectural improvements have led to more reliable and trustworthy AI responses." 
+      speaker: "Ryan Roslansky",
+      text: "LinkedIn's CEO, Ryan Roslansky, shared insights on how AI is reshaping the hiring landscape." 
     },
     { 
       startTime: "15:00",
-      endTime: "18:00",
-      speaker: "Host",
-      text: "The impact of AI on climate research has been particularly noteworthy, with new models accurately predicting weather patterns and helping optimize renewable energy systems. These advancements are crucial for addressing climate change challenges." 
+      speaker: "Ryan Roslansky",
+      text: "He believes that AI can significantly reduce bias in hiring processes, leading to more equitable opportunities." 
     },
     { 
       startTime: "18:00",
-      endTime: "21:00",
-      speaker: "Expert",
-      text: "In education, AI-powered personalized learning platforms have shown remarkable results in improving student engagement and learning outcomes. Adaptive learning systems are now better at identifying and addressing individual student needs." 
+      speaker: "Tomer Cohen",
+      text: "Tomer Cohen, LinkedIn's Chief Product Officer, discussed the platform's growth to over a billion users, attributing much of this success to AI-driven features that enhance user experience." 
     },
     { 
       startTime: "21:00",
-      endTime: "24:00",
-      speaker: "Host",
-      text: "The gaming industry has seen revolutionary changes with AI-powered NPCs showing more realistic behaviors and interactions. This technology is creating more immersive and dynamic gaming experiences." 
+      speaker: "Jim Fan",
+      text: "NVIDIA's senior research manager, Jim Fan, highlighted the potential of AI-powered robots in disaster recovery, specifically in combating wildfires." 
     },
     { 
       startTime: "24:00",
-      endTime: "27:00",
-      speaker: "Expert",
-      text: "Recent developments in AI-powered protein folding have led to breakthroughs in drug discovery. Scientists are now able to predict protein structures with unprecedented accuracy, accelerating the development of new medications." 
+      speaker: "Jim Fan",
+      text: "While the technology is still developing, the prospects are encouraging." 
     },
     { 
       startTime: "27:00",
-      endTime: "30:00",
-      speaker: "Host",
-      text: "Looking ahead, the ethical implications of these AI advancements remain a crucial topic of discussion. The development of robust frameworks for responsible AI deployment continues to be a priority in the industry." 
-    },
+      speaker: "Jensen Huang",
+      text: "NVIDIA's CEO, Jensen Huang, also mentioned that AI agents could become a multitrillion-dollar industry, indicating the vast economic potential of AI advancements." 
+    }
   ];
 
   useEffect(() => {
@@ -104,7 +93,10 @@ export const TranscriptPanel = () => {
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-linkedin-text font-mono">
-                  {section.startTime} - {section.endTime}
+                  {section.startTime}
+                </span>
+                <span className="text-xs text-linkedin-blue">
+                  {section.speaker}
                 </span>
               </div>
               <p className="text-sm text-slate-200 leading-relaxed">{section.text}</p>
