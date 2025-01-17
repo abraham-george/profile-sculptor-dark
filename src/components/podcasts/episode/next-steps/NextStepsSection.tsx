@@ -6,96 +6,97 @@ import { EventCard } from "./components/EventCard";
 import { JobCard } from "./components/JobCard";
 
 export const NextStepsSection = () => {
+  // Mock data - replace with real data later
   const courses = [
     { 
       id: 1, 
-      title: "Strategic Management Essentials", 
-      instructor: "Harvard Business School", 
-      duration: "6h 30m",
-      thumbnail: "https://images.unsplash.com/photo-1552664730-d307ca884978" 
+      title: "React Fundamentals", 
+      instructor: "John Doe", 
+      duration: "2h 30m",
+      thumbnail: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
     },
     { 
       id: 2, 
-      title: "Digital Transformation Leadership", 
-      instructor: "MIT Sloan", 
-      duration: "4h 45m",
-      thumbnail: "https://images.unsplash.com/photo-1460925895917-afdab827c52f" 
+      title: "Advanced TypeScript", 
+      instructor: "Jane Smith", 
+      duration: "3h 45m",
+      thumbnail: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
     },
     { 
       id: 3, 
-      title: "Advanced P&L Management", 
-      instructor: "Wharton School", 
-      duration: "5h 15m",
-      thumbnail: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9" 
+      title: "Web Development", 
+      instructor: "Mike Johnson", 
+      duration: "4h 15m",
+      thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
     },
     { 
       id: 4, 
-      title: "Change Management in Practice", 
-      instructor: "INSEAD", 
-      duration: "3h 45m",
-      thumbnail: "https://images.unsplash.com/photo-1552581234-26160f608093" 
+      title: "UI/UX Design", 
+      instructor: "Sarah Wilson", 
+      duration: "2h 15m",
+      thumbnail: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3" 
     },
   ];
 
   const events = [
     { 
       id: 1, 
-      title: "Management Consulting Summit 2024", 
-      date: "Apr 15", 
-      attendees: "1000+",
-      thumbnail: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678"
+      title: "Tech Conference 2024", 
+      date: "Mar 15", 
+      attendees: "500+",
+      thumbnail: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 2, 
-      title: "Leadership Innovation Forum", 
-      date: "Apr 20", 
-      attendees: "500+",
-      thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+      title: "Developer Meetup", 
+      date: "Mar 20", 
+      attendees: "200+",
+      thumbnail: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 3, 
-      title: "Digital Strategy Conference", 
-      date: "Apr 25", 
-      attendees: "750+",
-      thumbnail: "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa"
+      title: "Networking Event", 
+      date: "Mar 25", 
+      attendees: "300+",
+      thumbnail: "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 4, 
-      title: "P&L Optimization Workshop", 
-      date: "Apr 30", 
-      attendees: "250+",
-      thumbnail: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2"
+      title: "Workshop", 
+      date: "Mar 30", 
+      attendees: "150+",
+      thumbnail: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
   ];
 
   const jobs = [
     { 
       id: 1, 
-      title: "Senior Management Consultant", 
-      company: "McKinsey & Company", 
-      location: "New York",
-      logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
+      title: "Senior Developer", 
+      company: "Tech Corp", 
+      location: "Remote",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 2, 
-      title: "Digital Transformation Lead", 
-      company: "BCG", 
-      location: "London",
-      logo: "https://images.unsplash.com/photo-1497366216548-37526070297c"
+      title: "UX Designer", 
+      company: "Design Inc", 
+      location: "New York",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 3, 
-      title: "Strategy Director", 
-      company: "Bain & Company", 
-      location: "Singapore",
-      logo: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40"
+      title: "Product Manager", 
+      company: "Product Co", 
+      location: "San Francisco",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
     { 
       id: 4, 
-      title: "Change Management Lead", 
-      company: "Deloitte", 
-      location: "San Francisco",
-      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9"
+      title: "Data Scientist", 
+      company: "Data Corp", 
+      location: "Boston",
+      logo: "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
     },
   ];
 
