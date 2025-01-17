@@ -28,7 +28,7 @@ export const SourceCard = ({ source, isActive, onFollow }: SourceCardProps) => {
                 <h3 className="font-medium text-sm flex items-center gap-1">
                   {source.author.name}
                   <span className="text-linkedin-blue">•</span>
-                  <span className="text-linkedin-text">1st</span>
+                  <span className="text-linkedin-text">{source.author.connectionDegree || '1st'}</span>
                 </h3>
                 <p className="text-xs text-linkedin-text line-clamp-1">
                   {source.author.role} at {source.author.company}
@@ -41,10 +41,10 @@ export const SourceCard = ({ source, isActive, onFollow }: SourceCardProps) => {
               <Button
                 variant="outline"
                 size="sm"
-                className="profile-button-outline whitespace-nowrap"
+                className={`profile-button-outline whitespace-nowrap ${source.author.isFollowing ? 'bg-linkedin-blue text-white hover:bg-linkedin-blue/90' : ''}`}
                 onClick={() => onFollow(source.id)}
               >
-                + Follow
+                {source.author.isFollowing ? 'Following' : '+ Follow'}
               </Button>
             </div>
             

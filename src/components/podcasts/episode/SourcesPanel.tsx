@@ -20,7 +20,7 @@ export const SourcesPanel = () => {
         company: "Microsoft",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "34,567",
-        isFollowing: false
+        isFollowing: true
       }
     },
     {
@@ -35,7 +35,7 @@ export const SourcesPanel = () => {
         company: "LinkedIn",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "28,123",
-        isFollowing: false
+        isFollowing: true
       }
     },
     {
@@ -50,7 +50,7 @@ export const SourcesPanel = () => {
         company: "LangChain",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "15,432",
-        isFollowing: false
+        isFollowing: true
       }
     },
     {
@@ -65,7 +65,8 @@ export const SourcesPanel = () => {
         company: "NVIDIA",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "12,789",
-        isFollowing: false
+        isFollowing: false,
+        connectionDegree: "2nd"
       }
     },
     {
@@ -80,7 +81,8 @@ export const SourcesPanel = () => {
         company: "NVIDIA",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "45,678",
-        isFollowing: false
+        isFollowing: false,
+        connectionDegree: "2nd"
       }
     }
   ];
