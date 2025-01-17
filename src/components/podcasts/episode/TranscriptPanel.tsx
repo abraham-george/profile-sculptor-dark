@@ -44,13 +44,12 @@ export const TranscriptPanel = () => {
   const handleSectionHover = (timeRange: string | null) => {
     setActiveSection(timeRange);
     if (timeRange) {
-      // Extract the minute value from the time range (e.g., "0:00 - 1:00" -> "0")
-      const startMinute = timeRange.split(':')[0];
-      const timestamp = `${parseInt(startMinute) + 1}:00`;
+      // Extract the start time from the time range (e.g., "1:00 - 1:30" -> "1:00")
+      const startTime = timeRange.split(' - ')[0];
       
       // Dispatch custom event for source synchronization
       const event = new CustomEvent('timestampHover', {
-        detail: { timestamp },
+        detail: { timestamp: startTime },
         bubbles: true
       });
       window.dispatchEvent(event);
@@ -61,7 +60,7 @@ export const TranscriptPanel = () => {
   const transcriptGroups = [
     {
       speaker: "Satya Nadella",
-      timeRange: "0:00 - 1:00",
+      timeRange: "1:00 - 1:30",
       sections: [
         {
           text: "CEO Satya Nadella recently announced a $3 billion investment over the next two years to bolster AI and cloud services in India."
@@ -79,7 +78,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Ryan Roslansky",
-      timeRange: "12:00 - 12:30",
+      timeRange: "2:00 - 2:30",
       sections: [
         {
           text: "LinkedIn's CEO, Ryan Roslansky, shared insights on how AI is reshaping the hiring landscape."
@@ -91,7 +90,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Harrison Chase",
-      timeRange: "18:00 - 18:30",
+      timeRange: "3:00 - 3:30",
       sections: [
         {
           text: "Harrison Chase, CEO of LangChain, shared his vision for democratizing AI development. He emphasized how LangChain's tools are making it easier for developers to build sophisticated AI applications."
@@ -103,7 +102,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Jim Fan",
-      timeRange: "21:00 - 21:30",
+      timeRange: "4:00 - 4:30",
       sections: [
         {
           text: "NVIDIA's senior research manager, Jim Fan, highlighted the potential of AI-powered robots in disaster recovery, specifically in combating wildfires."
@@ -115,7 +114,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Jensen Huang",
-      timeRange: "27:00 - 27:30",
+      timeRange: "5:00 - 5:30",
       sections: [
         {
           text: "NVIDIA's CEO, Jensen Huang, also mentioned that AI agents could become a multitrillion-dollar industry, indicating the vast economic potential of AI advancements."
