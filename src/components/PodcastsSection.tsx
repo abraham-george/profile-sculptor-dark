@@ -39,14 +39,13 @@ export const PodcastsSection = () => {
         isConfigured={!!podcastConfig} 
         onConfigure={handleConfigure} 
       />
-      
       {podcastConfig ? (
         <>
           <PodcastStats />
-          <div className="mt-8 pt-4 border-t border-white/10 flex justify-center">
+          <div className="border-t border-white/10 flex justify-center">
             <button 
               onClick={handleSeeEpisodes}
-              className="text-gray-400 hover:text-white flex items-center gap-1"
+              className="text-gray-400 hover:text-white flex items-center gap-1 py-4"
             >
               See episodes
               <span className="text-lg">→</span>
@@ -54,7 +53,7 @@ export const PodcastsSection = () => {
           </div>
         </>
       ) : (
-        <div className="text-center py-6 text-gray-400">
+        <div className="text-center text-gray-400">
           <p>Configure your podcast settings to start creating and sharing episodes</p>
         </div>
       )}
