@@ -16,7 +16,7 @@ export const EpisodeCard = ({
   name,
   description,
   duration,
-  coverImage = "/placeholder.svg",
+  coverImage = "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
   onPlay,
   onLearnMore,
 }: EpisodeCardProps) => {
