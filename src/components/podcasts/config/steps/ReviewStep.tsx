@@ -31,6 +31,39 @@ const ReviewItem = ({ title, items, onRemove, readOnly }: ReviewItemProps) => (
   </div>
 );
 
+const formatStyleValue = (key: string, value: any): string => {
+  const styleLabels: Record<string, Record<string, string>> = {
+    tone: {
+      formal: "Formal",
+      casual: "Casual",
+      inspirational: "Inspirational",
+      educational: "Educational"
+    },
+    length: {
+      "10": "Shortform (5-10 mins)",
+      "30": "Longform (20-30 mins)"
+    },
+    frequency: {
+      daily: "Daily",
+      weekly: "Weekly",
+      biweekly: "Bi-weekly",
+      monthly: "Monthly"
+    },
+    music: {
+      formal: "Formal",
+      casual: "Casual",
+      inspirational: "Inspirational",
+      educational: "Educational"
+    }
+  };
+
+  if (key === "length") {
+    return styleLabels.length[value] || `${value} minutes`;
+  }
+
+  return styleLabels[key]?.[value] || value;
+};
+
 export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps) => {
   const handleRemoveSkill = (skill: string) => {
     onConfigUpdate({
@@ -90,7 +123,7 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       
       {config.industry && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-gray-400">Podcast Title</h4>
+          <h4 className="text-sm font-medium text-gray-400">Industry</h4>
           <div className="flex flex-wrap gap-2">
             <div className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white">
               <span className="text-sm">{config.industry}</span>
@@ -129,14 +162,19 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       <div className="space-y-2">
         <h4 className="text-sm font-medium text-gray-400">Style Preferences</h4>
         <div className="flex flex-wrap gap-2">
-          {Object.entries(config.style).map(([key, value]) => (
-            <div
-              key={key}
-              className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
-            >
-              <span className="text-sm capitalize">{key}: {value}</span>
-            </div>
-          ))}
+          {Object.entries(config.style).map(([key, value]) => {
+            if (!value) return null;
+            const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+            const formattedValue = formatStyleValue(key, value);
+            return (
+              <div
+                key={key}
+                className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
+              >
+                <span className="text-sm">{formattedKey}: {formattedValue}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
