@@ -32,7 +32,6 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     setPodcastConfig(prev => ({
       ...prev,
       ...updates,
-      // Ensure we preserve the style object structure
       style: {
         ...prev.style,
         ...(updates.style || {})
@@ -45,7 +44,8 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
       case 1:
         return podcastConfig.skills.length > 0;
       case 4:
-        return !!podcastConfig.coverImage && !!podcastConfig.industry?.trim();
+        // For the personalization step, we only need either a cover image or a title
+        return !!podcastConfig.coverImage || !!podcastConfig.industry?.trim();
       default:
         return true;
     }
