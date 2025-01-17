@@ -24,7 +24,7 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
             <RadioGroup 
               value={String(style.length)} 
               onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
-              className="grid grid-cols-1 gap-4"
+              className="grid grid-cols-4 gap-4"
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="10" id="summary" />
