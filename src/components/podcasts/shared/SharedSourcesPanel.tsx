@@ -11,7 +11,7 @@ export const SharedSourcesPanel = () => {
     {
       id: "1",
       title: "Digital Transformation in Consulting",
-      url: "https://hbr.org/consulting",
+      url: "https://bcg.com/insights",
       timestamp: "1:00",
       description: "Analysis of how AI and digital technologies are reshaping the consulting industry landscape.",
       author: {
@@ -20,7 +20,7 @@ export const SharedSourcesPanel = () => {
         company: "BCG",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "34,567",
-        isFollowing: false
+        isFollowing: true
       }
     },
     {
@@ -35,13 +35,14 @@ export const SharedSourcesPanel = () => {
         company: "McKinsey & Company",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "28,123",
-        isFollowing: false
+        isFollowing: false,
+        connectionDegree: "2nd"
       }
     },
     {
       id: "3",
       title: "Future of Strategic Advisory",
-      url: "https://bcg.com/perspectives",
+      url: "https://bain.com/insights",
       timestamp: "3:00",
       description: "Exploring the intersection of data analytics and traditional consulting methodologies.",
       author: {
@@ -50,7 +51,40 @@ export const SharedSourcesPanel = () => {
         company: "Bain & Company",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "15,432",
-        isFollowing: false
+        isFollowing: false,
+        connectionDegree: "2nd"
+      }
+    },
+    {
+      id: "4",
+      title: "Digital Business Transformation",
+      url: "https://deloitte.com/insights",
+      timestamp: "4:00",
+      description: "Insights on end-to-end business model transformation using cloud, AI, and automation.",
+      author: {
+        name: "David Kumar",
+        role: "Principal",
+        company: "Deloitte",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "22,789",
+        isFollowing: false,
+        connectionDegree: "2nd"
+      }
+    },
+    {
+      id: "5",
+      title: "Future of Work in Consulting",
+      url: "https://pwc.com/insights",
+      timestamp: "5:00",
+      description: "Analysis of hybrid working models and their impact on organizational consulting.",
+      author: {
+        name: "Emma Thompson",
+        role: "Partner",
+        company: "PwC",
+        avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
+        followers: "19,456",
+        isFollowing: false,
+        connectionDegree: "2nd"
       }
     }
   ];

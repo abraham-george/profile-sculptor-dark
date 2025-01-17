@@ -52,13 +52,13 @@ export const SharedTranscriptPanel = () => {
       timeRange: "1:00 - 1:30",
       sections: [
         {
-          text: "The consulting industry is experiencing a significant transformation with the rise of AI and digital solutions."
+          text: "The consulting industry is experiencing unprecedented transformation with the integration of AI and digital solutions."
         },
         {
-          text: "According to recent McKinsey research, over 75% of consulting engagements now include some form of digital or AI component."
+          text: "Our latest research at BCG indicates that over 85% of consulting engagements now incorporate AI-driven analytics and insights."
         },
         {
-          text: "This shift requires consultants to develop new capabilities while maintaining core strategic advisory skills."
+          text: "This shift requires a fundamental rethinking of how we deliver value to clients while maintaining our strategic advisory core."
         }
       ]
     },
@@ -67,10 +67,10 @@ export const SharedTranscriptPanel = () => {
       timeRange: "2:00 - 2:30",
       sections: [
         {
-          text: "ESG and sustainability consulting has seen a 42% growth in demand over the past year."
+          text: "ESG consulting has emerged as a critical focus area, with a 60% growth in demand over the past year."
         },
         {
-          text: "Leading firms are integrating sustainability metrics into traditional P&L and performance frameworks."
+          text: "Leading firms are now integrating sustainability metrics directly into traditional valuation and performance frameworks."
         },
         {
           text: "We're seeing a convergence of strategy, technology, and sustainability in modern consulting engagements."
@@ -85,10 +85,40 @@ export const SharedTranscriptPanel = () => {
           text: "The future of consulting lies in data-driven decision making and predictive analytics."
         },
         {
-          text: "Our research shows that firms leveraging advanced analytics see 30% higher client satisfaction rates."
+          text: "Our research shows that firms leveraging advanced analytics see 40% higher client satisfaction rates."
         },
         {
           text: "The key is balancing technological innovation with human expertise and relationship management."
+        }
+      ]
+    },
+    {
+      speaker: "David Kumar",
+      timeRange: "4:00 - 4:30",
+      sections: [
+        {
+          text: "Digital transformation consulting has evolved beyond simple technology implementation."
+        },
+        {
+          text: "We're now focusing on end-to-end business model transformation, leveraging cloud, AI, and automation."
+        },
+        {
+          text: "The most successful transformations we've led combine technical expertise with change management."
+        }
+      ]
+    },
+    {
+      speaker: "Emma Thompson",
+      timeRange: "5:00 - 5:30",
+      sections: [
+        {
+          text: "The rise of hybrid working models has created new opportunities in organizational consulting."
+        },
+        {
+          text: "Our research shows that companies with well-designed hybrid models see 25% higher employee engagement."
+        },
+        {
+          text: "The future workplace requires a delicate balance of digital tools and human connection."
         }
       ]
     }
