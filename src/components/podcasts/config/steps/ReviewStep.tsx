@@ -32,7 +32,7 @@ const ReviewItem = ({ title, items, onRemove, readOnly }: ReviewItemProps) => (
 );
 
 const formatStyleValue = (key: string, value: any): string => {
-  const styleLabels: Record<string, Record<string, string>> = {
+  const styleLabels: Record<string, Record<string | number, string>> = {
     tone: {
       formal: "Formal",
       casual: "Casual",
@@ -40,8 +40,8 @@ const formatStyleValue = (key: string, value: any): string => {
       educational: "Educational"
     },
     length: {
-      "10": "Shortform (5-10 mins)",
-      "30": "Longform (20-30 mins)"
+      10: "Shortform (5-10 mins)",
+      30: "Longform (20-30 mins)"
     },
     frequency: {
       daily: "Daily",
@@ -54,11 +54,35 @@ const formatStyleValue = (key: string, value: any): string => {
       casual: "Casual",
       inspirational: "Inspirational",
       educational: "Educational"
+    },
+    format: {
+      summary: "Summary",
+      simplified: "Simplified Breakdown",
+      indepth: "In-Depth Analysis",
+      interactive: "Interactive Q&A"
+    },
+    language: {
+      en: "English",
+      es: "Spanish",
+      fr: "French",
+      de: "German",
+      it: "Italian",
+      pt: "Portuguese",
+      nl: "Dutch",
+      pl: "Polish",
+      ru: "Russian",
+      ja: "Japanese",
+      ko: "Korean",
+      zh: "Chinese (Mandarin)"
     }
   };
 
   if (key === "length") {
     return styleLabels.length[value] || `${value} minutes`;
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? 'Yes' : 'No';
   }
 
   return styleLabels[key]?.[value] || value;
@@ -96,19 +120,7 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       'Tech Weekly': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
       'Finance Daily': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
       'Health Digest': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
-      'EdTech News': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302',
-      'John Doe': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
-      'Jane Smith': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
-      'Alex Brown': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
-      'Lisa Park': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
-      'InnovateCo': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
-      'DataCorp': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302',
-      'AITech': 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f',
-      'CloudSys': 'https://images.unsplash.com/photo-1438565434616-3ef039228b15',
-      'Innovation Weekly': 'https://images.unsplash.com/photo-1501286353178-1ec881214838',
-      'AI Digest': 'https://images.unsplash.com/photo-1469041797191-50ace28483c3',
-      'Cloud News': 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2',
-      'Tech Trends': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302'
+      'EdTech News': 'https://images.unsplash.com/photo-1487252665478-49b61b47f302'
     };
 
     return {
@@ -116,6 +128,17 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       image: sourceImageMap[source]
     };
   });
+
+  const stylePreferences = [
+    { key: 'format', label: 'Format', value: config.style.format },
+    { key: 'length', label: 'Length', value: config.style.length },
+    { key: 'frequency', label: 'Release Schedule', value: config.style.frequency },
+    { key: 'tone', label: 'Tone', value: config.style.tone },
+    { key: 'language', label: 'Language', value: config.style.language },
+    { key: 'notifications', label: 'Notifications', value: config.style.notifications },
+    { key: 'customIntros', label: 'Custom Intros', value: config.style.customIntros },
+    { key: 'audioEnhancements', label: 'Audio Enhancements', value: config.style.audioEnhancements }
+  ];
 
   return (
     <div className="space-y-8">
@@ -162,16 +185,15 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       <div className="space-y-2">
         <h4 className="text-sm font-medium text-gray-400">Style Preferences</h4>
         <div className="flex flex-wrap gap-2">
-          {Object.entries(config.style).map(([key, value]) => {
-            if (!value) return null;
-            const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+          {stylePreferences.map(({ key, label, value }) => {
+            if (value === undefined || value === null) return null;
             const formattedValue = formatStyleValue(key, value);
             return (
               <div
                 key={key}
                 className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white"
               >
-                <span className="text-sm">{formattedKey}: {formattedValue}</span>
+                <span className="text-sm">{label}: {formattedValue}</span>
               </div>
             );
           })}

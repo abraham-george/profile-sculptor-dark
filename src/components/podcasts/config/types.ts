@@ -8,6 +8,11 @@ export interface PodcastConfig {
     length: number;
     frequency: string;
     music: string;
+    format?: string;
+    language?: string;
+    notifications?: boolean;
+    customIntros?: boolean;
+    audioEnhancements?: boolean;
   };
   coverImage?: {
     type: 'existing' | 'generated';
