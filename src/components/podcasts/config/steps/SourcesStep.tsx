@@ -1,16 +1,9 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Checkbox } from "@/components/ui/checkbox";
+import { SourceSection } from "./components/SourceSection";
 
 interface Source {
   name: string;
   image: string;
-}
-
-interface SourceSectionProps {
-  title: string;
-  items: Source[];
-  selectedSources: string[];
-  onSourceSelect: (source: string) => void;
 }
 
 interface SourcesStepProps {
@@ -19,31 +12,6 @@ interface SourcesStepProps {
   onSourceSelect: (source: string) => void;
   onAdditionalContentSelect: (content: string) => void;
 }
-
-const SourceSection = ({ title, items, selectedSources, onSourceSelect }: SourceSectionProps) => (
-  <div className="space-y-2">
-    <h4 className="text-sm font-medium text-gray-400">{title}</h4>
-    <div className="flex flex-wrap gap-2">
-      {items.map((item) => (
-        <button
-          key={item.name}
-          onClick={() => onSourceSelect(item.name)}
-          className={`flex items-center h-12 rounded-full border border-linkedin-blue ${
-            selectedSources.includes(item.name)
-              ? 'bg-linkedin-blue text-white'
-              : ''
-          }`}
-        >
-          <Avatar className="h-12 w-12 rounded-full">
-            <AvatarImage src={item.image} alt={item.name} className="object-cover" />
-            <AvatarFallback>{item.name[0]}</AvatarFallback>
-          </Avatar>
-          <span className="text-sm px-3">{item.name}</span>
-        </button>
-      ))}
-    </div>
-  </div>
-);
 
 export const SourcesStep = ({ 
   selectedSources, 

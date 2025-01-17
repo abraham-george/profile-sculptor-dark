@@ -1,5 +1,4 @@
-import { X } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { PillButton } from "@/components/ui/pill-button";
 import { PodcastConfig } from "../types";
 
 interface ReviewItemProps {
@@ -20,22 +19,13 @@ const ReviewItem = ({ title, items, onRemove, readOnly }: ReviewItemProps) => (
     <h4 className="text-sm font-medium text-gray-400">{title}</h4>
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
-        <div
+        <PillButton
           key={item.name}
-          className={`flex items-center gap-2 rounded-full border border-linkedin-blue h-12 bg-linkedin-blue text-white ${
-            !readOnly ? 'cursor-pointer hover:bg-linkedin-blue/90' : ''
-          }`}
-          onClick={() => !readOnly && onRemove(item.name)}
-        >
-          {item.image && (
-            <Avatar className="h-12 w-12 rounded-full">
-              <AvatarImage src={item.image} alt={item.name} className="object-cover" />
-              <AvatarFallback>{item.name[0]}</AvatarFallback>
-            </Avatar>
-          )}
-          <span className="text-sm px-3">{item.name}</span>
-          {!readOnly && <X className="w-4 h-4 mr-3" />}
-        </div>
+          name={item.name}
+          image={item.image}
+          onRemove={() => onRemove(item.name)}
+          readOnly={readOnly}
+        />
       ))}
     </div>
   </div>
