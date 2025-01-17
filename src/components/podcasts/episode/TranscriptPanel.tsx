@@ -1,21 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-interface TranscriptSection {
-  startTime: string;
-  text: string;
-  speaker: string;
+interface TranscriptMapping {
+  person: string;
+  transcript: string[];
 }
 
-interface TranscriptGroup {
-  speaker: string;
-  sections: {
-    text: string;
-  }[];
-  timeRange: string;
+interface TranscriptPanelProps {
+  mapping: TranscriptMapping[];
 }
 
-export const TranscriptPanel = () => {
+export const TranscriptPanel = ({ mapping }: TranscriptPanelProps) => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
@@ -57,120 +52,12 @@ export const TranscriptPanel = () => {
     }
   };
 
-  // Group transcripts by speaker and calculate timestamps
-  const transcriptGroups = [
-    {
-      speaker: "Satya Nadella",
-      timeRange: "1:00 - 1:30",
-      sections: [
-        {
-          text: "Satya has been quite active, highlighting Microsoft's intensified focus on AI."
-        },
-        {
-          text: "One of his notable posts discussed the formation of a new AI engineering group called CoreAI - Platform and Tools."
-        },
-        {
-          text: "This division, led by Jay Parikh, a former Meta executive, aims to integrate Microsoft's developer division with its AI platform teams."
-        },
-        {
-          text: "Nadella emphasized that this reorganization is about 'entering the next innings of this AI platform shift' and believes it will 'reshape all application categories.'"
-        },
-        {
-          text: "He also highlighted the introduction of pay-as-you-go agents for Microsoft's revamped Copilot Chat for businesses."
-        },
-        {
-          text: "Additionally, AI Office features have been bundled into Microsoft 365 for consumers, accompanied by a subscription price increase."
-        },
-        {
-          text: "These initiatives underscore Microsoft's commitment to making AI accessible and valuable to both businesses and individual users."
-        }
-      ]
-    },
-    {
-      speaker: "Ryan Roslansky",
-      timeRange: "2:00 - 2:30",
-      sections: [
-        {
-          text: "Ryan has been focusing on leveraging AI to enhance LinkedIn's platform."
-        },
-        {
-          text: "In a recent post, he discussed how LinkedIn is integrating AI to improve job matching algorithms."
-        },
-        {
-          text: "This helps users find more relevant opportunities and aids recruiters in identifying suitable candidates more efficiently."
-        },
-        {
-          text: "By incorporating AI, LinkedIn aims to create a more personalized and efficient experience."
-        },
-        {
-          text: "Users can expect more accurate job recommendations, while recruiters can streamline their hiring processes, ultimately leading to better connections and opportunities on the platform."
-        }
-      ]
-    },
-    {
-      speaker: "Harrison Chase",
-      timeRange: "3:00 - 3:30",
-      sections: [
-        {
-          text: "Harrison has been actively sharing updates about LangChain's latest projects."
-        },
-        {
-          text: "One notable initiative is their work on enhancing natural language processing capabilities."
-        },
-        {
-          text: "This enables developers to build more sophisticated AI applications."
-        },
-        {
-          text: "For developers, these improvements mean they can create more intuitive and responsive AI applications with less effort."
-        },
-        {
-          text: "End-users will experience more natural and effective interactions with AI-powered tools, leading to increased adoption and satisfaction."
-        }
-      ]
-    },
-    {
-      speaker: "Jim Fang",
-      timeRange: "4:00 - 4:30",
-      sections: [
-        {
-          text: "Jim has been sharing insights into the ethical implications of AI development."
-        },
-        {
-          text: "He emphasizes the importance of responsible AI practices, advocating for transparency and fairness in AI algorithms."
-        },
-        {
-          text: "This is to prevent biases and ensure equitable outcomes."
-        },
-        {
-          text: "Many organizations are establishing ethical guidelines and review boards to oversee AI projects."
-        },
-        {
-          text: "By prioritizing ethical considerations, they aim to build trust with users and avoid potential pitfalls associated with biased or unfair AI systems."
-        }
-      ]
-    },
-    {
-      speaker: "Jensen Huang",
-      timeRange: "5:00 - 5:30",
-      sections: [
-        {
-          text: "Jensen has been highlighting NVIDIA's advancements in AI hardware."
-        },
-        {
-          text: "In his recent posts, he discussed the launch of their latest GPUs designed specifically for AI workloads."
-        },
-        {
-          text: "These GPUs offer unprecedented performance and efficiency for training and deploying AI models."
-        },
-        {
-          text: "With more powerful and efficient hardware, researchers and developers can accelerate their AI projects."
-        },
-        {
-          text: "This leads to faster innovation cycles and the development of more advanced AI applications across various sectors."
-        }
-      ]
-    }
-  ];
+  // Replace the hardcoded transcriptGroups with the mapping prop
+  const transcriptGroups = mapping.map((item, index) => ({
+    speaker: item.person,
+    timeRange: `${index + 1}:00 - ${index + 1}:30`,
+    sections: item.transcript.map(text => ({ text }))
+  }));
 
   return (
     <div className="glass-card h-full">

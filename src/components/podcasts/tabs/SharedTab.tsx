@@ -36,8 +36,11 @@ export const SharedTab = () => {
             Shared by {podcast.shared_by}
           </div>
           <EpisodeCard
-            episode={podcast}
-            showLearnMore
+            id={podcast.id}
+            name={podcast.name}
+            description={podcast.description || ''}
+            duration={podcast.duration}
+            coverImage={podcast.cover_image}
           />
         </div>
       ))}
