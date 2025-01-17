@@ -22,12 +22,12 @@ export const EpisodeStructureSection = ({ style, onStyleChange }: EpisodeStructu
           <h3 className="text-lg font-medium">Style</h3>
           <TooltipProvider>
             <RadioGroup 
-              value={style.tone} 
-              onValueChange={(tone) => onStyleChange({ ...style, tone })}
+              value={String(style.length)} 
+              onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
               className="grid grid-cols-4 gap-4"
             >
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="summary" id="summary" />
+                <RadioGroupItem value="10" id="summary" />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Label htmlFor="summary" className="cursor-help">Summary</Label>
@@ -39,7 +39,7 @@ export const EpisodeStructureSection = ({ style, onStyleChange }: EpisodeStructu
               </div>
               
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="simplified" id="simplified" />
+                <RadioGroupItem value="15" id="simplified" />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Label htmlFor="simplified" className="cursor-help">Simplified Breakdown</Label>
@@ -51,7 +51,7 @@ export const EpisodeStructureSection = ({ style, onStyleChange }: EpisodeStructu
               </div>
 
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="indepth" id="indepth" />
+                <RadioGroupItem value="30" id="indepth" />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Label htmlFor="indepth" className="cursor-help">In-Depth Analysis</Label>
@@ -63,7 +63,7 @@ export const EpisodeStructureSection = ({ style, onStyleChange }: EpisodeStructu
               </div>
 
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="interactive" id="interactive" />
+                <RadioGroupItem value="20" id="interactive" />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Label htmlFor="interactive" className="cursor-help">Interactive Q&A</Label>

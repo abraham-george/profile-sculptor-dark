@@ -54,7 +54,9 @@ export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) =>
   };
 
   return (
-    <div className="space-y-8">      
+    <div className="space-y-8">
+      <h3 className="text-lg font-medium">Personalize</h3>
+      
       <div className="space-y-4">
         <Label htmlFor="podcastTitle">Enter your podcast title</Label>
         <Input
