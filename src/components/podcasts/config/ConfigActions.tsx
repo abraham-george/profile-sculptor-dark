@@ -55,14 +55,14 @@ export const ConfigActions = ({
     <div className="flex justify-between mt-8">
       <Button
         onClick={onPrevious}
-        className="profile-button profile-button-outline"
+        className="profile-button profile-button-outline w-32"
         disabled={currentStep === 1}
       >
         Previous
       </Button>
       <Button
         onClick={currentStep === totalSteps ? handleFinish : onNext}
-        className={`profile-button ${canProceed ? 'profile-button-primary' : 'profile-button-disabled bg-gray-400 cursor-not-allowed'}`}
+        className={`profile-button w-32 ${canProceed ? 'profile-button-primary' : 'profile-button-disabled bg-gray-400 cursor-not-allowed'}`}
         disabled={!canProceed}
       >
         {currentStep === totalSteps ? 'Finish' : 'Next'}
