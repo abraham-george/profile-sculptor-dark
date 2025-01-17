@@ -12,7 +12,7 @@ export const SourcesPanel = () => {
       id: "1",
       title: "Microsoft's AI Investment in India",
       url: "https://www.microsoft.com/press",
-      timestamp: "0:00",
+      timestamp: "1:00",
       description: "Microsoft's CEO announces major AI investments and initiatives in India, focusing on cloud services and AI skill development.",
       author: {
         name: "Satya Nadella",
@@ -27,7 +27,7 @@ export const SourcesPanel = () => {
       id: "2",
       title: "AI in LinkedIn Hiring",
       url: "https://linkedin.com/blog",
-      timestamp: "12:00",
+      timestamp: "2:00",
       description: "Insights on AI's role in transforming hiring processes and reducing bias in recruitment.",
       author: {
         name: "Ryan Roslansky",
@@ -42,7 +42,7 @@ export const SourcesPanel = () => {
       id: "3",
       title: "LangChain's Vision for AI Development",
       url: "https://langchain.com/blog",
-      timestamp: "18:00",
+      timestamp: "3:00",
       description: "Harrison Chase discusses LangChain's mission to democratize AI development and make it more accessible to developers worldwide.",
       author: {
         name: "Harrison Chase",
@@ -57,7 +57,7 @@ export const SourcesPanel = () => {
       id: "4",
       title: "AI in Disaster Recovery",
       url: "https://nvidia.com/research",
-      timestamp: "21:00",
+      timestamp: "4:00",
       description: "Research insights on AI-powered robots in disaster recovery and wildfire management.",
       author: {
         name: "Jim Fan",
@@ -72,7 +72,7 @@ export const SourcesPanel = () => {
       id: "5",
       title: "AI Agents Market Potential",
       url: "https://nvidia.com/blog",
-      timestamp: "27:00",
+      timestamp: "5:00",
       description: "NVIDIA CEO's perspective on the economic potential of AI agents and industry growth.",
       author: {
         name: "Jensen Huang",
