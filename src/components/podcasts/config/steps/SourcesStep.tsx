@@ -67,19 +67,19 @@ export const SourcesStep = ({
       <div className="space-y-6">
         <h3 className="text-lg font-medium">From your network</h3>
         <SourceSection 
-          title="AI Thought Leaders" 
+          title="Top Voices" 
           items={sources.inNetwork.trustedVoices}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Leading AI Companies" 
+          title="Companies" 
           items={sources.inNetwork.companies}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="AI Research & Updates" 
+          title="Newsletters" 
           items={sources.inNetwork.newsletters}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
@@ -89,19 +89,19 @@ export const SourcesStep = ({
       <div className="space-y-6">
         <h3 className="text-lg font-medium">Recommended</h3>
         <SourceSection 
-          title="AI Thought Leaders" 
+          title="Top Voices" 
           items={sources.recommended.trustedVoices}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Leading AI Companies" 
+          title="Companies" 
           items={sources.recommended.companies}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="AI Research & Updates" 
+          title="Newsletters" 
           items={sources.recommended.newsletters}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
