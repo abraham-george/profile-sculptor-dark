@@ -90,7 +90,7 @@ export const ReviewStep = ({ config, onConfigUpdate, readOnly }: ReviewStepProps
       
       {config.industry && (
         <div className="space-y-2">
-          <h4 className="text-sm font-medium text-gray-400">Industry</h4>
+          <h4 className="text-sm font-medium text-gray-400">Podcast Title</h4>
           <div className="flex flex-wrap gap-2">
             <div className="rounded-full border border-linkedin-blue px-4 py-2 bg-linkedin-blue text-white">
               <span className="text-sm">{config.industry}</span>
