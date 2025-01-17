@@ -1,6 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface StyleStepProps {
   style: {
@@ -95,6 +96,13 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
                 <Label htmlFor="longform">Longform (20 - 30 mins)</Label>
               </div>
             </RadioGroup>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox id="notifications" />
+            <Label htmlFor="notifications" className="text-sm text-gray-600">
+              Set alerts for new episode releases
+            </Label>
           </div>
         </div>
       </section>
