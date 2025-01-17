@@ -137,7 +137,7 @@ export const SourcesStep = ({ config, onUpdateConfig }: SourcesStepProps) => {
 
       <div className="space-y-4">
         <h3 className="text-lg font-medium">Additional Content</h3>
-        <div className="space-y-4">
+        <div className="flex space-x-6">
           <div className="flex items-center space-x-2">
             <Checkbox 
               id="linkedin-learning"
