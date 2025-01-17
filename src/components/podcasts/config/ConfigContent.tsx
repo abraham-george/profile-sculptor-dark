@@ -32,22 +32,10 @@ export const ConfigContent = ({ currentStep, config, onConfigUpdate, readOnly = 
 
       {currentStep === 2 && (
         <SourcesStep
-          selectedSources={config.sources}
-          selectedAdditionalContent={config.additionalContent}
-          onSourceSelect={(source) => {
-            if (readOnly) return;
-            const sources = config.sources.includes(source)
-              ? config.sources.filter(s => s !== source)
-              : [...config.sources, source];
-            onConfigUpdate({ sources });
-          }}
-          onAdditionalContentSelect={(content) => {
-            if (readOnly) return;
-            const additionalContent = config.additionalContent.includes(content)
-              ? config.additionalContent.filter(c => c !== content)
-              : [...config.additionalContent, content];
-            onConfigUpdate({ additionalContent });
-          }}
+          config={config}
+          onUpdateConfig={onConfigUpdate}
+          onNext={() => {}}
+          onBack={() => {}}
         />
       )}
 

@@ -6,61 +6,61 @@ import { PodcastConfig } from "../types";
 const sources = {
   inNetwork: {
     trustedVoices: [
-      { id: "1", name: "Andrew Ng", role: "AI Researcher & Educator" },
-      { id: "2", name: "Yann LeCun", role: "Chief AI Scientist at Meta" },
-      { id: "3", name: "Fei-Fei Li", role: "Professor at Stanford" },
-      { id: "4", name: "Geoffrey Hinton", role: "Professor Emeritus at UofT" },
-      { id: "5", name: "Demis Hassabis", role: "CEO at DeepMind" }
+      { id: "1", name: "Andrew Ng", role: "AI Researcher & Educator", image: "/placeholder.svg" },
+      { id: "2", name: "Yann LeCun", role: "Chief AI Scientist at Meta", image: "/placeholder.svg" },
+      { id: "3", name: "Fei-Fei Li", role: "Professor at Stanford", image: "/placeholder.svg" },
+      { id: "4", name: "Geoffrey Hinton", role: "Professor Emeritus at UofT", image: "/placeholder.svg" },
+      { id: "5", name: "Demis Hassabis", role: "CEO at DeepMind", image: "/placeholder.svg" }
     ],
     companies: [
-      { id: "6", name: "OpenAI", role: "AI Research & Development" },
-      { id: "7", name: "DeepMind", role: "AI Research & Applications" },
-      { id: "8", name: "Anthropic", role: "AI Safety & Development" },
-      { id: "9", name: "Scale AI", role: "AI Infrastructure & Data" },
-      { id: "10", name: "Cohere", role: "Enterprise AI Solutions" }
+      { id: "6", name: "OpenAI", role: "AI Research & Development", image: "/placeholder.svg" },
+      { id: "7", name: "DeepMind", role: "AI Research & Applications", image: "/placeholder.svg" },
+      { id: "8", name: "Anthropic", role: "AI Safety & Development", image: "/placeholder.svg" },
+      { id: "9", name: "Scale AI", role: "AI Infrastructure & Data", image: "/placeholder.svg" },
+      { id: "10", name: "Cohere", role: "Enterprise AI Solutions", image: "/placeholder.svg" }
     ],
     newsletters: [
-      { id: "11", name: "The Algorithm", role: "MIT Technology Review" },
-      { id: "12", name: "Import AI", role: "Weekly AI News & Analysis" },
-      { id: "13", name: "The Batch", role: "DeepLearning.AI Newsletter" },
-      { id: "14", name: "AI Weekly", role: "Curated AI News & Research" },
-      { id: "15", name: "The Gradient", role: "AI Research & Perspectives" }
+      { id: "11", name: "The Algorithm", role: "MIT Technology Review", image: "/placeholder.svg" },
+      { id: "12", name: "Import AI", role: "Weekly AI News & Analysis", image: "/placeholder.svg" },
+      { id: "13", name: "The Batch", role: "DeepLearning.AI Newsletter", image: "/placeholder.svg" },
+      { id: "14", name: "AI Weekly", role: "Curated AI News & Research", image: "/placeholder.svg" },
+      { id: "15", name: "The Gradient", role: "AI Research & Perspectives", image: "/placeholder.svg" }
     ]
   },
   recommended: {
     trustedVoices: [
-      { id: "16", name: "Yoshua Bengio", role: "Pioneer in Deep Learning" },
-      { id: "17", name: "Ian Goodfellow", role: "AI Researcher & Author" },
-      { id: "18", name: "Kate Crawford", role: "AI Ethics Researcher" },
-      { id: "19", name: "Kai-Fu Lee", role: "CEO at Sinovation Ventures" },
-      { id: "20", name: "Stuart Russell", role: "Professor at UC Berkeley" }
+      { id: "16", name: "Yoshua Bengio", role: "Pioneer in Deep Learning", image: "/placeholder.svg" },
+      { id: "17", name: "Ian Goodfellow", role: "AI Researcher & Author", image: "/placeholder.svg" },
+      { id: "18", name: "Kate Crawford", role: "AI Ethics Researcher", image: "/placeholder.svg" },
+      { id: "19", name: "Kai-Fu Lee", role: "CEO at Sinovation Ventures", image: "/placeholder.svg" },
+      { id: "20", name: "Stuart Russell", role: "Professor at UC Berkeley", image: "/placeholder.svg" }
     ],
     companies: [
-      { id: "21", name: "Google AI", role: "AI Research & Products" },
-      { id: "22", name: "Microsoft Research", role: "AI & Computing Research" },
-      { id: "23", name: "IBM Research", role: "Enterprise AI Solutions" },
-      { id: "24", name: "Meta AI", role: "AI Research & Development" },
-      { id: "25", name: "NVIDIA AI", role: "AI Hardware & Software" }
+      { id: "21", name: "Google AI", role: "AI Research & Products", image: "/placeholder.svg" },
+      { id: "22", name: "Microsoft Research", role: "AI & Computing Research", image: "/placeholder.svg" },
+      { id: "23", name: "IBM Research", role: "Enterprise AI Solutions", image: "/placeholder.svg" },
+      { id: "24", name: "Meta AI", role: "AI Research & Development", image: "/placeholder.svg" },
+      { id: "25", name: "NVIDIA AI", role: "AI Hardware & Software", image: "/placeholder.svg" }
     ],
     newsletters: [
-      { id: "26", name: "AI Ethics Brief", role: "Ethics in AI" },
-      { id: "27", name: "Machine Learning Monthly", role: "Research Digest" },
-      { id: "28", name: "Deep Learning Weekly", role: "Industry Updates" },
-      { id: "29", name: "AI Business", role: "Enterprise AI News" },
-      { id: "30", name: "Papers with Code", role: "Latest AI Research" }
+      { id: "26", name: "AI Ethics Brief", role: "Ethics in AI", image: "/placeholder.svg" },
+      { id: "27", name: "Machine Learning Monthly", role: "Research Digest", image: "/placeholder.svg" },
+      { id: "28", name: "Deep Learning Weekly", role: "Industry Updates", image: "/placeholder.svg" },
+      { id: "29", name: "AI Business", role: "Enterprise AI News", image: "/placeholder.svg" },
+      { id: "30", name: "Papers with Code", role: "Latest AI Research", image: "/placeholder.svg" }
     ]
   }
 };
 
 interface SourcesStepProps {
-  podcastConfig: PodcastConfig;
+  config: PodcastConfig;
   onUpdateConfig: (config: Partial<PodcastConfig>) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
-export const SourcesStep = ({ podcastConfig, onUpdateConfig, onNext, onBack }: SourcesStepProps) => {
-  const [selectedSources, setSelectedSources] = useState<string[]>(podcastConfig.sources || []);
+export const SourcesStep = ({ config, onUpdateConfig, onNext, onBack }: SourcesStepProps) => {
+  const [selectedSources, setSelectedSources] = useState<string[]>(config.sources || []);
 
   const onSourceSelect = (sourceId: string) => {
     setSelectedSources((prev) => {
