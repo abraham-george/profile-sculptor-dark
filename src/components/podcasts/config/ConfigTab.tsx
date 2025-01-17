@@ -43,9 +43,6 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
     switch (currentStep) {
       case 1:
         return podcastConfig.skills.length > 0;
-      case 4:
-        // For the personalization step, we only need either a cover image or a title
-        return !!podcastConfig.coverImage || !!podcastConfig.industry?.trim();
       default:
         return true;
     }
