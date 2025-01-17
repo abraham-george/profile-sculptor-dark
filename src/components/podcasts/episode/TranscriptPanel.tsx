@@ -44,8 +44,9 @@ export const TranscriptPanel = () => {
   const handleSectionHover = (timeRange: string | null) => {
     setActiveSection(timeRange);
     if (timeRange) {
-      // Dispatch custom event for source synchronization
+      // Extract the start time from the time range (e.g., "1:00 - 1:30" -> "1:00")
       const startTime = timeRange.split(' - ')[0];
+      // Dispatch custom event for source synchronization
       const event = new CustomEvent('timestampHover', {
         detail: { timestamp: startTime },
         bubbles: true

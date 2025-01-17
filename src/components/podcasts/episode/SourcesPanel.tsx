@@ -102,6 +102,8 @@ export const SourcesPanel = () => {
             block: 'nearest'
           });
         }
+      } else {
+        setActiveSource(null);
       }
     };
 
