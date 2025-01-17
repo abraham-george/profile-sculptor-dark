@@ -46,6 +46,7 @@ export const TranscriptPanel = () => {
     if (timeRange) {
       // Extract the start time from the time range (e.g., "1:00 - 1:30" -> "1:00")
       const startTime = timeRange.split(' - ')[0];
+      console.log('Hovering timestamp:', startTime); // Debug log
       
       // Dispatch custom event for source synchronization
       const event = new CustomEvent('timestampHover', {
@@ -63,16 +64,25 @@ export const TranscriptPanel = () => {
       timeRange: "1:00 - 1:30",
       sections: [
         {
-          text: "CEO Satya Nadella recently announced a $3 billion investment over the next two years to bolster AI and cloud services in India."
+          text: "Satya has been quite active, highlighting Microsoft's intensified focus on AI."
         },
         {
-          text: "This initiative also aims to train 10 million individuals in AI skills by 2030."
+          text: "One of his notable posts discussed the formation of a new AI engineering group called CoreAI - Platform and Tools."
         },
         {
-          text: "Nadella emphasized the transformative potential of AI, aiming for an AI-first app stack to automate various tasks."
+          text: "This division, led by Jay Parikh, a former Meta executive, aims to integrate Microsoft's developer division with its AI platform teams."
         },
         {
-          text: "Microsoft is also integrating AI features into Microsoft 365, which will increase subscription prices."
+          text: "Nadella emphasized that this reorganization is about 'entering the next innings of this AI platform shift' and believes it will 'reshape all application categories.'"
+        },
+        {
+          text: "He also highlighted the introduction of pay-as-you-go agents for Microsoft's revamped Copilot Chat for businesses."
+        },
+        {
+          text: "Additionally, AI Office features have been bundled into Microsoft 365 for consumers, accompanied by a subscription price increase."
+        },
+        {
+          text: "These initiatives underscore Microsoft's commitment to making AI accessible and valuable to both businesses and individual users."
         }
       ]
     },
@@ -81,10 +91,19 @@ export const TranscriptPanel = () => {
       timeRange: "2:00 - 2:30",
       sections: [
         {
-          text: "LinkedIn's CEO, Ryan Roslansky, shared insights on how AI is reshaping the hiring landscape."
+          text: "Ryan has been focusing on leveraging AI to enhance LinkedIn's platform."
         },
         {
-          text: "He believes that AI can significantly reduce bias in hiring processes, leading to more equitable opportunities."
+          text: "In a recent post, he discussed how LinkedIn is integrating AI to improve job matching algorithms."
+        },
+        {
+          text: "This helps users find more relevant opportunities and aids recruiters in identifying suitable candidates more efficiently."
+        },
+        {
+          text: "By incorporating AI, LinkedIn aims to create a more personalized and efficient experience."
+        },
+        {
+          text: "Users can expect more accurate job recommendations, while recruiters can streamline their hiring processes, ultimately leading to better connections and opportunities on the platform."
         }
       ]
     },
@@ -93,22 +112,40 @@ export const TranscriptPanel = () => {
       timeRange: "3:00 - 3:30",
       sections: [
         {
-          text: "Harrison Chase, CEO of LangChain, shared his vision for democratizing AI development. He emphasized how LangChain's tools are making it easier for developers to build sophisticated AI applications."
+          text: "Harrison has been actively sharing updates about LangChain's latest projects."
         },
         {
-          text: "Chase highlighted the importance of creating standardized interfaces for AI development, allowing developers to focus on building applications rather than dealing with infrastructure complexities."
+          text: "One notable initiative is their work on enhancing natural language processing capabilities."
+        },
+        {
+          text: "This enables developers to build more sophisticated AI applications."
+        },
+        {
+          text: "For developers, these improvements mean they can create more intuitive and responsive AI applications with less effort."
+        },
+        {
+          text: "End-users will experience more natural and effective interactions with AI-powered tools, leading to increased adoption and satisfaction."
         }
       ]
     },
     {
-      speaker: "Jim Fan",
+      speaker: "Jim Fang",
       timeRange: "4:00 - 4:30",
       sections: [
         {
-          text: "NVIDIA's senior research manager, Jim Fan, highlighted the potential of AI-powered robots in disaster recovery, specifically in combating wildfires."
+          text: "Jim has been sharing insights into the ethical implications of AI development."
         },
         {
-          text: "While the technology is still developing, the prospects are encouraging."
+          text: "He emphasizes the importance of responsible AI practices, advocating for transparency and fairness in AI algorithms."
+        },
+        {
+          text: "This is to prevent biases and ensure equitable outcomes."
+        },
+        {
+          text: "Many organizations are establishing ethical guidelines and review boards to oversee AI projects."
+        },
+        {
+          text: "By prioritizing ethical considerations, they aim to build trust with users and avoid potential pitfalls associated with biased or unfair AI systems."
         }
       ]
     },
@@ -117,7 +154,19 @@ export const TranscriptPanel = () => {
       timeRange: "5:00 - 5:30",
       sections: [
         {
-          text: "NVIDIA's CEO, Jensen Huang, also mentioned that AI agents could become a multitrillion-dollar industry, indicating the vast economic potential of AI advancements."
+          text: "Jensen has been highlighting NVIDIA's advancements in AI hardware."
+        },
+        {
+          text: "In his recent posts, he discussed the launch of their latest GPUs designed specifically for AI workloads."
+        },
+        {
+          text: "These GPUs offer unprecedented performance and efficiency for training and deploying AI models."
+        },
+        {
+          text: "With more powerful and efficient hardware, researchers and developers can accelerate their AI projects."
+        },
+        {
+          text: "This leads to faster innovation cycles and the development of more advanced AI applications across various sectors."
         }
       ]
     }
