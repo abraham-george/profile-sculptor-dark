@@ -20,7 +20,7 @@ interface CoverStepProps {
 
 export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpdate }: CoverStepProps) => {
   const [isGenerating, setIsGenerating] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
+  const [selectedOption, setSelectedOption] = useState<"existing" | "generated">("existing");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
   const [podcastTitle, setPodcastTitle] = useState(config.industry || "");
@@ -28,7 +28,6 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
   const linkedinTuneInImage = "/lovable-uploads/6bbb0605-4369-4c95-9a42-09949e5b1ed1.png";
 
   useEffect(() => {
-    // Initialize with existing cover image if available
     if (config.coverImage) {
       setSelectedOption(config.coverImage.type);
       if (config.coverImage.type === 'generated') {
@@ -37,9 +36,9 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
     }
   }, [config.coverImage]);
 
-  const handleOptionChange = (value: "upload" | "generate") => {
+  const handleOptionChange = (value: "existing" | "generated") => {
     setSelectedOption(value);
-    if (value === "upload") {
+    if (value === "existing") {
       const coverImageUpdate = { type: 'existing' as const, url: linkedinTuneInImage };
       onCoverImageSelect(coverImageUpdate);
       onConfigUpdate({ 
@@ -100,13 +99,13 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
       
       <RadioGroup
         value={selectedOption}
-        onValueChange={(value) => handleOptionChange(value as "upload" | "generate")}
+        onValueChange={(value) => handleOptionChange(value as "existing" | "generated")}
         className="grid gap-8"
       >
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="upload" id="upload" />
-            <Label htmlFor="upload">Use LinkedIn TuneIn Cover</Label>
+            <RadioGroupItem value="existing" id="existing" />
+            <Label htmlFor="existing">Use LinkedIn TuneIn Cover</Label>
           </div>
           <div className="ml-6">
             <div className="w-64 h-64 rounded-lg overflow-hidden border-2 border-linkedin-blue">
@@ -121,10 +120,10 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
 
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="generate" id="generate" />
-            <Label htmlFor="generate">Generate with AI</Label>
+            <RadioGroupItem value="generated" id="generated" />
+            <Label htmlFor="generated">Generate with AI</Label>
           </div>
-          {selectedOption === "generate" && (
+          {selectedOption === "generated" && (
             <div className="ml-6 space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="prompt">Image Description (Optional)</Label>
