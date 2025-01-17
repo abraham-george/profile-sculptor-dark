@@ -22,42 +22,42 @@ export const SourcesStep = ({
   const sources = {
     inNetwork: {
       trustedVoices: [
-        { name: 'Sarah Chen', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Mike Ross', image: 'https://media.licdn.com/dms/image/v2/D4E03AQE1V9qLzblwvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1694348650057?e=1742428800&v=beta&t=F-2MaRkg9qiLwjgGhxqLWPjP3NvFJySdxJcVwpwkMjg' },
-        { name: 'Emily Wang', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'David Kim', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
+        { name: 'Andrew Ng', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
+        { name: 'Yann LeCun', image: 'https://media.licdn.com/dms/image/v2/D4E03AQE1V9qLzblwvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1694348650057?e=1742428800&v=beta&t=F-2MaRkg9qiLwjgGhxqLWPjP3NvFJySdxJcVwpwkMjg' },
+        { name: 'Fei-Fei Li', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
+        { name: 'Geoffrey Hinton', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
       ],
       companies: [
-        { name: 'TechCorp', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'FinanceHub', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
-        { name: 'HealthTech', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'EduLearn', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
+        { name: 'OpenAI', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
+        { name: 'DeepMind', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
+        { name: 'Anthropic', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
+        { name: 'Scale AI', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
       ],
       newsletters: [
-        { name: 'Tech Weekly', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Finance Daily', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
-        { name: 'Health Digest', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'EdTech News', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
+        { name: 'The Batch', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
+        { name: 'Import AI', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
+        { name: 'ML Weekly', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
+        { name: 'The Algorithm', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
       ]
     },
     recommended: {
       trustedVoices: [
-        { name: 'John Doe', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Jane Smith', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' },
-        { name: 'Alex Brown', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Lisa Park', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
+        { name: 'Demis Hassabis', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
+        { name: 'Sam Altman', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' },
+        { name: 'Daphne Koller', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
+        { name: 'Ian Goodfellow', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
       ],
       companies: [
-        { name: 'InnovateCo', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'DataCorp', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
-        { name: 'AITech', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'CloudSys', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
+        { name: 'Cohere', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
+        { name: 'Stability AI', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
+        { name: 'Hugging Face', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
+        { name: 'Midjourney', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
       ],
       newsletters: [
-        { name: 'Innovation Weekly', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'AI Digest', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
-        { name: 'Cloud News', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'Tech Trends', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
+        { name: 'AI Alignment', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
+        { name: 'Last Week in AI', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
+        { name: 'Ahead of AI', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
+        { name: 'The AI Index', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
       ]
     }
   };
@@ -65,21 +65,21 @@ export const SourcesStep = ({
   return (
     <div className="space-y-8">
       <div className="space-y-6">
-        <h3 className="text-lg font-medium">In Network</h3>
+        <h3 className="text-lg font-medium">From your network</h3>
         <SourceSection 
-          title="Trusted Voices" 
+          title="AI Thought Leaders" 
           items={sources.inNetwork.trustedVoices}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Companies" 
+          title="Leading AI Companies" 
           items={sources.inNetwork.companies}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Newsletters" 
+          title="AI Research & Updates" 
           items={sources.inNetwork.newsletters}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
@@ -89,19 +89,19 @@ export const SourcesStep = ({
       <div className="space-y-6">
         <h3 className="text-lg font-medium">Recommended</h3>
         <SourceSection 
-          title="Trusted Voices" 
+          title="AI Thought Leaders" 
           items={sources.recommended.trustedVoices}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Companies" 
+          title="Leading AI Companies" 
           items={sources.recommended.companies}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
         />
         <SourceSection 
-          title="Newsletters" 
+          title="AI Research & Updates" 
           items={sources.recommended.newsletters}
           selectedSources={selectedSources}
           onSourceSelect={onSourceSelect}
