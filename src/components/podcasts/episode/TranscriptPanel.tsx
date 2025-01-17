@@ -126,7 +126,7 @@ export const TranscriptPanel = () => {
       
       <ScrollArea className="h-[calc(100%-60px)] px-4">
         <div className="py-4 space-y-6">
-          {transcriptGroups.map((group) => (
+          {transcriptGroups.map((group, index) => (
             <div 
               key={group.timeRange}
               ref={el => sectionRefs.current[group.timeRange] = el}
@@ -136,7 +136,7 @@ export const TranscriptPanel = () => {
                 ${activeSection === group.timeRange ? 'bg-white/5 rounded-lg p-4 border border-linkedin-blue' : 'hover:bg-white/5 hover:rounded-lg hover:p-4'}`}
             >
               <div className="text-sm font-medium text-linkedin-blue">
-                {group.timeRange}
+                Chapter {index + 1}
               </div>
               <div className="space-y-4">
                 {group.sections.map((section, index) => (
