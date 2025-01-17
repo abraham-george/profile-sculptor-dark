@@ -90,7 +90,10 @@ export const SourcesPanel = () => {
   useEffect(() => {
     const handleTimestampHover = (event: CustomEvent<{ timestamp: string }>) => {
       const timestamp = event.detail.timestamp;
+      console.log('Received timestamp:', timestamp); // Debug log
+      
       const source = sources.find(source => source.timestamp === timestamp);
+      console.log('Found source:', source); // Debug log
       
       if (source) {
         setActiveSource(source.id);
