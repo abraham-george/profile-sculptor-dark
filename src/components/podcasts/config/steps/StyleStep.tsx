@@ -97,13 +97,6 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
               </div>
             </RadioGroup>
           </div>
-
-          <div className="flex items-center space-x-2">
-            <Checkbox id="notifications" />
-            <Label htmlFor="notifications" className="text-sm text-gray-600">
-              Set alerts for new episode releases
-            </Label>
-          </div>
         </div>
       </section>
 
@@ -135,6 +128,13 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
               <Label htmlFor="monthly">Monthly</Label>
             </div>
           </RadioGroup>
+
+          <div className="flex items-center space-x-2 mt-4">
+            <Checkbox id="notifications" />
+            <Label htmlFor="notifications" className="text-sm text-gray-600">
+              Set alerts for new episode releases
+            </Label>
+          </div>
         </div>
       </section>
 
