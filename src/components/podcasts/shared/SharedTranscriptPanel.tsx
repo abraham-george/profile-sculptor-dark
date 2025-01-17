@@ -52,13 +52,13 @@ export const SharedTranscriptPanel = () => {
       timeRange: "1:00 - 1:30",
       sections: [
         {
-          text: "Today, we're diving deep into the world of management consulting and leadership excellence."
+          text: "The consulting industry is experiencing a significant transformation with the rise of AI and digital solutions."
         },
         {
-          text: "We'll explore how successful leaders navigate complex business landscapes while maintaining strong P&L performance."
+          text: "According to recent McKinsey research, over 75% of consulting engagements now include some form of digital or AI component."
         },
         {
-          text: "The key to success in consulting lies in understanding both the strategic and operational aspects of business transformation."
+          text: "This shift requires consultants to develop new capabilities while maintaining core strategic advisory skills."
         }
       ]
     },
@@ -67,13 +67,13 @@ export const SharedTranscriptPanel = () => {
       timeRange: "2:00 - 2:30",
       sections: [
         {
-          text: "From my experience leading global consulting teams, effective leadership starts with clear communication and strategic thinking."
+          text: "ESG and sustainability consulting has seen a 42% growth in demand over the past year."
         },
         {
-          text: "We've seen remarkable results when leaders focus on both financial metrics and team development."
+          text: "Leading firms are integrating sustainability metrics into traditional P&L and performance frameworks."
         },
         {
-          text: "The most successful transformations happen when leaders can balance short-term P&L goals with long-term strategic vision."
+          text: "We're seeing a convergence of strategy, technology, and sustainability in modern consulting engagements."
         }
       ]
     },
@@ -82,13 +82,13 @@ export const SharedTranscriptPanel = () => {
       timeRange: "3:00 - 3:30",
       sections: [
         {
-          text: "In today's rapidly evolving business environment, consultants need to be more adaptable than ever."
+          text: "The future of consulting lies in data-driven decision making and predictive analytics."
         },
         {
-          text: "Digital transformation has become a key driver of business success, and understanding its impact on P&L is crucial."
+          text: "Our research shows that firms leveraging advanced analytics see 30% higher client satisfaction rates."
         },
         {
-          text: "We're seeing a shift towards more data-driven decision making in management consulting."
+          text: "The key is balancing technological innovation with human expertise and relationship management."
         }
       ]
     }

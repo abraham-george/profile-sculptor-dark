@@ -10,47 +10,47 @@ export const SharedSourcesPanel = () => {
   const sources: Source[] = [
     {
       id: "1",
-      title: "The Future of Management Consulting",
+      title: "Digital Transformation in Consulting",
       url: "https://hbr.org/consulting",
       timestamp: "1:00",
-      description: "Insights on how digital transformation is reshaping the consulting industry and driving value for clients.",
+      description: "Analysis of how AI and digital technologies are reshaping the consulting industry landscape.",
       author: {
         name: "Archith Mohan",
-        role: "Senior Management Consultant",
-        company: "Global Consulting Partners",
+        role: "Partner",
+        company: "BCG",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "34,567",
-        isFollowing: true
+        isFollowing: false
       }
     },
     {
       id: "2",
-      title: "Leadership in Digital Age",
+      title: "ESG Consulting Trends 2024",
       url: "https://mckinsey.com/insights",
       timestamp: "2:00",
-      description: "Exploring how successful leaders navigate digital transformation while maintaining strong P&L performance.",
+      description: "Latest insights on the growing importance of ESG consulting and its impact on business strategy.",
       author: {
         name: "Sarah Chen",
         role: "Managing Director",
         company: "McKinsey & Company",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "28,123",
-        isFollowing: true
+        isFollowing: false
       }
     },
     {
       id: "3",
-      title: "Data-Driven Consulting",
+      title: "Future of Strategic Advisory",
       url: "https://bcg.com/perspectives",
       timestamp: "3:00",
-      description: "How data analytics is transforming management consulting and decision-making processes.",
+      description: "Exploring the intersection of data analytics and traditional consulting methodologies.",
       author: {
         name: "Michael Rodriguez",
-        role: "Partner",
-        company: "BCG",
+        role: "Senior Partner",
+        company: "Bain & Company",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "15,432",
-        isFollowing: true
+        isFollowing: false
       }
     }
   ];
