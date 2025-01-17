@@ -80,24 +80,6 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
             </TooltipProvider>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium">Length</h3>
-            <RadioGroup 
-              value={String(style.length)}
-              onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
-              className="grid grid-cols-2 gap-4"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="10" id="shortform" />
-                <Label htmlFor="shortform">Shortform (5 - 10 mins)</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="30" id="longform" />
-                <Label htmlFor="longform">Longform (20 - 30 mins)</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
           <div className="flex items-center space-x-2">
             <Checkbox id="notifications" />
             <Label htmlFor="notifications" className="text-sm text-gray-600">
@@ -135,6 +117,24 @@ export const StyleStep = ({ style, onStyleChange }: StyleStepProps) => {
               <Label htmlFor="monthly">Monthly</Label>
             </div>
           </RadioGroup>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Length</h3>
+            <RadioGroup 
+              value={String(style.length)}
+              onValueChange={(length) => onStyleChange({ ...style, length: parseInt(length) })}
+              className="grid grid-cols-2 gap-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="10" id="shortform" />
+                <Label htmlFor="shortform">Shortform (5 - 10 mins)</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="30" id="longform" />
+                <Label htmlFor="longform">Longform (20 - 30 mins)</Label>
+              </div>
+            </RadioGroup>
+          </div>
         </div>
       </section>
 
