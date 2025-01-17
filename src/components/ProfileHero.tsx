@@ -23,7 +23,6 @@ export const ProfileHero = () => {
               alt="Profile"
               className="w-32 h-32 rounded-full border-4 border-linkedin-card object-cover"
             />
-            <CheckCircle className="absolute bottom-0 right-0 text-linkedin-blue bg-white rounded-full" />
           </div>
         </div>
 
