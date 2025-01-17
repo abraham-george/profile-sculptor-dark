@@ -19,7 +19,7 @@ export const TranscriptPanel = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const sectionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Helper function to calculate reading time
+  // Calculate reading time (words per minute)
   const calculateReadingTime = (text: string, startMinute: number): number => {
     const words = text.split(' ').length;
     return startMinute + (words / 150); // 150 words per minute
@@ -41,8 +41,21 @@ export const TranscriptPanel = () => {
     return `${formatTime(startTime)} - ${formatTime(currentTime)}`;
   };
 
+  const handleSectionHover = (timeRange: string | null) => {
+    setActiveSection(timeRange);
+    if (timeRange) {
+      // Dispatch custom event for source synchronization
+      const startTime = timeRange.split(' - ')[0];
+      const event = new CustomEvent('timestampHover', {
+        detail: { timestamp: startTime },
+        bubbles: true
+      });
+      window.dispatchEvent(event);
+    }
+  };
+
   // Group transcripts by speaker and calculate timestamps
-  const transcriptGroups: TranscriptGroup[] = [
+  const transcriptGroups = [
     {
       speaker: "Satya Nadella",
       timeRange: "0:00 - 1:00",
@@ -63,7 +76,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Ryan Roslansky",
-      timeRange: "1:00 - 1:30",
+      timeRange: "12:00 - 12:30",
       sections: [
         {
           text: "LinkedIn's CEO, Ryan Roslansky, shared insights on how AI is reshaping the hiring landscape."
@@ -75,7 +88,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Tomer Cohen",
-      timeRange: "1:30 - 2:00",
+      timeRange: "18:00 - 18:30",
       sections: [
         {
           text: "Tomer Cohen, LinkedIn's Chief Product Officer, discussed the platform's growth to over a billion users, attributing much of this success to AI-driven features that enhance user experience."
@@ -84,7 +97,7 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Jim Fan",
-      timeRange: "2:00 - 2:30",
+      timeRange: "21:00 - 21:30",
       sections: [
         {
           text: "NVIDIA's senior research manager, Jim Fan, highlighted the potential of AI-powered robots in disaster recovery, specifically in combating wildfires."
@@ -96,51 +109,14 @@ export const TranscriptPanel = () => {
     },
     {
       speaker: "Jensen Huang",
-      timeRange: "2:30 - 3:00",
+      timeRange: "27:00 - 27:30",
       sections: [
         {
           text: "NVIDIA's CEO, Jensen Huang, also mentioned that AI agents could become a multitrillion-dollar industry, indicating the vast economic potential of AI advancements."
         }
       ]
-    },
-    {
-      speaker: "LangChain",
-      timeRange: "3:00 - 3:30",
-      sections: [
-        {
-          text: "LangChain. They've been instrumental in providing AI developers with tools to connect language models with external data sources, simplifying the development of AI applications."
-        }
-      ]
-    },
-    {
-      speaker: "Andrew Ng",
-      timeRange: "3:30 - 4:00",
-      sections: [
-        {
-          text: "Andrew Ng continues to be a leading voice in AI education, offering resources to help individuals build careers in AI through platforms like DeepLearning.AI."
-        }
-      ]
-    },
-    {
-      speaker: "Allie K. Miller",
-      timeRange: "4:00 - 4:30",
-      sections: [
-        {
-          text: "Allie K. Miller remains a prominent figure in the AI community, advising startups and contributing to the growth of AI technologies."
-        }
-      ]
     }
   ];
-
-  useEffect(() => {
-    if (activeSection) {
-      const event = new CustomEvent('timestampHover', { 
-        detail: { timestamp: activeSection },
-        bubbles: true 
-      });
-      window.dispatchEvent(event);
-    }
-  }, [activeSection]);
 
   return (
     <div className="glass-card h-full">
@@ -152,20 +128,17 @@ export const TranscriptPanel = () => {
         <div className="py-4 space-y-6">
           {transcriptGroups.map((group) => (
             <div 
-              key={group.timeRange} 
-              className="space-y-4"
+              key={group.timeRange}
               ref={el => sectionRefs.current[group.timeRange] = el}
-              onMouseEnter={() => setActiveSection(group.timeRange)}
-              onMouseLeave={() => setActiveSection(null)}
+              onMouseEnter={() => handleSectionHover(group.timeRange)}
+              onMouseLeave={() => handleSectionHover(null)}
+              className={`space-y-4 transition-all duration-200
+                ${activeSection === group.timeRange ? 'bg-white/5 rounded-lg p-4 border border-linkedin-blue' : 'hover:bg-white/5 hover:rounded-lg hover:p-4'}`}
             >
-              <div className="text-sm font-medium text-linkedin-blue flex justify-between items-center">
-                <span className="font-mono">{group.timeRange}</span>
-                <span>{group.speaker}</span>
+              <div className="text-sm font-medium text-linkedin-blue">
+                {group.timeRange}
               </div>
-              <div 
-                className={`p-4 rounded-lg transition-all duration-200 border border-transparent space-y-4
-                  ${activeSection === group.timeRange ? 'bg-white/5 border-linkedin-blue' : 'hover:bg-white/5'}`}
-              >
+              <div className="space-y-4">
                 {group.sections.map((section, index) => (
                   <p key={index} className="text-sm text-slate-200 leading-relaxed">
                     {section.text}
