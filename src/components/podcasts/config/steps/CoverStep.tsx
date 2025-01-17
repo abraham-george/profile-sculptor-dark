@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { PodcastConfig } from "../types";
 
 interface CoverStepProps {
   coverImage?: {
@@ -14,16 +13,14 @@ interface CoverStepProps {
     url: string;
   };
   onCoverImageSelect: (coverImage: CoverStepProps['coverImage']) => void;
-  config: PodcastConfig;
-  onConfigUpdate: (updates: Partial<PodcastConfig>) => void;
 }
 
-export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpdate }: CoverStepProps) => {
+export const CoverStep = ({ coverImage, onCoverImageSelect }: CoverStepProps) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
-  const [podcastTitle, setPodcastTitle] = useState(config.industry || "");
+  const [podcastTitle, setPodcastTitle] = useState("");
 
   const linkedinTuneInImage = "/lovable-uploads/6bbb0605-4369-4c95-9a42-09949e5b1ed1.png";
 
@@ -31,18 +28,11 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
     setSelectedOption(value);
     if (value === "upload") {
       onCoverImageSelect({ type: 'existing', url: linkedinTuneInImage });
-      onConfigUpdate({ coverImage: { type: 'existing', url: linkedinTuneInImage } });
     }
   };
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTitle = e.target.value;
-    setPodcastTitle(newTitle);
-    onConfigUpdate({ industry: newTitle });
-  };
-
   const handleGenerateImage = async () => {
-    if (!prompt.trim() && !podcastTitle.trim()) return;
+    if (!prompt.trim()) return;
     
     setIsGenerating(true);
     try {
@@ -54,7 +44,6 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
       
       setGeneratedImage(data.imageUrl);
       onCoverImageSelect({ type: 'generated', url: data.imageUrl });
-      onConfigUpdate({ coverImage: { type: 'generated', url: data.imageUrl } });
       toast.success("Cover image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
@@ -72,7 +61,7 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
           id="podcastTitle"
           placeholder="Enter a title for your podcast..."
           value={podcastTitle}
-          onChange={handleTitleChange}
+          onChange={(e) => setPodcastTitle(e.target.value)}
           className="max-w-xl"
         />
       </div>
