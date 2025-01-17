@@ -30,15 +30,22 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
   const handleOptionChange = (value: "upload" | "generate") => {
     setSelectedOption(value);
     if (value === "upload") {
-      onCoverImageSelect({ type: 'existing', url: linkedinTuneInImage });
-      onConfigUpdate({ coverImage: { type: 'existing', url: linkedinTuneInImage } });
+      const coverImageUpdate = { type: 'existing' as const, url: linkedinTuneInImage };
+      onCoverImageSelect(coverImageUpdate);
+      onConfigUpdate({ 
+        coverImage: coverImageUpdate,
+        industry: podcastTitle 
+      });
     }
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     setPodcastTitle(newTitle);
-    onConfigUpdate({ industry: newTitle });
+    onConfigUpdate({ 
+      industry: newTitle,
+      coverImage: config.coverImage 
+    });
   };
 
   const handleGenerateImage = async () => {
@@ -52,9 +59,13 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
 
       if (error) throw error;
       
+      const coverImageUpdate = { type: 'generated' as const, url: data.imageUrl };
       setGeneratedImage(data.imageUrl);
-      onCoverImageSelect({ type: 'generated', url: data.imageUrl });
-      onConfigUpdate({ coverImage: { type: 'generated', url: data.imageUrl } });
+      onCoverImageSelect(coverImageUpdate);
+      onConfigUpdate({ 
+        coverImage: coverImageUpdate,
+        industry: podcastTitle 
+      });
       toast.success("Cover image generated successfully!");
     } catch (error) {
       console.error("Error generating image:", error);
