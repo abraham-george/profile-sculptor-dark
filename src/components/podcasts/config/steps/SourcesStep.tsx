@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox"; 
-import { SourceSection } from "./components/SourceSection";
+import { SourceCategory } from "./components/SourceCategory";
+import { AdditionalContent } from "./components/AdditionalContent";
 import { PodcastConfig } from "../types";
 
 const sources = {
@@ -91,94 +90,24 @@ export const SourcesStep = ({ config, onUpdateConfig }: SourcesStepProps) => {
         </p>
       </div>
 
-      <div className="space-y-6">
-        <h3 className="text-lg font-medium">From your network</h3>
-        <SourceSection 
-          title="Top Voices" 
-          items={sources.inNetwork.trustedVoices}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-        <SourceSection 
-          title="Companies" 
-          items={sources.inNetwork.companies}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-        <SourceSection 
-          title="Newsletters" 
-          items={sources.inNetwork.newsletters}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-      </div>
+      <SourceCategory 
+        title="From your network"
+        sources={sources.inNetwork}
+        selectedSources={selectedSources}
+        onSourceSelect={onSourceSelect}
+      />
 
-      <div className="space-y-6">
-        <h3 className="text-lg font-medium">Recommended</h3>
-        <SourceSection 
-          title="Top Voices" 
-          items={sources.recommended.trustedVoices}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-        <SourceSection 
-          title="Companies" 
-          items={sources.recommended.companies}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-        <SourceSection 
-          title="Newsletters" 
-          items={sources.recommended.newsletters}
-          selectedSources={selectedSources}
-          onSourceSelect={onSourceSelect}
-        />
-      </div>
+      <SourceCategory 
+        title="Recommended"
+        sources={sources.recommended}
+        selectedSources={selectedSources}
+        onSourceSelect={onSourceSelect}
+      />
 
-      <div className="space-y-4">
-        <h3 className="text-lg font-medium">Additional Content</h3>
-        <div className="flex space-x-6">
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="linkedin-learning"
-              checked={selectedContent.includes('linkedin-learning')}
-              onCheckedChange={() => onContentSelect('linkedin-learning')}
-            />
-            <label 
-              htmlFor="linkedin-learning"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              LinkedIn Learning
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="events"
-              checked={selectedContent.includes('events')}
-              onCheckedChange={() => onContentSelect('events')}
-            />
-            <label 
-              htmlFor="events"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Events
-            </label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Checkbox 
-              id="jobs"
-              checked={selectedContent.includes('jobs')}
-              onCheckedChange={() => onContentSelect('jobs')}
-            />
-            <label 
-              htmlFor="jobs"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Jobs
-            </label>
-          </div>
-        </div>
-      </div>
+      <AdditionalContent 
+        selectedContent={selectedContent}
+        onContentSelect={onContentSelect}
+      />
     </div>
   );
 };
