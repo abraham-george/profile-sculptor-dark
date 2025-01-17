@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { RefreshCw, Play } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -37,12 +37,8 @@ export const EpisodesTab = () => {
         return;
       }
 
-      const response = await fetch('/api/generate-episode', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+      const { data, error } = await supabase.functions.invoke('generate-episode', {
+        body: {
           skills: config.skills,
           sources: config.sources,
           additionalContent: config.additional_content,
@@ -52,22 +48,17 @@ export const EpisodesTab = () => {
             frequency: config.style_frequency,
             music: config.style_music,
           }
-        }),
+        },
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to generate episode');
-      }
-
-      const episode = await response.json();
+      if (error) throw error;
 
       const { error: insertError } = await supabase
         .from('podcasts')
         .insert([{
-          name: episode.name,
-          description: episode.description,
-          cover_image: episode.coverImage,
-          duration: episode.duration,
+          name: data.name,
+          description: data.description,
+          duration: data.duration,
         }]);
 
       if (insertError) throw insertError;
