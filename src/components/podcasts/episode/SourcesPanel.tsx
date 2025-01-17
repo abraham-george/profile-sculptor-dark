@@ -40,14 +40,14 @@ export const SourcesPanel = () => {
     },
     {
       id: "3",
-      title: "LinkedIn's Growth and AI Features",
-      url: "https://linkedin.com/product-updates",
+      title: "LangChain's Vision for AI Development",
+      url: "https://langchain.com/blog",
       timestamp: "18:00",
-      description: "LinkedIn reaches billion-user milestone, crediting AI-driven features for enhanced user experience.",
+      description: "Harrison Chase discusses LangChain's mission to democratize AI development and make it more accessible to developers worldwide.",
       author: {
-        name: "Tomer Cohen",
-        role: "Chief Product Officer",
-        company: "LinkedIn",
+        name: "Harrison Chase",
+        role: "CEO",
+        company: "LangChain",
         avatar: "/lovable-uploads/1a7f5330-e3a6-4053-a6c1-9c0954485d59.png",
         followers: "15,432",
         isFollowing: false

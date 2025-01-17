@@ -87,11 +87,14 @@ export const TranscriptPanel = () => {
       ]
     },
     {
-      speaker: "Tomer Cohen",
+      speaker: "Harrison Chase",
       timeRange: "18:00 - 18:30",
       sections: [
         {
-          text: "Tomer Cohen, LinkedIn's Chief Product Officer, discussed the platform's growth to over a billion users, attributing much of this success to AI-driven features that enhance user experience."
+          text: "Harrison Chase, CEO of LangChain, shared his vision for democratizing AI development. He emphasized how LangChain's tools are making it easier for developers to build sophisticated AI applications."
+        },
+        {
+          text: "Chase highlighted the importance of creating standardized interfaces for AI development, allowing developers to focus on building applications rather than dealing with infrastructure complexities."
         }
       ]
     },
