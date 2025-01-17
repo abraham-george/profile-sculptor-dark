@@ -34,8 +34,6 @@ export const ConfigContent = ({ currentStep, config, onConfigUpdate, readOnly = 
         <SourcesStep
           config={config}
           onUpdateConfig={onConfigUpdate}
-          onNext={() => {}}
-          onBack={() => {}}
         />
       )}
 
