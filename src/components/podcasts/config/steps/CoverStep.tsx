@@ -23,9 +23,19 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
   const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
-  const [podcastTitle, setPodcastTitle] = useState("");
+  const [podcastTitle, setPodcastTitle] = useState(config.industry || "");
 
   const linkedinTuneInImage = "/lovable-uploads/6bbb0605-4369-4c95-9a42-09949e5b1ed1.png";
+
+  useEffect(() => {
+    // Initialize with existing cover image if available
+    if (config.coverImage) {
+      setSelectedOption(config.coverImage.type);
+      if (config.coverImage.type === 'generated') {
+        setGeneratedImage(config.coverImage.url);
+      }
+    }
+  }, [config.coverImage]);
 
   const handleOptionChange = (value: "upload" | "generate") => {
     setSelectedOption(value);
