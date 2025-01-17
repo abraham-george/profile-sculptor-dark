@@ -45,7 +45,7 @@ export const ConfigTab = ({ existingConfig }: ConfigTabProps) => {
       case 1:
         return podcastConfig.skills.length > 0;
       case 4:
-        return !!podcastConfig.coverImage;
+        return !!podcastConfig.coverImage && !!podcastConfig.industry?.trim();
       default:
         return true;
     }

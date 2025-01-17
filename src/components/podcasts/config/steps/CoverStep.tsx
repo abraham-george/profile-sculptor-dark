@@ -23,14 +23,7 @@ export const CoverStep = ({ coverImage, onCoverImageSelect, config, onConfigUpda
   const [selectedOption, setSelectedOption] = useState<"upload" | "generate">("upload");
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState("");
-  const [podcastTitle, setPodcastTitle] = useState(config.industry || "");
-
-  // Update local state when config changes
-  useEffect(() => {
-    if (config.industry) {
-      setPodcastTitle(config.industry);
-    }
-  }, [config.industry]);
+  const [podcastTitle, setPodcastTitle] = useState("");
 
   const linkedinTuneInImage = "/lovable-uploads/6bbb0605-4369-4c95-9a42-09949e5b1ed1.png";
 
