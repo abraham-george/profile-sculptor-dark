@@ -1,69 +1,86 @@
-import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { SourceSection } from "./components/SourceSection";
+import { PodcastConfig } from "../types";
 
-interface Source {
-  name: string;
-  image: string;
-}
+const sources = {
+  inNetwork: {
+    trustedVoices: [
+      { id: "1", name: "Andrew Ng", role: "AI Researcher & Educator" },
+      { id: "2", name: "Yann LeCun", role: "Chief AI Scientist at Meta" },
+      { id: "3", name: "Fei-Fei Li", role: "Professor at Stanford" },
+      { id: "4", name: "Geoffrey Hinton", role: "Professor Emeritus at UofT" },
+      { id: "5", name: "Demis Hassabis", role: "CEO at DeepMind" }
+    ],
+    companies: [
+      { id: "6", name: "OpenAI", role: "AI Research & Development" },
+      { id: "7", name: "DeepMind", role: "AI Research & Applications" },
+      { id: "8", name: "Anthropic", role: "AI Safety & Development" },
+      { id: "9", name: "Scale AI", role: "AI Infrastructure & Data" },
+      { id: "10", name: "Cohere", role: "Enterprise AI Solutions" }
+    ],
+    newsletters: [
+      { id: "11", name: "The Algorithm", role: "MIT Technology Review" },
+      { id: "12", name: "Import AI", role: "Weekly AI News & Analysis" },
+      { id: "13", name: "The Batch", role: "DeepLearning.AI Newsletter" },
+      { id: "14", name: "AI Weekly", role: "Curated AI News & Research" },
+      { id: "15", name: "The Gradient", role: "AI Research & Perspectives" }
+    ]
+  },
+  recommended: {
+    trustedVoices: [
+      { id: "16", name: "Yoshua Bengio", role: "Pioneer in Deep Learning" },
+      { id: "17", name: "Ian Goodfellow", role: "AI Researcher & Author" },
+      { id: "18", name: "Kate Crawford", role: "AI Ethics Researcher" },
+      { id: "19", name: "Kai-Fu Lee", role: "CEO at Sinovation Ventures" },
+      { id: "20", name: "Stuart Russell", role: "Professor at UC Berkeley" }
+    ],
+    companies: [
+      { id: "21", name: "Google AI", role: "AI Research & Products" },
+      { id: "22", name: "Microsoft Research", role: "AI & Computing Research" },
+      { id: "23", name: "IBM Research", role: "Enterprise AI Solutions" },
+      { id: "24", name: "Meta AI", role: "AI Research & Development" },
+      { id: "25", name: "NVIDIA AI", role: "AI Hardware & Software" }
+    ],
+    newsletters: [
+      { id: "26", name: "AI Ethics Brief", role: "Ethics in AI" },
+      { id: "27", name: "Machine Learning Monthly", role: "Research Digest" },
+      { id: "28", name: "Deep Learning Weekly", role: "Industry Updates" },
+      { id: "29", name: "AI Business", role: "Enterprise AI News" },
+      { id: "30", name: "Papers with Code", role: "Latest AI Research" }
+    ]
+  }
+};
 
 interface SourcesStepProps {
-  selectedSources: string[];
-  selectedAdditionalContent: string[];
-  onSourceSelect: (source: string) => void;
-  onAdditionalContentSelect: (content: string) => void;
+  podcastConfig: PodcastConfig;
+  onUpdateConfig: (config: Partial<PodcastConfig>) => void;
+  onNext: () => void;
+  onBack: () => void;
 }
 
-export const SourcesStep = ({ 
-  selectedSources, 
-  selectedAdditionalContent, 
-  onSourceSelect,
-  onAdditionalContentSelect 
-}: SourcesStepProps) => {
-  const sources = {
-    inNetwork: {
-      trustedVoices: [
-        { name: 'Andrew Ng', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Yann LeCun', image: 'https://media.licdn.com/dms/image/v2/D4E03AQE1V9qLzblwvQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1694348650057?e=1742428800&v=beta&t=F-2MaRkg9qiLwjgGhxqLWPjP3NvFJySdxJcVwpwkMjg' },
-        { name: 'Fei-Fei Li', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Geoffrey Hinton', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
-      ],
-      companies: [
-        { name: 'OpenAI', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'DeepMind', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
-        { name: 'Anthropic', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Scale AI', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
-      ],
-      newsletters: [
-        { name: 'The Batch', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Import AI', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
-        { name: 'ML Weekly', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'The Algorithm', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
-      ]
-    },
-    recommended: {
-      trustedVoices: [
-        { name: 'Demis Hassabis', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Sam Altman', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' },
-        { name: 'Daphne Koller', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Ian Goodfellow', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' }
-      ],
-      companies: [
-        { name: 'Cohere', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'Stability AI', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' },
-        { name: 'Hugging Face', image: 'https://images.unsplash.com/photo-1485833077593-4278bba3f11f' },
-        { name: 'Midjourney', image: 'https://images.unsplash.com/photo-1438565434616-3ef039228b15' }
-      ],
-      newsletters: [
-        { name: 'AI Alignment', image: 'https://images.unsplash.com/photo-1501286353178-1ec881214838' },
-        { name: 'Last Week in AI', image: 'https://images.unsplash.com/photo-1469041797191-50ace28483c3' },
-        { name: 'Ahead of AI', image: 'https://images.unsplash.com/photo-1452378174528-3090a4bba7b2' },
-        { name: 'The AI Index', image: 'https://images.unsplash.com/photo-1487252665478-49b61b47f302' }
-      ]
-    }
+export const SourcesStep = ({ podcastConfig, onUpdateConfig, onNext, onBack }: SourcesStepProps) => {
+  const [selectedSources, setSelectedSources] = useState<string[]>(podcastConfig.sources || []);
+
+  const onSourceSelect = (sourceId: string) => {
+    setSelectedSources((prev) => {
+      const newSources = prev.includes(sourceId)
+        ? prev.filter((id) => id !== sourceId)
+        : [...prev, sourceId];
+      onUpdateConfig({ sources: newSources });
+      return newSources;
+    });
   };
 
   return (
     <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Choose your sources</h2>
+        <p className="text-gray-400">
+          Select the voices and organizations you'd like to include in your podcast content.
+        </p>
+      </div>
+
       <div className="space-y-6">
         <h3 className="text-lg font-medium">From your network</h3>
         <SourceSection 
@@ -108,20 +125,13 @@ export const SourcesStep = ({
         />
       </div>
 
-      <div className="space-y-4">
-        <h3 className="text-lg font-medium">Additional Content</h3>
-        <div className="flex items-center gap-8">
-          {['LinkedIn Learning', 'Events', 'Jobs'].map((content) => (
-            <div key={content} className="flex items-center gap-2">
-              <Checkbox 
-                id={content.toLowerCase()}
-                checked={selectedAdditionalContent.includes(content)}
-                onCheckedChange={() => onAdditionalContentSelect(content)}
-              />
-              <label htmlFor={content.toLowerCase()} className="text-sm">{content}</label>
-            </div>
-          ))}
-        </div>
+      <div className="flex justify-between pt-6">
+        <Button onClick={onBack} variant="outline">
+          Back
+        </Button>
+        <Button onClick={onNext}>
+          Next
+        </Button>
       </div>
     </div>
   );
