@@ -6,6 +6,7 @@ interface EpisodeCardProps {
   name: string;
   description: string;
   duration?: string;
+  coverImage?: string;
   onPlay?: () => void;
   onLearnMore?: () => void;
 }
@@ -15,11 +16,17 @@ export const EpisodeCard = ({
   name,
   description,
   duration,
+  coverImage = "/placeholder.svg",
   onPlay,
   onLearnMore,
 }: EpisodeCardProps) => {
   return (
     <div className="flex items-center gap-4 p-4 bg-linkedin-card rounded-lg hover:bg-linkedin-card/90 transition-colors group">
+      <img 
+        src={coverImage} 
+        alt={name}
+        className="w-16 h-16 rounded object-cover"
+      />
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <div>
@@ -33,7 +40,7 @@ export const EpisodeCard = ({
           <div className="flex items-center gap-3">
             <Button
               size="icon"
-              className="rounded-full bg-linkedin-blue hover:bg-linkedin-blue/90 shadow-lg transition-opacity"
+              className="rounded-full bg-linkedin-blue hover:bg-linkedin-blue/90 shadow-lg"
               onClick={onPlay}
             >
               <Play className="h-4 w-4" />

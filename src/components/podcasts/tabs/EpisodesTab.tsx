@@ -113,6 +113,7 @@ export const EpisodesTab = () => {
                 name={episode.name}
                 description={episode.description || ""}
                 duration={episode.duration}
+                coverImage={episode.cover_image}
                 onPlay={() => handleEpisodeClick(episode.id)}
                 onLearnMore={() => handleEpisodeClick(episode.id)}
               />
