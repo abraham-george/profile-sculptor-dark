@@ -51,7 +51,7 @@ export const SharedEpisodeCard = ({
               </div>
             )}
             {duration && (
-              <p className="text-xs text-gray-500 mt-1">{duration}</p>
+              <p className="text-xs text-gray-500 mt-1">5 minutes</p>
             )}
           </div>
           
