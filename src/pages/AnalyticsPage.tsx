@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/Navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Users, BarChart2, Search, Headphones, FileText, Share2, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const AnalyticsPage = () => {
@@ -31,36 +31,84 @@ const AnalyticsPage = () => {
               />
               <div>
                 <h1 className="text-xl font-semibold text-white">Analytics & tools</h1>
-                <p className="text-gray-400">Friday, January 17</p>
+                <p className="text-gray-400">Last 30 days</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {/* Original Statistics */}
               <div className="glass-card p-6">
-                <div className="text-4xl font-bold text-white mb-2">16</div>
-                <div className="text-gray-200">Post impressions</div>
+                <div className="text-4xl font-bold text-white mb-2">55</div>
+                <div className="text-gray-200 flex items-center gap-2">
+                  <Users size={16} className="text-gray-400" />
+                  Profile views
+                </div>
+                <div className="text-green-500 text-sm">↑ 12% past 7 days</div>
+              </div>
+              
+              <div className="glass-card p-6">
+                <div className="text-4xl font-bold text-white mb-2">42</div>
+                <div className="text-gray-200 flex items-center gap-2">
+                  <BarChart2 size={16} className="text-gray-400" />
+                  Post impressions
+                </div>
                 <div className="text-green-500 text-sm">↑ 59% past 7 days</div>
               </div>
               
               <div className="glass-card p-6">
-                <div className="text-4xl font-bold text-white mb-2">762</div>
-                <div className="text-gray-200">Followers</div>
-                <div className="text-red-500 text-sm">↓ 0.2% past 7 days</div>
+                <div className="text-4xl font-bold text-white mb-2">32</div>
+                <div className="text-gray-200 flex items-center gap-2">
+                  <Search size={16} className="text-gray-400" />
+                  Search appearances
+                </div>
+                <div className="text-gray-400 text-sm">Past 7 days</div>
               </div>
-              
+
+              {/* New Content Creation Statistics */}
               <div className="glass-card p-6">
-                <div className="text-4xl font-bold text-white mb-2">54</div>
-                <div className="text-gray-200">Profile viewers</div>
-                <div className="text-gray-400 text-sm">Past 90 days</div>
-              </div>
-              
-              <div className="glass-card p-6">
-                <div className="text-4xl font-bold text-white mb-2">37</div>
-                <div className="text-gray-200">Search appearances</div>
-                <div className="text-gray-400 text-sm">Previous week</div>
+                <div className="text-4xl font-bold text-white mb-2">128</div>
+                <div className="text-gray-200 flex items-center gap-2">
+                  <FileText size={16} className="text-gray-400" />
+                  Content references
+                </div>
+                <div className="text-green-500 text-sm">↑ 23% past 7 days</div>
               </div>
             </div>
 
+            {/* Podcast Analytics Section */}
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold text-white mb-4">Podcast Analytics</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="glass-card p-6">
+                  <div className="text-4xl font-bold text-white mb-2">1,247</div>
+                  <div className="text-gray-200 flex items-center gap-2">
+                    <Headphones size={16} className="text-gray-400" />
+                    Total listens
+                  </div>
+                  <div className="text-green-500 text-sm">↑ 45% past 30 days</div>
+                </div>
+
+                <div className="glass-card p-6">
+                  <div className="text-4xl font-bold text-white mb-2">864</div>
+                  <div className="text-gray-200 flex items-center gap-2">
+                    <Clock size={16} className="text-gray-400" />
+                    Minutes listened
+                  </div>
+                  <div className="text-green-500 text-sm">↑ 32% past 30 days</div>
+                </div>
+
+                <div className="glass-card p-6">
+                  <div className="text-4xl font-bold text-white mb-2">89</div>
+                  <div className="text-gray-200 flex items-center gap-2">
+                    <Share2 size={16} className="text-gray-400" />
+                    Podcast shares
+                  </div>
+                  <div className="text-green-500 text-sm">↑ 15% past 30 days</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Keep existing Weekly Sharing Tracker and Creator Tools sections */}
             <div className="glass-card p-6 mb-6">
               <h2 className="text-xl font-semibold text-white mb-4">Weekly sharing tracker</h2>
               <p className="text-gray-300 mb-6">
